@@ -1,0 +1,234 @@
+
+
+================================================================
+== Vitis HLS Report for 'select_density_neighbors'
+================================================================
+* Date:           Sat Nov 14 17:54:02 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        project
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z010-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+-----------+------------+
+    |  Clock |  Target  | Estimated | Uncertainty|
+    +--------+----------+-----------+------------+
+    |ap_clk  |  20.00 ns|  11.216 ns|     5.40 ns|
+    +--------+----------+-----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      156|      156|  3.120 us|  3.120 us|  156|  156|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                     |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name      |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_113_1   |        8|        8|         2|          -|          -|     4|        no|
+        |- VITIS_LOOP_116_2   |       36|       36|         3|          -|          -|    12|        no|
+        |- VITIS_LOOP_128_3   |      108|      108|        27|          -|          -|     4|        no|
+        | + VITIS_LOOP_132_4  |       24|       24|         2|          -|          -|    12|        no|
+        +---------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP|   FF  |  LUT  | URAM|
++-----------------+---------+----+-------+-------+-----+
+|DSP              |        -|   -|      -|      -|    -|
+|Expression       |        -|   -|      0|    452|    -|
+|FIFO             |        -|   -|      -|      -|    -|
+|Instance         |        -|   -|      -|      -|    -|
+|Memory           |        0|   -|     28|      8|    0|
+|Multiplexer      |        -|   -|      -|    210|    -|
+|Register         |        -|   -|    224|      -|    -|
++-----------------+---------+----+-------+-------+-----+
+|Total            |        0|   0|    252|    670|    0|
++-----------------+---------+----+-------+-------+-----+
+|Available        |      120|  80|  35200|  17600|    0|
++-----------------+---------+----+-------+-------+-----+
+|Utilization (%)  |        0|   0|     ~0|      3|    0|
++-----------------+---------+----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +------------+-------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |   Memory   |                      Module                     | BRAM_18K| FF | LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +------------+-------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |scores_V_U  |select_density_neighbors_scores_V_RAM_AUTO_1R1W  |        0|  27|   7|    0|    16|   27|     1|          432|
+    |selected_U  |select_density_neighbors_selected_RAM_AUTO_1R1W  |        0|   1|   1|    0|    16|    1|     1|           16|
+    +------------+-------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |Total       |                                                 |        0|  28|   8|    0|    32|   28|     2|          448|
+    +------------+-------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name       | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------+----------+----+---+----+------------+------------+
+    |add_ln113_fu_445_p2        |         +|   0|  0|  11|           3|           1|
+    |add_ln116_fu_540_p2        |         +|   0|  0|  13|           5|           1|
+    |add_ln117_fu_524_p2        |         +|   0|  0|  14|          13|          13|
+    |add_ln128_fu_646_p2        |         +|   0|  0|  11|           3|           1|
+    |add_ln132_fu_816_p2        |         +|   0|  0|  13|           5|           1|
+    |add_ln140_fu_826_p2        |         +|   0|  0|  14|          13|          13|
+    |r_V_fu_598_p2              |         -|   0|  0|  35|           1|          28|
+    |ret_V_fu_585_p2            |         -|   0|  0|  35|          28|          28|
+    |icmp_ln113_fu_439_p2       |      icmp|   0|  0|   9|           3|           4|
+    |icmp_ln116_fu_534_p2       |      icmp|   0|  0|  10|           5|           6|
+    |icmp_ln128_fu_640_p2       |      icmp|   0|  0|   9|           3|           4|
+    |icmp_ln132_fu_810_p2       |      icmp|   0|  0|  10|           5|           6|
+    |icmp_ln1649_fu_845_p2      |      icmp|   0|  0|  16|          27|          27|
+    |found_1_fu_903_p2          |        or|   0|  0|   2|           1|           1|
+    |or_ln134_fu_851_p2         |        or|   0|  0|   2|           1|           1|
+    |best_position_1_fu_889_p3  |    select|   0|  0|  32|           1|          32|
+    |best_score_V_1_fu_881_p3   |    select|   0|  0|  27|           1|          27|
+    |scores_V_d0                |    select|   0|  0|  27|           1|          27|
+    |select_ln134_1_fu_873_p3   |    select|   0|  0|  32|           1|          32|
+    |select_ln134_fu_857_p3     |    select|   0|  0|  27|           1|          27|
+    |select_ln143_1_fu_707_p3   |    select|   0|  0|   9|           1|           9|
+    |select_ln143_2_fu_714_p3   |    select|   0|  0|   9|           1|           9|
+    |select_ln143_3_fu_721_p3   |    select|   0|  0|   9|           1|           9|
+    |select_ln143_4_fu_728_p3   |    select|   0|  0|   9|           1|           9|
+    |select_ln143_5_fu_735_p3   |    select|   0|  0|   9|           1|           9|
+    |select_ln143_6_fu_742_p3   |    select|   0|  0|   9|           1|           9|
+    |select_ln143_7_fu_749_p3   |    select|   0|  0|   9|           1|           9|
+    |select_ln143_fu_700_p3     |    select|   0|  0|   9|           1|           9|
+    |select_ln356_fu_616_p3     |    select|   0|  0|  27|           1|           2|
+    |xor_ln134_1_fu_897_p2      |       xor|   0|  0|   2|           1|           2|
+    |xor_ln134_fu_839_p2        |       xor|   0|  0|   2|           1|           2|
+    +---------------------------+----------+----+---+----+------------+------------+
+    |Total                      |          |   0|  0| 452|         132|         358|
+    +---------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------+----+-----------+-----+-----------+
+    |            Name            | LUT| Input Size| Bits| Total Bits|
+    +----------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                   |  65|         12|    1|         12|
+    |best_position_reg_365       |   9|          2|   32|         64|
+    |best_score_V_reg_377        |   9|          2|   27|         54|
+    |candidate_indices_address0  |  20|          4|   13|         52|
+    |clipped_density_address0    |  14|          3|    9|         27|
+    |found_reg_353               |   9|          2|    1|          2|
+    |neighbor_1_fu_144           |   9|          2|    5|         10|
+    |neighbor_2_reg_341          |   9|          2|    5|         10|
+    |neighbor_fu_100             |   9|          2|    3|          6|
+    |scores_V_address0           |  14|          3|    4|         12|
+    |selected_address0           |  20|          4|    4|         16|
+    |selected_d0                 |  14|          3|    1|          3|
+    |slot_fu_148                 |   9|          2|    3|          6|
+    +----------------------------+----+-----------+-----+-----------+
+    |Total                       | 210|         43|  108|        274|
+    +----------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------+----+----+-----+-----------+
+    |              Name              | FF | LUT| Bits| Const Bits|
+    +--------------------------------+----+----+-----+-----------+
+    |add_ln113_reg_1081              |   3|   0|    3|          0|
+    |add_ln128_reg_1190              |   3|   0|    3|          0|
+    |add_ln132_reg_1208              |   5|   0|    5|          0|
+    |ap_CS_fsm                       |  11|   0|   11|          0|
+    |best_position_reg_365           |  32|   0|   32|          0|
+    |best_score_V_reg_377            |  27|   0|   27|          0|
+    |found_reg_353                   |   1|   0|    1|          0|
+    |neighbor_1_fu_144               |   5|   0|    5|          0|
+    |neighbor_2_reg_341              |   5|   0|    5|          0|
+    |neighbor_fu_100                 |   3|   0|    3|          0|
+    |reference_indices_0_010_fu_108  |   9|   0|    9|          0|
+    |reference_indices_1_013_fu_116  |   9|   0|    9|          0|
+    |reference_indices_2_015_fu_132  |   9|   0|    9|          0|
+    |reference_indices_3_014_fu_120  |   9|   0|    9|          0|
+    |reference_indices_4_012_fu_176  |   9|   0|    9|          0|
+    |reference_indices_5_011_fu_168  |   9|   0|    9|          0|
+    |reference_indices_6_09_fu_160   |   9|   0|    9|          0|
+    |reference_indices_7_08_fu_152   |   9|   0|    9|          0|
+    |sext_ln116_reg_1102             |  28|   0|   28|          0|
+    |slot_fu_148                     |   3|   0|    3|          0|
+    |tmp_s_reg_1067                  |   9|   0|   13|          4|
+    |trunc_ln114_reg_1086            |   2|   0|    2|          0|
+    |trunc_ln140_1_reg_1218          |   2|   0|    2|          0|
+    |write_flag12_0_fu_180           |   1|   0|    1|          0|
+    |write_flag15_0_fu_172           |   1|   0|    1|          0|
+    |write_flag18_0_fu_164           |   1|   0|    1|          0|
+    |write_flag21_0_fu_156           |   1|   0|    1|          0|
+    |write_flag3_0_fu_112            |   1|   0|    1|          0|
+    |write_flag6_0_fu_124            |   1|   0|    1|          0|
+    |write_flag9_0_fu_128            |   1|   0|    1|          0|
+    |write_flag_0_fu_104             |   1|   0|    1|          0|
+    |zext_ln116_reg_1107             |   5|   0|   64|         59|
+    +--------------------------------+----+----+-----+-----------+
+    |Total                           | 224|   0|  287|         63|
+    +--------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------------+-----+-----+------------+--------------------------+--------------+
+|          RTL Ports         | Dir | Bits|  Protocol  |       Source Object      |    C Type    |
++----------------------------+-----+-----+------------+--------------------------+--------------+
+|ap_clk                      |   in|    1|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_rst                      |   in|    1|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_start                    |   in|    1|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_done                     |  out|    1|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_idle                     |  out|    1|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_ready                    |  out|    1|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_return_0                 |  out|    9|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_return_1                 |  out|    9|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_return_2                 |  out|    9|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_return_3                 |  out|    9|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_return_4                 |  out|    9|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_return_5                 |  out|    9|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_return_6                 |  out|    9|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|ap_return_7                 |  out|    9|  ap_ctrl_hs|  select_density_neighbors|  return value|
+|current_point               |   in|    9|     ap_none|             current_point|        scalar|
+|clipped_density_address0    |  out|    9|   ap_memory|           clipped_density|         array|
+|clipped_density_ce0         |  out|    1|   ap_memory|           clipped_density|         array|
+|clipped_density_q0          |   in|   27|   ap_memory|           clipped_density|         array|
+|candidate_indices_address0  |  out|   13|   ap_memory|         candidate_indices|         array|
+|candidate_indices_ce0       |  out|    1|   ap_memory|         candidate_indices|         array|
+|candidate_indices_q0        |   in|    9|   ap_memory|         candidate_indices|         array|
+|candidate_indices1          |   in|    9|     ap_none|        candidate_indices1|        scalar|
+|p_read                      |   in|    9|     ap_none|                    p_read|        scalar|
+|p_read1                     |   in|    9|     ap_none|                   p_read1|        scalar|
+|p_read2                     |   in|    9|     ap_none|                   p_read2|        scalar|
+|p_read3                     |   in|    9|     ap_none|                   p_read3|        scalar|
+|p_read4                     |   in|    9|     ap_none|                   p_read4|        scalar|
+|p_read5                     |   in|    9|     ap_none|                   p_read5|        scalar|
+|p_read6                     |   in|    9|     ap_none|                   p_read6|        scalar|
+|p_read7                     |   in|    9|     ap_none|                   p_read7|        scalar|
++----------------------------+-----+-----+------------+--------------------------+--------------+
+

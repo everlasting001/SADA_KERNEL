@@ -1,0 +1,17 @@
+{
+  "profile": "06_key_cache",
+  "options": {
+    "norm": "off",
+    "density_serial": true,
+    "selection_serial": true,
+    "key_cache": true
+  },
+  "experiment": 3,
+  "stage": "synth",
+  "part": "xc7z010clg400-1",
+  "clock_ns": 20,
+  "work_directory": "C:/fpga/sada_edition3_runs/06_key_cache_exp3",
+  "source_sha256": "befebcb6987a5739e7b69b6705491a97923df1d168ff1e31e8ece0267c0b2660",
+  "header_sha256": "6c508818b3acd94f9eac8292a89281ee95c11f573e343406b93af02a927e4af7",
+  "test_sha256": "e50d3f8603fffa406922cf911a9494291bee618e6324a012424be522f806e7d1"
+}

@@ -1,0 +1,16 @@
+{
+  "profile": "05_area_shared",
+  "options": {
+    "norm": "off",
+    "density_serial": true,
+    "selection_serial": true
+  },
+  "experiment": 3,
+  "stage": "synth",
+  "part": "xc7z010clg400-1",
+  "clock_ns": 20,
+  "work_directory": "C:/fpga/sada_edition3_runs/05_area_shared_exp3",
+  "source_sha256": "7fa94849c5e5b59e813c77ac9c4713b5b5ab43ae15870c7a30494f2bf4c6f2e5",
+  "header_sha256": "6c508818b3acd94f9eac8292a89281ee95c11f573e343406b93af02a927e4af7",
+  "test_sha256": "e50d3f8603fffa406922cf911a9494291bee618e6324a012424be522f806e7d1"
+}

@@ -1,0 +1,17 @@
+{
+  "profile": "09_top4_insert",
+  "options": {
+    "norm": "off",
+    "density_serial": true,
+    "selection_serial": true,
+    "insertion_top4": true
+  },
+  "experiment": 3,
+  "stage": "synth",
+  "part": "xc7z010clg400-1",
+  "clock_ns": 20,
+  "work_directory": "C:/fpga/sada_edition3_runs/09_top4_insert_exp3",
+  "source_sha256": "f1977d2bdbbb5b339c0f3907dd23a1b491fdab12ff1dd70b727843b095b76fdb",
+  "header_sha256": "6c508818b3acd94f9eac8292a89281ee95c11f573e343406b93af02a927e4af7",
+  "test_sha256": "e50d3f8603fffa406922cf911a9494291bee618e6324a012424be522f806e7d1"
+}

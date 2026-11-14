@@ -1,0 +1,32 @@
+{
+  "profile": "12_bram_cache",
+  "options": {
+    "norm": "off",
+    "density_serial": true,
+    "selection_serial": true,
+    "key_cache": "bram",
+    "bank_references": true
+  },
+  "experiment": 3,
+  "stage": "synth",
+  "part": "xc7z010clg400-1",
+  "clock_ns": 20,
+  "work_directory": "C:/fpga/sada_edition3_runs/12_bram_cache_exp3",
+  "source_sha256": "c64967bbc1e642692850a6ba8ba253daab9d18179068ddb737942c68b66a6138",
+  "header_sha256": "6c508818b3acd94f9eac8292a89281ee95c11f573e343406b93af02a927e4af7",
+  "test_sha256": "e50d3f8603fffa406922cf911a9494291bee618e6324a012424be522f806e7d1",
+  "exit_code": 0,
+  "elapsed_seconds": 62.73,
+  "resources": {
+    "BRAM_18K": 15,
+    "DSP": 27,
+    "FF": 3637,
+    "LUT": 6319,
+    "URAM": 0
+  },
+  "latency_cycles": 266342,
+  "interval_cycles": 266343,
+  "estimated_clock_ns": 14.574,
+  "csim_pass": true,
+  "cosim_pass": false
+}

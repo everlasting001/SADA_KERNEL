@@ -1,0 +1,34 @@
+{
+  "profile": "17_balanced_ii32",
+  "options": {
+    "norm": "32",
+    "density_serial": true,
+    "selection_serial": true,
+    "insertion_top4": true,
+    "stable_ties": true,
+    "key_cache": "bram",
+    "bank_references": true
+  },
+  "experiment": 3,
+  "stage": "synth",
+  "part": "xc7z010clg400-1",
+  "clock_ns": 20,
+  "work_directory": "C:/fpga/sada_edition3_runs/17_balanced_ii32_exp3",
+  "source_sha256": "3a256dfab450d11ffc3386e5313b268720b10d4dc922087255abf56101cdaf03",
+  "header_sha256": "6c508818b3acd94f9eac8292a89281ee95c11f573e343406b93af02a927e4af7",
+  "test_sha256": "e50d3f8603fffa406922cf911a9494291bee618e6324a012424be522f806e7d1",
+  "exit_code": 0,
+  "elapsed_seconds": 68.24,
+  "resources": {
+    "BRAM_18K": 15,
+    "DSP": 27,
+    "FF": 11895,
+    "LUT": 13011,
+    "URAM": 0
+  },
+  "latency_cycles": 180374,
+  "interval_cycles": 180375,
+  "estimated_clock_ns": 14.574,
+  "csim_pass": true,
+  "cosim_pass": false
+}

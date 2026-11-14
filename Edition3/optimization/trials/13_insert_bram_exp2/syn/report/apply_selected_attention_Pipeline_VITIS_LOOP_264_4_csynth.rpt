@@ -1,0 +1,343 @@
+
+
+================================================================
+== Vitis HLS Report for 'apply_selected_attention_Pipeline_VITIS_LOOP_264_4'
+================================================================
+* Date:           Sat Nov 14 18:04:13 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        project
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z010-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+-----------+------------+
+    |  Clock |  Target  | Estimated | Uncertainty|
+    +--------+----------+-----------+------------+
+    |ap_clk  |  20.00 ns|  14.574 ns|     5.40 ns|
+    +--------+----------+-----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |      517|      517|  10.340 us|  10.340 us|  517|  517|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_264_4  |      515|      515|         5|          1|          1|   512|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP|   FF  |  LUT  | URAM|
++-----------------+---------+----+-------+-------+-----+
+|DSP              |        -|   -|      -|      -|    -|
+|Expression       |        -|   -|      0|    583|    -|
+|FIFO             |        -|   -|      -|      -|    -|
+|Instance         |        -|   3|      0|     21|    -|
+|Memory           |        -|   -|      -|      -|    -|
+|Multiplexer      |        -|   -|      -|     36|    -|
+|Register         |        -|   -|    420|     64|    -|
++-----------------+---------+----+-------+-------+-----+
+|Total            |        0|   3|    420|    704|    0|
++-----------------+---------+----+-------+-------+-----+
+|Available        |      120|  80|  35200|  17600|    0|
++-----------------+---------+----+-------+-------+-----+
+|Utilization (%)  |        0|   3|      1|      4|    0|
++-----------------+---------+----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------+--------------------+---------+----+---+----+-----+
+    |        Instance        |       Module       | BRAM_18K| DSP| FF| LUT| URAM|
+    +------------------------+--------------------+---------+----+---+----+-----+
+    |mul_33s_32s_64_1_1_U11  |mul_33s_32s_64_1_1  |        0|   3|  0|  21|    0|
+    +------------------------+--------------------+---------+----+---+----+-----+
+    |Total                   |                    |        0|   3|  0|  21|    0|
+    +------------------------+--------------------+---------+----+---+----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------------+----------+----+---+----+------------+------------+
+    |        Variable Name        | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------------+----------+----+---+----+------------+------------+
+    |add_ln264_fu_663_p2          |         +|   0|  0|  13|          10|           1|
+    |add_ln272_fu_697_p2          |         +|   0|  0|  23|          16|          16|
+    |add_ln840_10_fu_1048_p2      |         +|   0|  0|  10|           2|           2|
+    |add_ln840_11_fu_1058_p2      |         +|   0|  0|  10|           2|           2|
+    |add_ln840_12_fu_1068_p2      |         +|   0|  0|  11|           3|           3|
+    |add_ln840_13_fu_1078_p2      |         +|   0|  0|  13|           4|           4|
+    |add_ln840_1_fu_958_p2        |         +|   0|  0|  10|           2|           2|
+    |add_ln840_2_fu_968_p2        |         +|   0|  0|  11|           3|           3|
+    |add_ln840_3_fu_978_p2        |         +|   0|  0|  10|           2|           2|
+    |add_ln840_4_fu_988_p2        |         +|   0|  0|  10|           2|           2|
+    |add_ln840_5_fu_998_p2        |         +|   0|  0|  11|           3|           3|
+    |add_ln840_6_fu_1008_p2       |         +|   0|  0|  13|           4|           4|
+    |add_ln840_7_fu_1018_p2       |         +|   0|  0|  10|           2|           2|
+    |add_ln840_8_fu_1028_p2       |         +|   0|  0|  10|           2|           2|
+    |add_ln840_9_fu_1038_p2       |         +|   0|  0|  11|           3|           3|
+    |add_ln840_fu_948_p2          |         +|   0|  0|  10|           2|           2|
+    |charged_V_4_fu_1184_p2       |         +|   0|  0|  39|          32|          32|
+    |ret_V_35_fu_1140_p2          |         +|   0|  0|  71|          64|          64|
+    |sum_V_fu_1088_p2             |         +|   0|  0|  13|           5|           5|
+    |ret_V_fu_1115_p2             |         -|   0|  0|  40|          33|          33|
+    |and_ln890_fu_1265_p2         |       and|   0|  0|   2|           1|           1|
+    |and_ln891_fu_1277_p2         |       and|   0|  0|   2|           1|           1|
+    |carry_1_fu_1241_p2           |       and|   0|  0|   2|           1|           1|
+    |gated_values_d0              |       and|   0|  0|   2|           1|           1|
+    |overflow_fu_1298_p2          |       and|   0|  0|   2|           1|           1|
+    |underflow_fu_1322_p2         |       and|   0|  0|   2|           1|           1|
+    |Range1_all_ones_fu_1224_p2   |      icmp|   0|  0|  13|          16|           2|
+    |Range1_all_zeros_fu_1230_p2  |      icmp|   0|  0|  13|          16|           1|
+    |Range2_all_ones_fu_1208_p2   |      icmp|   0|  0|  12|          15|           2|
+    |icmp_ln1651_fu_1348_p2       |      icmp|   0|  0|  18|          32|          32|
+    |icmp_ln264_fu_657_p2         |      icmp|   0|  0|  11|          10|          11|
+    |or_ln346_fu_1335_p2          |        or|   0|  0|   2|           1|           1|
+    |or_ln895_fu_1288_p2          |        or|   0|  0|   2|           1|           1|
+    |or_ln896_fu_1310_p2          |        or|   0|  0|   2|           1|           1|
+    |charged_V_fu_1341_p3         |    select|   0|  0|  32|           1|          32|
+    |deleted_ones_fu_1270_p3      |    select|   0|  0|   2|           1|           1|
+    |deleted_zeros_fu_1246_p3     |    select|   0|  0|   2|           1|           1|
+    |membrane_d0                  |    select|   0|  0|  32|           1|           1|
+    |select_ln346_fu_1327_p3      |    select|   0|  0|  33|           1|          31|
+    |ap_enable_pp0                |       xor|   0|  0|   2|           1|           2|
+    |gate_V_fu_1353_p2            |       xor|   0|  0|   2|           1|           2|
+    |ret_V_19_fu_788_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_20_fu_798_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_21_fu_808_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_22_fu_818_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_23_fu_828_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_24_fu_838_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_25_fu_848_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_26_fu_858_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_27_fu_868_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_28_fu_878_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_29_fu_888_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_30_fu_898_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_31_fu_908_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_32_fu_918_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_33_fu_928_p2           |       xor|   0|  0|   2|           1|           1|
+    |ret_V_34_fu_938_p2           |       xor|   0|  0|   2|           1|           1|
+    |xor_ln890_fu_1259_p2         |       xor|   0|  0|   2|           1|           2|
+    |xor_ln895_1_fu_1293_p2       |       xor|   0|  0|   2|           1|           2|
+    |xor_ln895_fu_1282_p2         |       xor|   0|  0|   2|           1|           2|
+    |xor_ln896_1_fu_1304_p2       |       xor|   0|  0|   2|           1|           2|
+    |xor_ln896_2_fu_1316_p2       |       xor|   0|  0|   2|           1|           1|
+    |xor_ln896_fu_1236_p2         |       xor|   0|  0|   2|           1|           2|
+    +-----------------------------+----------+----+---+----+------------+------------+
+    |Total                        |          |   0|  0| 583|         323|         341|
+    +-----------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------+----+-----------+-----+-----------+
+    |           Name           | LUT| Input Size| Bits| Total Bits|
+    +--------------------------+----+-----------+-----+-----------+
+    |ap_done_int               |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1   |   9|          2|    1|          2|
+    |ap_sig_allocacmp_point_1  |   9|          2|   10|         20|
+    |point_fu_146              |   9|          2|   10|         20|
+    +--------------------------+----+-----------+-----+-----------+
+    |Total                     |  36|          8|   22|         44|
+    +--------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |Range1_all_ones_reg_1631          |   1|   0|    1|          0|
+    |Range1_all_zeros_reg_1638         |   1|   0|    1|          0|
+    |Range2_all_ones_reg_1626          |   1|   0|    1|          0|
+    |ap_CS_fsm                         |   1|   0|    1|          0|
+    |ap_done_reg                       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter3           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter4           |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter2_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter3_reg  |   1|   0|    1|          0|
+    |charged_V_4_reg_1615              |  32|   0|   32|          0|
+    |membrane_addr_reg_1498            |  16|   0|   16|          0|
+    |p_Result_1_reg_1610               |   1|   0|    1|          0|
+    |p_Result_2_reg_1620               |   1|   0|    1|          0|
+    |p_Result_s_reg_1604               |   1|   0|    1|          0|
+    |point_1_reg_1397                  |  10|   0|   10|          0|
+    |point_fu_146                      |  10|   0|   10|          0|
+    |ret_V_35_reg_1599                 |  64|   0|   64|          0|
+    |ret_V_reg_1589                    |  33|   0|   33|          0|
+    |rhs_1_reg_1584                    |  32|   0|   32|          0|
+    |sext_ln250_cast_reg_1392          |  64|   0|   64|          0|
+    |zext_ln272_2_reg_1486             |  16|   0|   64|         48|
+    |membrane_addr_reg_1498            |  64|  32|   16|          0|
+    |zext_ln272_2_reg_1486             |  64|  32|   64|         48|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             | 420|  64|  420|         96|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+|           RTL Ports           | Dir | Bits|  Protocol  |                    Source Object                   |    C Type    |
++-------------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+|ap_clk                         |   in|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_264_4|  return value|
+|ap_rst                         |   in|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_264_4|  return value|
+|ap_start                       |   in|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_264_4|  return value|
+|ap_done                        |  out|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_264_4|  return value|
+|ap_idle                        |  out|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_264_4|  return value|
+|ap_ready                       |  out|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_264_4|  return value|
+|zext_ln272                     |   in|   16|     ap_none|                                          zext_ln272|        scalar|
+|query_spikes_address0          |  out|   16|   ap_memory|                                        query_spikes|         array|
+|query_spikes_ce0               |  out|    1|   ap_memory|                                        query_spikes|         array|
+|query_spikes_q0                |   in|    1|   ap_memory|                                        query_spikes|         array|
+|value_spikes_address0          |  out|   16|   ap_memory|                                        value_spikes|         array|
+|value_spikes_ce0               |  out|    1|   ap_memory|                                        value_spikes|         array|
+|value_spikes_q0                |   in|    1|   ap_memory|                                        value_spikes|         array|
+|membrane_address0              |  out|   16|   ap_memory|                                            membrane|         array|
+|membrane_ce0                   |  out|    1|   ap_memory|                                            membrane|         array|
+|membrane_we0                   |  out|    1|   ap_memory|                                            membrane|         array|
+|membrane_d0                    |  out|   32|   ap_memory|                                            membrane|         array|
+|membrane_address1              |  out|   16|   ap_memory|                                            membrane|         array|
+|membrane_ce1                   |  out|    1|   ap_memory|                                            membrane|         array|
+|membrane_q1                    |   in|   32|   ap_memory|                                            membrane|         array|
+|gated_values_address0          |  out|   16|   ap_memory|                                        gated_values|         array|
+|gated_values_ce0               |  out|    1|   ap_memory|                                        gated_values|         array|
+|gated_values_we0               |  out|    1|   ap_memory|                                        gated_values|         array|
+|gated_values_d0                |  out|    1|   ap_memory|                                        gated_values|         array|
+|attention_sums_address0        |  out|   16|   ap_memory|                                      attention_sums|         array|
+|attention_sums_ce0             |  out|    1|   ap_memory|                                      attention_sums|         array|
+|attention_sums_we0             |  out|    1|   ap_memory|                                      attention_sums|         array|
+|attention_sums_d0              |  out|    6|   ap_memory|                                      attention_sums|         array|
+|reference_indices_0_address0   |  out|    9|   ap_memory|                                 reference_indices_0|         array|
+|reference_indices_0_ce0        |  out|    1|   ap_memory|                                 reference_indices_0|         array|
+|reference_indices_0_q0         |   in|    9|   ap_memory|                                 reference_indices_0|         array|
+|cached_keys_V_address0         |  out|    9|   ap_memory|                                       cached_keys_V|         array|
+|cached_keys_V_ce0              |  out|    1|   ap_memory|                                       cached_keys_V|         array|
+|cached_keys_V_q0               |   in|    1|   ap_memory|                                       cached_keys_V|         array|
+|cached_keys_V_address1         |  out|    9|   ap_memory|                                       cached_keys_V|         array|
+|cached_keys_V_ce1              |  out|    1|   ap_memory|                                       cached_keys_V|         array|
+|cached_keys_V_q1               |   in|    1|   ap_memory|                                       cached_keys_V|         array|
+|reference_indices_1_address0   |  out|    9|   ap_memory|                                 reference_indices_1|         array|
+|reference_indices_1_ce0        |  out|    1|   ap_memory|                                 reference_indices_1|         array|
+|reference_indices_1_q0         |   in|    9|   ap_memory|                                 reference_indices_1|         array|
+|reference_indices_2_address0   |  out|    9|   ap_memory|                                 reference_indices_2|         array|
+|reference_indices_2_ce0        |  out|    1|   ap_memory|                                 reference_indices_2|         array|
+|reference_indices_2_q0         |   in|    9|   ap_memory|                                 reference_indices_2|         array|
+|cached_keys_V_1_address0       |  out|    9|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_1_ce0            |  out|    1|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_1_q0             |   in|    1|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_1_address1       |  out|    9|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_1_ce1            |  out|    1|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_1_q1             |   in|    1|   ap_memory|                                     cached_keys_V_1|         array|
+|reference_indices_3_address0   |  out|    9|   ap_memory|                                 reference_indices_3|         array|
+|reference_indices_3_ce0        |  out|    1|   ap_memory|                                 reference_indices_3|         array|
+|reference_indices_3_q0         |   in|    9|   ap_memory|                                 reference_indices_3|         array|
+|reference_indices_4_address0   |  out|    9|   ap_memory|                                 reference_indices_4|         array|
+|reference_indices_4_ce0        |  out|    1|   ap_memory|                                 reference_indices_4|         array|
+|reference_indices_4_q0         |   in|    9|   ap_memory|                                 reference_indices_4|         array|
+|cached_keys_V_2_address0       |  out|    9|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_2_ce0            |  out|    1|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_2_q0             |   in|    1|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_2_address1       |  out|    9|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_2_ce1            |  out|    1|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_2_q1             |   in|    1|   ap_memory|                                     cached_keys_V_2|         array|
+|reference_indices_5_address0   |  out|    9|   ap_memory|                                 reference_indices_5|         array|
+|reference_indices_5_ce0        |  out|    1|   ap_memory|                                 reference_indices_5|         array|
+|reference_indices_5_q0         |   in|    9|   ap_memory|                                 reference_indices_5|         array|
+|reference_indices_6_address0   |  out|    9|   ap_memory|                                 reference_indices_6|         array|
+|reference_indices_6_ce0        |  out|    1|   ap_memory|                                 reference_indices_6|         array|
+|reference_indices_6_q0         |   in|    9|   ap_memory|                                 reference_indices_6|         array|
+|cached_keys_V_3_address0       |  out|    9|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_3_ce0            |  out|    1|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_3_q0             |   in|    1|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_3_address1       |  out|    9|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_3_ce1            |  out|    1|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_3_q1             |   in|    1|   ap_memory|                                     cached_keys_V_3|         array|
+|reference_indices_7_address0   |  out|    9|   ap_memory|                                 reference_indices_7|         array|
+|reference_indices_7_ce0        |  out|    1|   ap_memory|                                 reference_indices_7|         array|
+|reference_indices_7_q0         |   in|    9|   ap_memory|                                 reference_indices_7|         array|
+|reference_indices_8_address0   |  out|    9|   ap_memory|                                 reference_indices_8|         array|
+|reference_indices_8_ce0        |  out|    1|   ap_memory|                                 reference_indices_8|         array|
+|reference_indices_8_q0         |   in|    9|   ap_memory|                                 reference_indices_8|         array|
+|cached_keys_V_4_address0       |  out|    9|   ap_memory|                                     cached_keys_V_4|         array|
+|cached_keys_V_4_ce0            |  out|    1|   ap_memory|                                     cached_keys_V_4|         array|
+|cached_keys_V_4_q0             |   in|    1|   ap_memory|                                     cached_keys_V_4|         array|
+|cached_keys_V_4_address1       |  out|    9|   ap_memory|                                     cached_keys_V_4|         array|
+|cached_keys_V_4_ce1            |  out|    1|   ap_memory|                                     cached_keys_V_4|         array|
+|cached_keys_V_4_q1             |   in|    1|   ap_memory|                                     cached_keys_V_4|         array|
+|reference_indices_9_address0   |  out|    9|   ap_memory|                                 reference_indices_9|         array|
+|reference_indices_9_ce0        |  out|    1|   ap_memory|                                 reference_indices_9|         array|
+|reference_indices_9_q0         |   in|    9|   ap_memory|                                 reference_indices_9|         array|
+|reference_indices_10_address0  |  out|    9|   ap_memory|                                reference_indices_10|         array|
+|reference_indices_10_ce0       |  out|    1|   ap_memory|                                reference_indices_10|         array|
+|reference_indices_10_q0        |   in|    9|   ap_memory|                                reference_indices_10|         array|
+|cached_keys_V_5_address0       |  out|    9|   ap_memory|                                     cached_keys_V_5|         array|
+|cached_keys_V_5_ce0            |  out|    1|   ap_memory|                                     cached_keys_V_5|         array|
+|cached_keys_V_5_q0             |   in|    1|   ap_memory|                                     cached_keys_V_5|         array|
+|cached_keys_V_5_address1       |  out|    9|   ap_memory|                                     cached_keys_V_5|         array|
+|cached_keys_V_5_ce1            |  out|    1|   ap_memory|                                     cached_keys_V_5|         array|
+|cached_keys_V_5_q1             |   in|    1|   ap_memory|                                     cached_keys_V_5|         array|
+|reference_indices_11_address0  |  out|    9|   ap_memory|                                reference_indices_11|         array|
+|reference_indices_11_ce0       |  out|    1|   ap_memory|                                reference_indices_11|         array|
+|reference_indices_11_q0        |   in|    9|   ap_memory|                                reference_indices_11|         array|
+|reference_indices_12_address0  |  out|    9|   ap_memory|                                reference_indices_12|         array|
+|reference_indices_12_ce0       |  out|    1|   ap_memory|                                reference_indices_12|         array|
+|reference_indices_12_q0        |   in|    9|   ap_memory|                                reference_indices_12|         array|
+|cached_keys_V_6_address0       |  out|    9|   ap_memory|                                     cached_keys_V_6|         array|
+|cached_keys_V_6_ce0            |  out|    1|   ap_memory|                                     cached_keys_V_6|         array|
+|cached_keys_V_6_q0             |   in|    1|   ap_memory|                                     cached_keys_V_6|         array|
+|cached_keys_V_6_address1       |  out|    9|   ap_memory|                                     cached_keys_V_6|         array|
+|cached_keys_V_6_ce1            |  out|    1|   ap_memory|                                     cached_keys_V_6|         array|
+|cached_keys_V_6_q1             |   in|    1|   ap_memory|                                     cached_keys_V_6|         array|
+|reference_indices_13_address0  |  out|    9|   ap_memory|                                reference_indices_13|         array|
+|reference_indices_13_ce0       |  out|    1|   ap_memory|                                reference_indices_13|         array|
+|reference_indices_13_q0        |   in|    9|   ap_memory|                                reference_indices_13|         array|
+|reference_indices_14_address0  |  out|    9|   ap_memory|                                reference_indices_14|         array|
+|reference_indices_14_ce0       |  out|    1|   ap_memory|                                reference_indices_14|         array|
+|reference_indices_14_q0        |   in|    9|   ap_memory|                                reference_indices_14|         array|
+|cached_keys_V_7_address0       |  out|    9|   ap_memory|                                     cached_keys_V_7|         array|
+|cached_keys_V_7_ce0            |  out|    1|   ap_memory|                                     cached_keys_V_7|         array|
+|cached_keys_V_7_q0             |   in|    1|   ap_memory|                                     cached_keys_V_7|         array|
+|cached_keys_V_7_address1       |  out|    9|   ap_memory|                                     cached_keys_V_7|         array|
+|cached_keys_V_7_ce1            |  out|    1|   ap_memory|                                     cached_keys_V_7|         array|
+|cached_keys_V_7_q1             |   in|    1|   ap_memory|                                     cached_keys_V_7|         array|
+|reference_indices_15_address0  |  out|    9|   ap_memory|                                reference_indices_15|         array|
+|reference_indices_15_ce0       |  out|    1|   ap_memory|                                reference_indices_15|         array|
+|reference_indices_15_q0        |   in|    9|   ap_memory|                                reference_indices_15|         array|
+|sext_ln250                     |   in|   32|     ap_none|                                          sext_ln250|        scalar|
+|threshold                      |   in|   32|     ap_none|                                           threshold|        scalar|
++-------------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+

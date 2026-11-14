@@ -2,7 +2,7 @@
 
 面向 SADAFormer 的独立 **密度选择与脉冲 Attention 内核**。当前使用 Vitis HLS 2022.2，以 Zynq-7010 为首个目标器件。
 
-**当前基线是 Edition2：512点、96通道、四组配置，均已有C仿真和Verilog协同仿真通过记录。** 配置3的LUT估计仍超出7010容量，尚未完成板级系统部署。
+**当前优化版本为 [Edition3](Edition3/README.md)，优化过程和结果见 [优化报告](Edition3/OPTIMIZATION_REPORT.md)。** Edition2保留为512点、96通道的四配置基线，以下原始资源表均明确属于Edition2；Edition2配置3的LUT估计超出7010容量。尚未完成板级系统部署。
 
 **初步确定的多时间步方案：PS逐步调用PL。一次调用计算一个物体的一个时间步，膜电位在调用之间保留。** 当前HLS数组接口尚未接入PS/DDR，以下调度约定是接下来板级集成的目标，并非已经实现的驱动。
 
@@ -15,22 +15,31 @@ SADA_KERNEL/
 │   ├── src/                 # 256-point initial density/XOR implementation
 │   ├── test/                # Incremental module tests
 │   └── report/              # Original full-kernel synthesis report
-└── Edition2/
+├── Edition2/
+│   ├── README.md
+│   ├── src/                 # 512-point four-configuration implementation
+│   ├── test/
+│   │   └── tb_sada_experiments.cpp
+│   └── report/
+│       ├── experiment_0/
+│       ├── experiment_1/
+│       ├── experiment_2/
+│       └── experiment_3/
+│           ├── csim/        # C simulation log
+│           ├── syn/         # HLS synthesis reports
+│           └── sim/         # RTL co-simulation reports
+└── Edition3/
     ├── README.md
-    ├── src/                 # 512-point four-configuration implementation
-    ├── test/
-    │   └── tb_sada_experiments.cpp
-    └── report/
-        ├── experiment_0/
-        ├── experiment_1/
-        ├── experiment_2/
-        └── experiment_3/
-            ├── csim/        # C simulation log
-            ├── syn/         # HLS synthesis reports
-            └── sim/         # RTL co-simulation reports
+    ├── OPTIMIZATION_REPORT.md
+    ├── src/                 # Selected implementation optimization
+    ├── test/                # Unchanged correctness test, run on optimized source
+    ├── report/              # Updated optimized HLS and simulation reports
+    └── optimization/        # Trials, scripts, snapshots, logs and new reports
 ```
 
 - [Edition2配置、类型及接口](Edition2/src/sada_kernel.h)
+- [Edition3实现与复现说明](Edition3/README.md)
+- [Edition3多轮优化报告](Edition3/OPTIMIZATION_REPORT.md)
 - [Edition2实现](Edition2/src/sada_kernel.cpp)
 - [Edition2统一测试](Edition2/test/tb_sada_experiments.cpp)
 - [Edition2运行说明](Edition2/README.md)
@@ -38,6 +47,42 @@ SADA_KERNEL/
 - [Edition1综合报告](Edition1/report/sada_attention_kernel_csynth.rpt)
 - [任务说明](../../temp.txt)：其中早期进度描述不代表本目录当前状态。
 - [SADAFormer软件源码](../../SADAFormer/SADAFormer/models/point_pn.py)
+
+### Edition3的src、test、report分别是什么版本？
+
+**当前源码已优化，原统一测试保持不变，`report/`已由用户更新为优化后四组配置的HLS综合及仿真报告。** 已核对四组顶层综合资源、周期和C/RTL仿真结果，与默认 `13_insert_bram` 优化结果一致。`optimization/trials/`继续保留本轮各次试验的独立归档及Vivado实现报告。
+
+| 路径 | 当前内容 | 如何使用 |
+|---|---|---|
+| [Edition3/src/sada_kernel.cpp](Edition3/src/sada_kernel.cpp) | 已更新为默认优化方案 `13_insert_bram` | 用于四种配置分别编译、仿真和综合 |
+| [Edition3/src/sada_kernel.h](Edition3/src/sada_kernel.h) | 保留原配置、接口和数值类型，未修改 | 与上述源码一起使用；仍为512点、96通道 |
+| [Edition3/test/tb_sada_experiments.cpp](Edition3/test/tb_sada_experiments.cpp) | 与优化前快照内容相同的统一正确性测试 | 已用于验证优化源码；没有为了适应优化而改动预期结果 |
+| [Edition3/report/](Edition3/report/) | 用户更新的默认优化版四配置综合及仿真报告 | 日常查看 `experiment_N/syn/`、`csim/`、`sim/`；顶层结果与当前默认优化版一致 |
+| [Edition3/optimization/initial_snapshot/](Edition3/optimization/initial_snapshot/) | 本轮开始前的源码、头文件及统一测试快照 | 核对优化前后的变化 |
+| [Edition3/optimization/trials/](Edition3/optimization/trials/) | 多轮试验的源码快照、测试、参数、日志及新报告 | 按试验名称和配置编号读取，不能混用不同试验 |
+| [Edition3/optimization/test_top4_random.cpp](Edition3/optimization/test_top4_random.cpp) | 新增的Top-4随机正确性测试 | 以独立稳定排序检查同分顺序 |
+| [Edition3/optimization/test_equivalence_trace.cpp](Edition3/optimization/test_equivalence_trace.cpp) | 新增的优化前后原始位摘要回归测试 | 由脚本分别构建优化前后版本，对照四种配置 |
+
+测试用于检查优化有没有改变计算结果，不是需要“优化性能”的硬件模块。新增回归测试放在 `optimization/`，并未替换 `test/` 中的原测试台。每次构建只添加一个包含 `main()` 的测试文件，避免重复定义。
+
+**与当前 `Edition3/src` 对应的正式四配置结果如下，均采用 `13_insert_bram`、20 ns目标周期（50 MHz）。** 日常报告入口为 [Edition3/report](Edition3/report/) 中的 `experiment_0` 至 `experiment_3`；下表链接保留源码哈希和Vivado实现结果的完整试验归档：
+
+| 配置 | 对应新报告目录 | 已完成验证 |
+|---|---|---|
+| 0：减法＋最近8点 | [13_insert_bram_exp0](Edition3/optimization/trials/13_insert_bram_exp0/) | C仿真、Verilog协同仿真、Vivado独立IP布局布线与时序检查 |
+| 1：XOR＋最近8点 | [13_insert_bram_exp1](Edition3/optimization/trials/13_insert_bram_exp1/) | 同上 |
+| 2：XOR＋全部16点 | [13_insert_bram_exp2](Edition3/optimization/trials/13_insert_bram_exp2/) | 同上 |
+| 3：XOR＋密度选择8点 | [13_insert_bram_exp3](Edition3/optimization/trials/13_insert_bram_exp3/) | 同上 |
+
+各目录内：`src/`、`test/`是当次构建快照；`manifest.json`记录源码哈希与参数；`syn/report/`是HLS综合报告；`sim/report/`是RTL协同仿真报告；`impl/report/`、`impl/routed/`是Vivado实现和时序、功耗报告；`impl/export.zip`是导出的IP包，不能直接作为板级bitstream使用。当前源码、头文件和统一测试的SHA-256均已与这四组记录核对一致。
+
+已清理 `Edition3/report/experiment_3/syn/` 中确认残留的5组旧分模块报告（共10个rpt/xml文件）。四组 `syn/` 的报告文件名集合均已与默认优化试验归档核对一致；删除路径及文件哈希见[清理记录](Edition3/optimization/cleanup_legacy_reports.json)。独立试验归档继续保留完整构建与实现记录。
+
+`13_insert_bram_exp3_clk15`为同一源码按15 ns约束重新构建的配置3提频试验；`14_fast_insert_bram_exp3`为另一套速度优先实现，**不是当前默认源码**。它们单独分析，不与上述四组50 MHz结果混作受控对比。其他试验也不一定完成全部验证，其中09号C仿真失败，不能采用。
+
+本轮还对密度Top-4做了等价实现优化。因此，默认配置3报告的是**优化后的完整密度选择开销**；若论文要讨论原始选择器开销或Top-4优化本身的收益，应另列相应对照，不能仅用默认四组结果归因。完整数据与测量边界见[Edition3优化报告](Edition3/OPTIMIZATION_REPORT.md)。
+
+优化也包含四组共用的K缓存、参考编号分bank和流水线调度，并非只修改了密度选择器。XOR、有符号减法和PLIF的计算表达式保持不变；论文应将其描述为统一实现原则下的完整方案对比。
 
 ## 2. 实现范围
 
@@ -187,7 +232,7 @@ C flags for BOTH files:
 
 运行顺序：C Simulation → C Synthesis → C/RTL Co-Simulation。四组分别编译和保存报告；版本、器件、时钟约束、优化设置保持一致。
 
-当前目录保存了源文件、测试和报告，没有完整可运行的PS程序、Vivado板级工程或AXI/DDR封装，也未归档统一构建脚本。
+当前目录保存了源文件、测试和报告；Edition3另提供[自动构建与优化试验脚本](Edition3/optimization/README.md)。尚没有完整可运行的PS程序、Vivado板级工程或AXI/DDR封装。
 
 原始HLS报告一般位于 `<project>/<solution>/syn/report/`，归档后位于：
 
@@ -296,4 +341,4 @@ PS逐步调用便于打印每步输出、核对膜电位及定位首次错误的
 
 人工距离与候选不保证来自真实几何点云；参考密度使用定点epsilon。仍需真实16NN、训练后Q/K/V和PLIF参数，对照原始PyTorch，统计选点变化、近似并列和阈值翻转。当前测试通过不能证明模型分类精度。
 
-下一阶段：保留当前四组报告作为基线，按相同原则优化资源；完成真实数据对照；设计PS逐步调用所需的AXI/DDR接口；通过Vivado实现后再上板，测量时序、资源、吞吐率及能耗。工具功耗估计与上板实测分别报告。
+Edition3已完成多轮实现优化及独立IP布局布线，详见[优化报告](Edition3/OPTIMIZATION_REPORT.md)。下一阶段：完成真实数据对照，设计PS逐步调用所需的AXI/DDR接口，在完整系统实现后上板测量时序、资源、吞吐率及能耗。工具功耗估计与上板实测分别报告。

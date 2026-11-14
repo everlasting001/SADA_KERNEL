@@ -1,0 +1,164 @@
+INFO: [COSIM-47] Using XSIM for RTL simulation.
+INFO: [COSIM-14] Instrumenting C test bench ...
+   Build using "V:/Xilinx/Vitis_HLS/2022.2/tps/win64/msys64/mingw64/bin/g++"
+   Compiling apatb_sada_attention_kernel.cpp
+   Compiling sada_kernel.cpp_pre.cpp.tb.cpp
+   Compiling tb_sada_experiments.cpp_pre.cpp.tb.cpp
+   Compiling apatb_sada_attention_kernel_ir.ll
+   Generating cosim.tv.exe
+INFO: [COSIM-302] Starting C TB testing ... 
+INFO: [COSIM-333] Generating C post check test bench ...
+INFO: [COSIM-12] Generating RTL test bench ...
+INFO: [COSIM-1] *** C/RTL co-simulation file generation completed. ***
+INFO: [COSIM-323] Starting verilog simulation. 
+INFO: [COSIM-15] Starting XSIM ...
+INFO: [COSIM-316] Starting C post checking ...
+PASS experiment=3 references=8 points=512 channels=96 steps=2
+
+C:\fpga\sada_edition3_runs\13_insert_bram_exp3\project\solution1\sim\verilog>set PATH= 
+
+C:\fpga\sada_edition3_runs\13_insert_bram_exp3\project\solution1\sim\verilog>call V:/Xilinx/Vivado/2022.2/bin/xelab xil_defaultlib.apatb_sada_attention_kernel_top glbl -Oenable_linking_all_libraries  -prj sada_attention_kernel.prj -L smartconnect_v1_0 -L axi_protocol_checker_v1_1_12 -L axi_protocol_checker_v1_1_13 -L axis_protocol_checker_v1_1_11 -L axis_protocol_checker_v1_1_12 -L xil_defaultlib -L unisims_ver -L xpm  -L floating_point_v7_0_20 -L floating_point_v7_1_15 --lib "ieee_proposed=./ieee_proposed" -s sada_attention_kernel  
+Vivado Simulator v2022.2
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: V:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe xil_defaultlib.apatb_sada_attention_kernel_top glbl -Oenable_linking_all_libraries -prj sada_attention_kernel.prj -L smartconnect_v1_0 -L axi_protocol_checker_v1_1_12 -L axi_protocol_checker_v1_1_13 -L axis_protocol_checker_v1_1_11 -L axis_protocol_checker_v1_1_12 -L xil_defaultlib -L unisims_ver -L xpm -L floating_point_v7_0_20 -L floating_point_v7_1_15 --lib ieee_proposed=./ieee_proposed -s sada_attention_kernel 
+Multi-threading is on. Using 22 slave threads.
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/glbl.v" into library work
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/AESL_automem_attention_sums.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_automem_attention_sums
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/AESL_automem_candidate_indices.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_automem_candidate_indices
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/AESL_automem_gated_values.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_automem_gated_values
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/AESL_automem_key_spikes.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_automem_key_spikes
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/AESL_automem_membrane.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_automem_membrane
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/AESL_automem_query_spikes.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_automem_query_spikes
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/AESL_automem_squared_distances.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_automem_squared_distances
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/AESL_automem_value_spikes.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_automem_value_spikes
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel.autotb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module apatb_sada_attention_kernel_top
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_apply_selected_attention.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_apply_selected_attention
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_apply_selected_attention_Pipeline_VITIS_LOOP_256_2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_apply_selected_attention_Pipeline_VITIS_LOOP_256_2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_apply_selected_attention_Pipeline_VITIS_LOOP_264_4.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_apply_selected_attention_Pipeline_VITIS_LOOP_264_4
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_flow_control_loop_pipe_sequential_init.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_flow_control_loop_pipe_sequential_init
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_mul_105ns_107ns_211_2_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_mul_105ns_107ns_211_2_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_mul_33s_32s_64_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_mul_33s_32s_64_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_mul_49s_49s_97_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_mul_49s_49s_97_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_mux_42_9_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_mux_42_9_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_sdiv_73ns_49ns_73_77_seq_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_sdiv_73ns_49ns_73_77_seq_1_divseq
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_sdiv_73ns_49ns_73_77_seq_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_select_density_neighbors.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_select_density_neighbors
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_select_density_neighbors_Pipeline_VITIS_LOOP_129_3.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_select_density_neighbors_Pipeline_VITIS_LOOP_129_3
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_select_density_references.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_select_density_references
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_select_density_references_clipped_density_V_RAM_AUTO_1R1W.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_select_density_references_clipped_density_V_RAM_AUTO_1R1W
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_select_density_references_Pipeline_VITIS_LOOP_53_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_select_density_references_Pipeline_VITIS_LOOP_53_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_select_density_references_Pipeline_VITIS_LOOP_66_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_select_density_references_Pipeline_VITIS_LOOP_66_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_select_density_references_Pipeline_VITIS_LOOP_8_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_select_density_references_Pipeline_VITIS_LOOP_8_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_select_density_references_raw_density_V_RAM_AUTO_1R1W.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_select_density_references_raw_density_V_RAM_AUTO_1R1W
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel_udiv_49s_37ns_45_53_seq_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_udiv_49s_37ns_45_53_seq_1_divseq
+INFO: [VRFC 10-311] analyzing module sada_attention_kernel_udiv_49s_37ns_45_53_seq_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/dataflow_monitor.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dataflow_monitor
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package xil_defaultlib.$unit_dataflow_monitor_sv
+Compiling module xil_defaultlib.sada_attention_kernel_reference_...
+Compiling module xil_defaultlib.sada_attention_kernel_select_den...
+Compiling module xil_defaultlib.sada_attention_kernel_select_den...
+Compiling module xil_defaultlib.sada_attention_kernel_flow_contr...
+Compiling module xil_defaultlib.sada_attention_kernel_select_den...
+Compiling module xil_defaultlib.sada_attention_kernel_mul_49s_49...
+Compiling module xil_defaultlib.sada_attention_kernel_select_den...
+Compiling module xil_defaultlib.sada_attention_kernel_select_den...
+Compiling module xil_defaultlib.sada_attention_kernel_select_den...
+Compiling module xil_defaultlib.sada_attention_kernel_mux_42_9_1...
+Compiling module xil_defaultlib.sada_attention_kernel_select_den...
+Compiling module xil_defaultlib.sada_attention_kernel_udiv_49s_3...
+Compiling module xil_defaultlib.sada_attention_kernel_udiv_49s_3...
+Compiling module xil_defaultlib.sada_attention_kernel_mul_105ns_...
+Compiling module xil_defaultlib.sada_attention_kernel_sdiv_73ns_...
+Compiling module xil_defaultlib.sada_attention_kernel_sdiv_73ns_...
+Compiling module xil_defaultlib.sada_attention_kernel_select_den...
+Compiling module xil_defaultlib.sada_attention_kernel_apply_sele...
+Compiling module xil_defaultlib.sada_attention_kernel_apply_sele...
+Compiling module xil_defaultlib.sada_attention_kernel_mul_33s_32...
+Compiling module xil_defaultlib.sada_attention_kernel_apply_sele...
+Compiling module xil_defaultlib.sada_attention_kernel_apply_sele...
+Compiling module xil_defaultlib.sada_attention_kernel
+Compiling module xil_defaultlib.AESL_automem_squared_distances
+Compiling module xil_defaultlib.AESL_automem_candidate_indices
+Compiling module xil_defaultlib.AESL_automem_query_spikes
+Compiling module xil_defaultlib.AESL_automem_key_spikes
+Compiling module xil_defaultlib.AESL_automem_value_spikes
+Compiling module xil_defaultlib.AESL_automem_membrane
+Compiling module xil_defaultlib.AESL_automem_gated_values
+Compiling module xil_defaultlib.AESL_automem_attention_sums
+Compiling module xil_defaultlib.nodf_module_intf
+Compiling module xil_defaultlib.seq_loop_intf(FSM_WIDTH=145)
+Compiling module xil_defaultlib.seq_loop_intf(FSM_WIDTH=8)
+Compiling module xil_defaultlib.seq_loop_intf(FSM_WIDTH=5)
+Compiling module xil_defaultlib.upc_loop_intf(FSM_WIDTH=1)
+Compiling module xil_defaultlib.dataflow_monitor_1
+Compiling module xil_defaultlib.apatb_sada_attention_kernel_top
+Compiling module work.glbl
+Built simulation snapshot sada_attention_kernel
+
+****** xsim v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/sada_attention_kernel/xsim_script.tcl
+# xsim {sada_attention_kernel} -autoloadwcfg -tclbatch {sada_attention_kernel.tcl}
+Time resolution is 1 ps
+source sada_attention_kernel.tcl
+## run all
+////////////////////////////////////////////////////////////////////////////////////
+// Inter-Transaction Progress: Completed Transaction / Total Transaction
+// Intra-Transaction Progress: Measured Latency / Latency Estimation * 100%
+//
+// RTL Simulation : "Inter-Transaction Progress" ["Intra-Transaction Progress"] @ "Simulation Time"
+////////////////////////////////////////////////////////////////////////////////////
+// RTL Simulation : 0 / 2 [0.00%] @ "150000"
+// RTL Simulation : 1 / 2 [100.00%] @ "4059730000"
+// RTL Simulation : 2 / 2 [100.00%] @ "8119290000"
+////////////////////////////////////////////////////////////////////////////////////
+$finish called at time : 8119410 ns : File "C:/fpga/sada_edition3_runs/13_insert_bram_exp3/project/solution1/sim/verilog/sada_attention_kernel.autotb.v" Line 709
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:10 . Memory (MB): peak = 239.516 ; gain = 0.000
+## quit
+INFO: [Common 17-206] Exiting xsim at Sat Nov 14 18:01:43 2026...
+PASS experiment=3 references=8 points=512 channels=96 steps=2
+INFO: [COSIM-1000] *** C/RTL co-simulation finished: PASS ***

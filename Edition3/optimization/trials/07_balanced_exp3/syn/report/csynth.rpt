@@ -1,0 +1,262 @@
+
+
+================================================================
+== Synthesis Summary Report of 'sada_attention_kernel'
+================================================================
++ General Information: 
+    * Date:           Sat Nov 14 17:55:20 2026
+    * Version:        2022.2 (Build 3670227 on Oct 13 2022)
+    * Project:        project
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z010-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +---------------------------------------------------------+------+-------+---------+-----------+----------+---------+------+----------+---------+----------+-------------+--------------+-----+
+    |                         Modules                         | Issue|       | Latency |  Latency  | Iteration|         | Trip |          |         |          |             |              |     |
+    |                         & Loops                         | Type | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   |    DSP   |      FF     |      LUT     | URAM|
+    +---------------------------------------------------------+------+-------+---------+-----------+----------+---------+------+----------+---------+----------+-------------+--------------+-----+
+    |+ sada_attention_kernel                                  |     -|   0.02|   230062|  4.601e+06|         -|   230063|     -|        no|  11 (9%)|  27 (33%)|  12137 (34%)|  33587 (190%)|    -|
+    | + select_density_references                             |     -|   2.41|   130698|  2.614e+06|         -|   130698|     -|        no|   3 (2%)|  24 (30%)|  11166 (31%)|   10973 (62%)|    -|
+    |  + select_density_references_Pipeline_VITIS_LOOP_53_1   |     -|   5.41|      514|  1.028e+04|         -|      514|     -|        no|        -|         -|     70 (~0%)|      257 (1%)|    -|
+    |   o VITIS_LOOP_53_1                                     |     -|  14.60|      512|  1.024e+04|         2|        1|   512|       yes|        -|         -|            -|             -|    -|
+    |  + select_density_references_Pipeline_VITIS_LOOP_66_1   |     -|   3.12|      516|  1.032e+04|         -|      516|     -|        no|        -|    4 (5%)|    317 (~0%)|      574 (3%)|    -|
+    |   o VITIS_LOOP_66_1                                     |     -|  14.60|      514|  1.028e+04|         4|        1|   512|       yes|        -|         -|            -|             -|    -|
+    |  + select_density_references_Pipeline_VITIS_LOOP_8_1    |     -|   4.23|       50|  1.000e+03|         -|       50|     -|        no|        -|         -|    106 (~0%)|      645 (3%)|    -|
+    |   o VITIS_LOOP_8_1                                      |     -|  14.60|       48|    960.000|         1|        1|    48|       yes|        -|         -|            -|             -|    -|
+    |  + select_density_references_Pipeline_VITIS_LOOP_88_1   |     -|   2.41|     4168|  8.336e+04|         -|     4168|     -|        no|        -|         -|   8950 (25%)|    7313 (41%)|    -|
+    |   o VITIS_LOOP_88_1                                     |     -|  14.60|     4166|  8.332e+04|        79|        8|   512|       yes|        -|         -|            -|             -|    -|
+    |  o VITIS_LOOP_44_1                                      |     -|  14.60|    44032|  8.806e+05|        86|        -|   512|        no|        -|         -|            -|             -|    -|
+    |   o VITIS_LOOP_28_1                                     |     -|  14.60|       32|    640.000|         2|        -|    16|        no|        -|         -|            -|             -|    -|
+    |  o VITIS_LOOP_158_1                                     |     -|  14.60|    81408|  1.628e+06|       159|        -|   512|        no|        -|         -|            -|             -|    -|
+    |   + select_density_neighbors                            |     -|   3.38|      156|  3.120e+03|         -|      156|     -|        no|        -|         -|    252 (~0%)|      670 (3%)|    -|
+    |    o VITIS_LOOP_113_1                                   |     -|  14.60|        8|    160.000|         2|        -|     4|        no|        -|         -|            -|             -|    -|
+    |    o VITIS_LOOP_116_2                                   |     -|  14.60|       36|    720.000|         3|        -|    12|        no|        -|         -|            -|             -|    -|
+    |    o VITIS_LOOP_128_3                                   |     -|  14.60|      108|  2.160e+03|        27|        -|     4|        no|        -|         -|            -|             -|    -|
+    |     o VITIS_LOOP_132_4                                  |     -|  14.60|       24|    480.000|         2|        -|    12|        no|        -|         -|            -|             -|    -|
+    | + apply_selected_attention                              |     -|   0.02|    99361|  1.987e+06|         -|    99361|     -|        no|        -|    3 (3%)|     965 (2%)|  22293 (126%)|    -|
+    |  o VITIS_LOOP_228_1                                     |     -|  14.60|    99360|  1.987e+06|      1035|        -|    96|        no|        -|         -|            -|             -|    -|
+    |   + apply_selected_attention_Pipeline_VITIS_LOOP_232_2  |     -|   9.27|      514|  1.028e+04|         -|      514|     -|        no|        -|         -|     534 (1%)|      85 (~0%)|    -|
+    |    o VITIS_LOOP_232_2                                   |     -|  14.60|      512|  1.024e+04|         2|        1|   512|       yes|        -|         -|            -|             -|    -|
+    |   + apply_selected_attention_Pipeline_VITIS_LOOP_236_3  |     -|   0.02|      517|  1.034e+04|         -|      517|     -|        no|        -|    3 (3%)|     410 (1%)|  22144 (125%)|    -|
+    |    o VITIS_LOOP_236_3                                   |     -|  14.60|      515|  1.030e+04|         5|        1|   512|       yes|        -|         -|            -|             -|    -|
+    +---------------------------------------------------------+------+-------+---------+-----------+----------+---------+------+----------+---------+----------+-------------+--------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++----------------------------+----------+
+| Interface                  | Bitwidth |
++----------------------------+----------+
+| attention_sums_address0    | 16       |
+| attention_sums_d0          | 6        |
+| candidate_indices_address0 | 13       |
+| candidate_indices_q0       | 9        |
+| gated_values_address0      | 16       |
+| gated_values_d0            | 1        |
+| key_spikes_address0        | 16       |
+| key_spikes_q0              | 1        |
+| membrane_address0          | 16       |
+| membrane_address1          | 16       |
+| membrane_d0                | 32       |
+| membrane_q1                | 32       |
+| query_spikes_address0      | 16       |
+| query_spikes_q0            | 1        |
+| squared_distances_address0 | 13       |
+| squared_distances_q0       | 32       |
+| value_spikes_address0      | 16       |
+| value_spikes_q0            | 1        |
++----------------------------+----------+
+
+* Other Ports
++-----------+---------+----------+
+| Interface | Mode    | Bitwidth |
++-----------+---------+----------+
+| decay     | ap_none | 32       |
+| threshold | ap_none | 32       |
++-----------+---------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++-------------------+-----------+----------------------------------------------+
+| Argument          | Direction | Datatype                                     |
++-------------------+-----------+----------------------------------------------+
+| squared_distances | in        | ap_ufixed<32, 12, AP_RND, AP_SAT, 0> const * |
+| candidate_indices | in        | ap_uint<9> const *                           |
+| query_spikes      | in        | ap_uint<1> const *                           |
+| key_spikes        | in        | ap_uint<1> const *                           |
+| value_spikes      | in        | ap_uint<1> const *                           |
+| decay             | in        | ap_fixed<32, 16, AP_RND, AP_SAT, 0>          |
+| threshold         | in        | ap_fixed<32, 16, AP_RND, AP_SAT, 0>          |
+| membrane          | inout     | ap_fixed<32, 16, AP_RND, AP_SAT, 0>*         |
+| gated_values      | out       | ap_uint<1>*                                  |
+| attention_sums    | out       | ap_int<6>*                                   |
++-------------------+-----------+----------------------------------------------+
+
+* SW-to-HW Mapping
++-------------------+----------------------------+---------+----------+
+| Argument          | HW Interface               | HW Type | HW Usage |
++-------------------+----------------------------+---------+----------+
+| squared_distances | squared_distances_address0 | port    | offset   |
+| squared_distances | squared_distances_ce0      | port    |          |
+| squared_distances | squared_distances_q0       | port    |          |
+| candidate_indices | candidate_indices_address0 | port    | offset   |
+| candidate_indices | candidate_indices_ce0      | port    |          |
+| candidate_indices | candidate_indices_q0       | port    |          |
+| query_spikes      | query_spikes_address0      | port    | offset   |
+| query_spikes      | query_spikes_ce0           | port    |          |
+| query_spikes      | query_spikes_q0            | port    |          |
+| key_spikes        | key_spikes_address0        | port    | offset   |
+| key_spikes        | key_spikes_ce0             | port    |          |
+| key_spikes        | key_spikes_q0              | port    |          |
+| value_spikes      | value_spikes_address0      | port    | offset   |
+| value_spikes      | value_spikes_ce0           | port    |          |
+| value_spikes      | value_spikes_q0            | port    |          |
+| decay             | decay                      | port    |          |
+| threshold         | threshold                  | port    |          |
+| membrane          | membrane_address0          | port    | offset   |
+| membrane          | membrane_ce0               | port    |          |
+| membrane          | membrane_we0               | port    |          |
+| membrane          | membrane_d0                | port    |          |
+| membrane          | membrane_address1          | port    | offset   |
+| membrane          | membrane_ce1               | port    |          |
+| membrane          | membrane_q1                | port    |          |
+| gated_values      | gated_values_address0      | port    | offset   |
+| gated_values      | gated_values_ce0           | port    |          |
+| gated_values      | gated_values_we0           | port    |          |
+| gated_values      | gated_values_d0            | port    |          |
+| attention_sums    | attention_sums_address0    | port    | offset   |
+| attention_sums    | attention_sums_ce0         | port    |          |
+| attention_sums    | attention_sums_we0         | port    |          |
+| attention_sums    | attention_sums_d0          | port    |          |
++-------------------+----------------------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++--------------------------------------------------------+-----+--------+---------------+-----+--------+---------+
+| Name                                                   | DSP | Pragma | Variable      | Op  | Impl   | Latency |
++--------------------------------------------------------+-----+--------+---------------+-----+--------+---------+
+| + sada_attention_kernel                                | 27  |        |               |     |        |         |
+|  + select_density_references                           | 24  |        |               |     |        |         |
+|    add_ln44_fu_380_p2                                  | -   |        | add_ln44      | add | fabric | 0       |
+|    add_ln813_fu_395_p2                                 | -   |        | add_ln813     | add | fabric | 0       |
+|    add_ln28_fu_411_p2                                  | -   |        | add_ln28      | add | fabric | 0       |
+|    ret_V_fu_471_p2                                     | -   |        | ret_V         | add | fabric | 0       |
+|    sum_V_fu_477_p2                                     | -   |        | sum_V         | add | fabric | 0       |
+|    denominator_V_fu_439_p2                             | -   |        | denominator_V | add | fabric | 0       |
+|    mul_105ns_107ns_211_2_1_U31                         | 20  |        | mul_ln1303    | mul | auto   | 1       |
+|    point_6_fu_601_p2                                   | -   |        | point_6       | add | fabric | 0       |
+|   + select_density_references_Pipeline_VITIS_LOOP_53_1 | 0   |        |               |     |        |         |
+|     add_ln53_fu_87_p2                                  | -   |        | add_ln53      | add | fabric | 0       |
+|     ret_V_fu_122_p2                                    | -   |        | ret_V         | add | fabric | 0       |
+|     sum_V_fu_128_p2                                    | -   |        | sum_V         | add | fabric | 0       |
+|   + select_density_references_Pipeline_VITIS_LOOP_66_1 | 4   |        |               |     |        |         |
+|     add_ln66_fu_107_p2                                 | -   |        | add_ln66      | add | fabric | 0       |
+|     ret_V_fu_131_p2                                    | -   |        | ret_V         | sub | fabric | 0       |
+|     mul_49s_49s_97_1_1_U3                              | 4   |        | r_V           | mul | auto   | 0       |
+|     ret_V_1_fu_178_p2                                  | -   |        | ret_V_1       | add | fabric | 0       |
+|     sum_V_fu_184_p2                                    | -   |        | sum_V         | add | fabric | 0       |
+|   + select_density_references_Pipeline_VITIS_LOOP_8_1  | 0   |        |               |     |        |         |
+|     remainder_V_2_fu_192_p2                            | -   |        | remainder_V_2 | sub | fabric | 0       |
+|     pair_3_fu_222_p2                                   | -   |        | pair_3        | add | fabric | 0       |
+|   + select_density_references_Pipeline_VITIS_LOOP_88_1 | 0   |        |               |     |        |         |
+|     add_ln88_fu_142_p2                                 | -   |        | add_ln88      | add | fabric | 0       |
+|     ret_V_fu_166_p2                                    | -   |        | ret_V         | sub | fabric | 0       |
+|   + select_density_neighbors                           | 0   |        |               |     |        |         |
+|     add_ln113_fu_445_p2                                | -   |        | add_ln113     | add | fabric | 0       |
+|     add_ln117_fu_524_p2                                | -   |        | add_ln117     | add | fabric | 0       |
+|     ret_V_fu_585_p2                                    | -   |        | ret_V         | sub | fabric | 0       |
+|     r_V_fu_598_p2                                      | -   |        | r_V           | sub | fabric | 0       |
+|     add_ln116_fu_540_p2                                | -   |        | add_ln116     | add | fabric | 0       |
+|     add_ln128_fu_646_p2                                | -   |        | add_ln128     | add | fabric | 0       |
+|     add_ln132_fu_816_p2                                | -   |        | add_ln132     | add | fabric | 0       |
+|     add_ln140_fu_826_p2                                | -   |        | add_ln140     | add | fabric | 0       |
+|  + apply_selected_attention                            | 3   |        |               |     |        |         |
+|    add_ln228_fu_3212_p2                                | -   |        | add_ln228     | add | fabric | 0       |
+|   + apply_selected_attention_Pipeline_VITIS_LOOP_232_2 | 0   |        |               |     |        |         |
+|     add_ln232_fu_7753_p2                               | -   |        | add_ln232     | add | fabric | 0       |
+|     add_ln234_fu_7763_p2                               | -   |        | add_ln234     | add | fabric | 0       |
+|   + apply_selected_attention_Pipeline_VITIS_LOOP_236_3 | 3   |        |               |     |        |         |
+|     add_ln236_fu_4419_p2                               | -   |        | add_ln236     | add | fabric | 0       |
+|     add_ln244_fu_4441_p2                               | -   |        | add_ln244     | add | fabric | 0       |
+|     add_ln840_fu_8682_p2                               | -   |        | add_ln840     | add | fabric | 0       |
+|     add_ln840_1_fu_8692_p2                             | -   |        | add_ln840_1   | add | fabric | 0       |
+|     add_ln840_2_fu_8702_p2                             | -   |        | add_ln840_2   | add | fabric | 0       |
+|     add_ln840_3_fu_8712_p2                             | -   |        | add_ln840_3   | add | fabric | 0       |
+|     add_ln840_4_fu_8722_p2                             | -   |        | add_ln840_4   | add | fabric | 0       |
+|     add_ln840_5_fu_8732_p2                             | -   |        | add_ln840_5   | add | fabric | 0       |
+|     sum_V_fu_8742_p2                                   | -   |        | sum_V         | add | fabric | 0       |
+|     ret_V_fu_8766_p2                                   | -   |        | ret_V         | sub | fabric | 0       |
+|     mul_33s_32s_64_1_1_U568                            | 3   |        | r_V           | mul | auto   | 0       |
+|     ret_V_20_fu_8792_p2                                | -   |        | ret_V_20      | add | fabric | 0       |
+|     charged_V_4_fu_8855_p2                             | -   |        | charged_V_4   | add | fabric | 0       |
++--------------------------------------------------------+-----+--------+---------------+-----+--------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++------------------------------+------+------+--------+-----------------------+---------+------+---------+
+| Name                         | BRAM | URAM | Pragma | Variable              | Storage | Impl | Latency |
++------------------------------+------+------+--------+-----------------------+---------+------+---------+
+| + sada_attention_kernel      | 11   | 0    |        |                       |         |      |         |
+|   reference_indices_V_U      | 1    | -    |        | reference_indices_V   | ram_1p  | auto | 1       |
+|   reference_indices_V_1_U    | 1    | -    |        | reference_indices_V_1 | ram_1p  | auto | 1       |
+|   reference_indices_V_2_U    | 1    | -    |        | reference_indices_V_2 | ram_1p  | auto | 1       |
+|   reference_indices_V_3_U    | 1    | -    |        | reference_indices_V_3 | ram_1p  | auto | 1       |
+|   reference_indices_V_4_U    | 1    | -    |        | reference_indices_V_4 | ram_1p  | auto | 1       |
+|   reference_indices_V_5_U    | 1    | -    |        | reference_indices_V_5 | ram_1p  | auto | 1       |
+|   reference_indices_V_6_U    | 1    | -    |        | reference_indices_V_6 | ram_1p  | auto | 1       |
+|   reference_indices_V_7_U    | 1    | -    |        | reference_indices_V_7 | ram_1p  | auto | 1       |
+|  + select_density_references | 3    | 0    |        |                       |         |      |         |
+|    raw_density_V_U           | 2    | -    |        | raw_density_V         | ram_1p  | auto | 1       |
+|    clipped_density_V_U       | 2    | -    |        | clipped_density_V     | ram_1p  | auto | 1       |
+|   + select_density_neighbors | 0    | 0    |        |                       |         |      |         |
+|     scores_V_U               | -    | -    |        | scores_V              | ram_1p  | auto | 1       |
+|     selected_U               | -    | -    |        | selected              | ram_1p  | auto | 1       |
++------------------------------+------+------+--------+-----------------------+---------+------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+-------------------------------------+------------------------------------------------------------------+
+| Type            | Options                             | Location                                                         |
++-----------------+-------------------------------------+------------------------------------------------------------------+
+| pipeline        | off                                 | src/sada_kernel.cpp:45 in compute_raw_density                    |
+| pipeline        | II=8                                | src/sada_kernel.cpp:89 in normalize_clip_density                 |
+| pipeline        | off                                 | src/sada_kernel.cpp:159 in select_density_references             |
+| pipeline        | off                                 | src/sada_kernel.cpp:229 in apply_selected_attention              |
+| array_partition | variable=cached_keys complete dim=1 | src/sada_kernel.cpp:231 in apply_selected_attention, cached_keys |
+| pipeline        | II=1                                | src/sada_kernel.cpp:233 in apply_selected_attention              |
+| pipeline        | II=1                                | src/sada_kernel.cpp:237 in apply_selected_attention              |
++-----------------+-------------------------------------+------------------------------------------------------------------+
+
+* Inferred Pragmas
++----------------------------------+-----------------+-------------------------------------------------+-----------------------------------------------------+
+| Source Pragma                    | Inferred Pragma | Options                                         | Location                                            |
++----------------------------------+-----------------+-------------------------------------------------+-----------------------------------------------------+
+| pipeline src/sada_kernel.cpp:237 | array_partition | dim=2 type=complete  variable=reference_indices | variable reference_indices in sada_attention_kernel |
++----------------------------------+-----------------+-------------------------------------------------+-----------------------------------------------------+
+
+

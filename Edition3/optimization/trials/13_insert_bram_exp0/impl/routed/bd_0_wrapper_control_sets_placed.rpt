@@ -1,0 +1,89 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Sat Nov 14 18:06:09 2026
+| Host         : Kevin running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file bd_0_wrapper_control_sets_placed.rpt
+| Design       : bd_0_wrapper
+| Device       : xc7z010
+-----------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    11 |
+|    Minimum number of control sets                        |    11 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    41 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    11 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     0 |
+| >= 6 to < 8        |     2 |
+| >= 8 to < 10       |     2 |
+| >= 10 to < 12      |     2 |
+| >= 12 to < 14      |     1 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     4 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              91 |           26 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              36 |           13 |
+| Yes          | No                    | No                     |              71 |           21 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              33 |           11 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+| Clock Signal |                                                                                 Enable Signal                                                                                 |                                                                  Set/Reset Signal                                                                 | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_267/grp_apply_selected_attention_Pipeline_VITIS_LOOP_256_2_fu_110_ap_start_reg0                                          |                                                                                                                                                   |                2 |              7 |         3.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_267/grp_apply_selected_attention_Pipeline_VITIS_LOOP_256_2_fu_110_ap_start_reg0                                          | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_267/ap_NS_fsm11_out                                                                          |                2 |              7 |         3.50 |
+|  ap_clk      |                                                                                                                                                                               | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_267/grp_apply_selected_attention_Pipeline_VITIS_LOOP_256_2_fu_110/load_1_reg_201[8]_i_1_n_0  |                2 |              8 |         4.00 |
+|  ap_clk      |                                                                                                                                                                               | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_267/grp_apply_selected_attention_Pipeline_VITIS_LOOP_264_4_fu_121/point_1_reg_997[8]_i_1_n_0 |                4 |              9 |         2.25 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_267/grp_apply_selected_attention_Pipeline_VITIS_LOOP_256_2_fu_110/flow_control_loop_pipe_sequential_init_U/load_fu_520   |                                                                                                                                                   |                4 |             10 |         2.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_267/grp_apply_selected_attention_Pipeline_VITIS_LOOP_264_4_fu_121/flow_control_loop_pipe_sequential_init_U/point_fu_1220 |                                                                                                                                                   |                3 |             10 |         3.33 |
+|  ap_clk      | bd_0_i/hls_inst/inst/select_ln198_1_reg_4440                                                                                                                                  |                                                                                                                                                   |                3 |             12 |         4.00 |
+|  ap_clk      |                                                                                                                                                                               | ap_rst                                                                                                                                            |                7 |             19 |         2.71 |
+|  ap_clk      | bd_0_i/hls_inst/inst/indvar_flatten_fu_1020                                                                                                                                   | bd_0_i/hls_inst/inst/ap_NS_fsm11_out                                                                                                              |                9 |             26 |         2.89 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_267/grp_apply_selected_attention_Pipeline_VITIS_LOOP_264_4_fu_121/E[0]                                                   |                                                                                                                                                   |                9 |             32 |         3.56 |
+|  ap_clk      |                                                                                                                                                                               |                                                                                                                                                   |               26 |             92 |         3.54 |
++--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+
+

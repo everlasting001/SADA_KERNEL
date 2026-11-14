@@ -1,0 +1,48 @@
+{
+  "profile": "14_fast_insert_bram",
+  "options": {
+    "norm": "8",
+    "density_serial": true,
+    "selection_serial": true,
+    "insertion_top4": true,
+    "stable_ties": true,
+    "key_cache": "bram",
+    "bank_references": true
+  },
+  "experiment": 3,
+  "stage": "impl",
+  "part": "xc7z010clg400-1",
+  "clock_ns": 20,
+  "work_directory": "C:/fpga/sada_edition3_runs/14_fast_insert_bram_exp3",
+  "source_sha256": "dddf15ff61e946ad962863e755e50bf472ca720a8bc9f1b0ebb61a9dd42dc034",
+  "header_sha256": "6c508818b3acd94f9eac8292a89281ee95c11f573e343406b93af02a927e4af7",
+  "test_sha256": "e50d3f8603fffa406922cf911a9494291bee618e6324a012424be522f806e7d1",
+  "exit_code": 0,
+  "elapsed_seconds": 387.03,
+  "resources": {
+    "BRAM_18K": 15,
+    "DSP": 27,
+    "FF": 11948,
+    "LUT": 13007,
+    "URAM": 0
+  },
+  "latency_cycles": 168110,
+  "interval_cycles": 168111,
+  "estimated_clock_ns": 14.574,
+  "csim_pass": true,
+  "cosim_pass": true,
+  "implementation_timing_met": true,
+  "implemented_resources": {
+    "LUT": 10159,
+    "FF": 10742,
+    "DSP": 49,
+    "BRAM": 15,
+    "SRL": 197
+  },
+  "post_route_period_ns": 14.887,
+  "power_w": {
+    "total": 0.227,
+    "dynamic": 0.135,
+    "static": 0.092
+  }
+}

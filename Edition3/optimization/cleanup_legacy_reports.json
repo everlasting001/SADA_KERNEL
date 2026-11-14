@@ -1,0 +1,45 @@
+{
+  "reason": "Stale submodule reports absent from the validated 13_insert_bram synthesis module set; paired text reports dated 2026-11-14 17:17. Current top report dated 18:25.",
+  "deleted_files": [
+    {
+      "path": "report/experiment_3/syn/select_density_references_Pipeline_VITIS_LOOP_156_1_csynth.rpt",
+      "sha256": "2f3f89e9affe77e33e64b469b27157148af5d458ed82dd269fd7245cc5726862"
+    },
+    {
+      "path": "report/experiment_3/syn/select_density_references_Pipeline_VITIS_LOOP_156_1_csynth.xml",
+      "sha256": "ced7136772e04542398fb1039af54f712bab0a0c68608c5cbbbc1802a3ad8b6e"
+    },
+    {
+      "path": "report/experiment_3/syn/select_density_references_Pipeline_VITIS_LOOP_44_1_csynth.rpt",
+      "sha256": "cd8b856e33a20c076f1ff0f540b26bf503d815b67403bd57353eb8dbd7aad338"
+    },
+    {
+      "path": "report/experiment_3/syn/select_density_references_Pipeline_VITIS_LOOP_44_1_csynth.xml",
+      "sha256": "19d37ab6db78a0c3153e547516a983b590dc28551471f2e63461f40394bcf0c4"
+    },
+    {
+      "path": "report/experiment_3/syn/select_density_references_Pipeline_VITIS_LOOP_52_1_csynth.rpt",
+      "sha256": "af357301b21a9b9ae8a06b8416df707498bb14273a83ba7d1b5bcd5d26c9d2bb"
+    },
+    {
+      "path": "report/experiment_3/syn/select_density_references_Pipeline_VITIS_LOOP_52_1_csynth.xml",
+      "sha256": "a0b21d27db6f7faffc70572ec4bab91f9372913e2ab07c48111519cfe1eb966a"
+    },
+    {
+      "path": "report/experiment_3/syn/select_density_references_Pipeline_VITIS_LOOP_65_1_csynth.rpt",
+      "sha256": "a84d5f0c53fd3d34e5e4e893f502813867426b75186bb44f4e72d6172aa9d4e0"
+    },
+    {
+      "path": "report/experiment_3/syn/select_density_references_Pipeline_VITIS_LOOP_65_1_csynth.xml",
+      "sha256": "33a314f22b714e6989360762147c1ec3e368f5d9291ccd340c628b387598b7a8"
+    },
+    {
+      "path": "report/experiment_3/syn/select_density_references_Pipeline_VITIS_LOOP_87_1_csynth.rpt",
+      "sha256": "5448f76d08c5d8bdae89522828e55628f71eb5d840f654548f992298069a730c"
+    },
+    {
+      "path": "report/experiment_3/syn/select_density_references_Pipeline_VITIS_LOOP_87_1_csynth.xml",
+      "sha256": "a3fbbd94462e4735e1f20ad421b214489ac2a56b1c4dc4204dca3488e3aa63a8"
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+
+
+================================================================
+== Vitis HLS Report for 'select_density_references'
+================================================================
+* Date:           Sat Nov 14 17:52:32 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        project
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z010-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+-----------+------------+
+    |  Clock |  Target  | Estimated | Uncertainty|
+    +--------+----------+-----------+------------+
+    |ap_clk  |  20.00 ns|  14.414 ns|     5.40 ns|
+    +--------+----------+-----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    60550|    60550|  1.211 ms|  1.211 ms|  60550|  60550|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------------------------------------+-----------------------------------------------------+---------+---------+-----------+-----------+-------+-------+---------+
+        |                                                                |                                                     |  Latency (cycles) |   Latency (absolute)  |    Interval   | Pipeline|
+        |                            Instance                            |                        Module                       |   min   |   max   |    min    |    max    |  min  |  max  |   Type  |
+        +----------------------------------------------------------------+-----------------------------------------------------+---------+---------+-----------+-----------+-------+-------+---------+
+        |grp_select_density_references_Pipeline_VITIS_LOOP_44_1_fu_172   |select_density_references_Pipeline_VITIS_LOOP_44_1   |     4151|     4151|  83.020 us|  83.020 us|   4151|   4151|       no|
+        |grp_select_density_references_Pipeline_VITIS_LOOP_52_1_fu_180   |select_density_references_Pipeline_VITIS_LOOP_52_1   |      514|      514|  10.280 us|  10.280 us|    514|    514|       no|
+        |grp_select_density_references_Pipeline_VITIS_LOOP_65_1_fu_186   |select_density_references_Pipeline_VITIS_LOOP_65_1   |      516|      516|  10.320 us|  10.320 us|    516|    516|       no|
+        |grp_select_density_references_Pipeline_VITIS_LOOP_8_1_fu_193    |select_density_references_Pipeline_VITIS_LOOP_8_1    |       50|       50|   1.000 us|   1.000 us|     50|     50|       no|
+        |grp_select_density_references_Pipeline_VITIS_LOOP_157_1_fu_199  |select_density_references_Pipeline_VITIS_LOOP_157_1  |    14860|    14860|   0.297 ms|   0.297 ms|  14860|  14860|       no|
+        +----------------------------------------------------------------+-----------------------------------------------------+---------+---------+-----------+-----------+-------+-------+---------+
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_87_1  |    40448|    40448|        79|          -|          -|   512|        no|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP|   FF  |  LUT  | URAM|
++-----------------+---------+----+-------+-------+-----+
+|DSP              |        -|   -|      -|      -|    -|
+|Expression       |        -|   -|      0|    633|    -|
+|FIFO             |        -|   -|      -|      -|    -|
+|Instance         |        0|  24|   8466|  13294|    0|
+|Memory           |        4|   -|      0|      0|    0|
+|Multiplexer      |        -|   -|      -|    563|    -|
+|Register         |        -|   -|    382|      -|    -|
++-----------------+---------+----+-------+-------+-----+
+|Total            |        4|  24|   8848|  14490|    0|
++-----------------+---------+----+-------+-------+-----+
+|Available        |      120|  80|  35200|  17600|    0|
++-----------------+---------+----+-------+-------+-----+
+|Utilization (%)  |        3|  30|     25|     82|    0|
++-----------------+---------+----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------------------------------------+-----------------------------------------------------+---------+----+------+------+-----+
+    |                            Instance                            |                        Module                       | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +----------------------------------------------------------------+-----------------------------------------------------+---------+----+------+------+-----+
+    |mul_105ns_107ns_211_2_1_U37                                     |mul_105ns_107ns_211_2_1                              |        0|  20|   361|   195|    0|
+    |sdiv_73ns_49ns_73_77_seq_1_U38                                  |sdiv_73ns_49ns_73_77_seq_1                           |        0|   0|   779|   469|    0|
+    |grp_select_density_references_Pipeline_VITIS_LOOP_157_1_fu_199  |select_density_references_Pipeline_VITIS_LOOP_157_1  |        0|   0|  1106|  5606|    0|
+    |grp_select_density_references_Pipeline_VITIS_LOOP_44_1_fu_172   |select_density_references_Pipeline_VITIS_LOOP_44_1   |        0|   0|  5727|  5548|    0|
+    |grp_select_density_references_Pipeline_VITIS_LOOP_52_1_fu_180   |select_density_references_Pipeline_VITIS_LOOP_52_1   |        0|   0|    70|   257|    0|
+    |grp_select_density_references_Pipeline_VITIS_LOOP_65_1_fu_186   |select_density_references_Pipeline_VITIS_LOOP_65_1   |        0|   4|   317|   574|    0|
+    |grp_select_density_references_Pipeline_VITIS_LOOP_8_1_fu_193    |select_density_references_Pipeline_VITIS_LOOP_8_1    |        0|   0|   106|   645|    0|
+    +----------------------------------------------------------------+-----------------------------------------------------+---------+----+------+------+-----+
+    |Total                                                           |                                                     |        0|  24|  8466| 13294|    0|
+    +----------------------------------------------------------------+-----------------------------------------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +---------------------+-----------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |        Memory       |                           Module                          | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +---------------------+-----------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |clipped_density_V_U  |select_density_references_clipped_density_V_RAM_AUTO_1R1W  |        2|  0|   0|    0|   512|   27|     1|        13824|
+    |raw_density_V_U      |select_density_references_raw_density_V_RAM_AUTO_1R1W      |        2|  0|   0|    0|   512|   45|     1|        23040|
+    +---------------------+-----------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total                |                                                           |        4|  0|   0|    0|  1024|   72|     2|        36864|
+    +---------------------+-----------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name       | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------+----------+----+---+----+------------+------------+
+    |add_ln87_fu_319_p2         |         +|   0|  0|  13|          10|           1|
+    |ret_V_fu_338_p2            |         -|   0|  0|  56|          49|          49|
+    |and_ln1650_fu_532_p2       |       and|   0|  0|   2|           1|           1|
+    |overflow_2_fu_386_p2       |       and|   0|  0|   2|           1|           1|
+    |overflow_3_fu_474_p2       |       and|   0|  0|   2|           1|           1|
+    |underflow_fu_498_p2        |       and|   0|  0|   2|           1|           1|
+    |icmp_ln1649_fu_414_p2      |      icmp|   0|  0|  31|          72|          26|
+    |icmp_ln1650_1_fu_420_p2    |      icmp|   0|  0|  31|          72|          27|
+    |icmp_ln1650_fu_287_p2      |      icmp|   0|  0|  23|          48|           5|
+    |icmp_ln878_fu_456_p2       |      icmp|   0|  0|  22|          45|           1|
+    |icmp_ln87_fu_313_p2        |      icmp|   0|  0|  11|          10|          11|
+    |icmp_ln896_fu_486_p2       |      icmp|   0|  0|  22|          45|           2|
+    |or_ln1650_fu_546_p2        |        or|   0|  0|   2|           1|           1|
+    |or_ln346_fu_512_p2         |        or|   0|  0|   2|           1|           1|
+    |or_ln895_fu_462_p2         |        or|   0|  0|   2|           1|           1|
+    |or_ln896_fu_492_p2         |        or|   0|  0|   2|           1|           1|
+    |normalized_V_1_fu_406_p3   |    select|   0|  0|  72|           1|          72|
+    |safe_std_V_fu_293_p3       |    select|   0|  0|  48|           1|           5|
+    |select_ln1650_1_fu_552_p3  |    select|   0|  0|  27|           1|          27|
+    |select_ln1650_fu_538_p3    |    select|   0|  0|  27|           1|          27|
+    |select_ln346_2_fu_504_p3   |    select|   0|  0|  28|           1|          26|
+    |select_ln346_3_fu_518_p3   |    select|   0|  0|  27|           1|          27|
+    |select_ln346_fu_392_p3     |    select|   0|  0|  73|           1|          71|
+    |variance_V_fu_272_p3       |    select|   0|  0|  96|           1|           2|
+    |xor_ln1649_fu_526_p2       |       xor|   0|  0|   2|           1|           2|
+    |xor_ln346_fu_400_p2        |       xor|   0|  0|   2|           1|           1|
+    |xor_ln895_1_fu_468_p2      |       xor|   0|  0|   2|           1|           2|
+    |xor_ln895_fu_380_p2        |       xor|   0|  0|   2|           1|           2|
+    |xor_ln896_fu_480_p2        |       xor|   0|  0|   2|           1|           2|
+    +---------------------------+----------+----+---+----+------------+------------+
+    |Total                      |          |   0|  0| 633|         372|         396|
+    +---------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------+-----+-----------+-----+-----------+
+    |            Name            | LUT | Input Size| Bits| Total Bits|
+    +----------------------------+-----+-----------+-----+-----------+
+    |ap_NS_fsm                   |  458|         91|    1|         91|
+    |clipped_density_V_address0  |   14|          3|    9|         27|
+    |clipped_density_V_ce0       |   14|          3|    1|          3|
+    |clipped_density_V_ce1       |    9|          2|    1|          2|
+    |point_3_fu_124              |    9|          2|   10|         20|
+    |raw_density_V_address0      |   25|          5|    9|         45|
+    |raw_density_V_ce0           |   25|          5|    1|          5|
+    |raw_density_V_we0           |    9|          2|    1|          2|
+    +----------------------------+-----+-----------+-----+-----------+
+    |Total                       |  563|        113|   33|        195|
+    +----------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                     Name                                    | FF | LUT| Bits| Const Bits|
+    +-----------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                    |  90|   0|   90|          0|
+    |conv_i_i38_reg_606                                                           |  48|   0|   73|         25|
+    |grp_select_density_references_Pipeline_VITIS_LOOP_157_1_fu_199_ap_start_reg  |   1|   0|    1|          0|
+    |grp_select_density_references_Pipeline_VITIS_LOOP_44_1_fu_172_ap_start_reg   |   1|   0|    1|          0|
+    |grp_select_density_references_Pipeline_VITIS_LOOP_52_1_fu_180_ap_start_reg   |   1|   0|    1|          0|
+    |grp_select_density_references_Pipeline_VITIS_LOOP_65_1_fu_186_ap_start_reg   |   1|   0|    1|          0|
+    |grp_select_density_references_Pipeline_VITIS_LOOP_8_1_fu_193_ap_start_reg    |   1|   0|    1|          0|
+    |point_3_fu_124                                                               |  10|   0|   10|          0|
+    |select_ln1650_1_reg_629                                                      |  27|   0|   27|          0|
+    |trunc_ln1_reg_585                                                            |  48|   0|   48|          0|
+    |variance_V_reg_596                                                           |  96|   0|   96|          0|
+    |zext_ln65_reg_601                                                            |  48|   0|   49|          1|
+    |zext_ln87_reg_611                                                            |  10|   0|   64|         54|
+    +-----------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                        | 382|   0|  462|         80|
+    +-----------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------------+-----+-----+------------+---------------------------+--------------+
+|           RTL Ports          | Dir | Bits|  Protocol  |       Source Object       |    C Type    |
++------------------------------+-----+-----+------------+---------------------------+--------------+
+|ap_clk                        |   in|    1|  ap_ctrl_hs|  select_density_references|  return value|
+|ap_rst                        |   in|    1|  ap_ctrl_hs|  select_density_references|  return value|
+|ap_start                      |   in|    1|  ap_ctrl_hs|  select_density_references|  return value|
+|ap_done                       |  out|    1|  ap_ctrl_hs|  select_density_references|  return value|
+|ap_idle                       |  out|    1|  ap_ctrl_hs|  select_density_references|  return value|
+|ap_ready                      |  out|    1|  ap_ctrl_hs|  select_density_references|  return value|
+|squared_distances_address0    |  out|   13|   ap_memory|          squared_distances|         array|
+|squared_distances_ce0         |  out|    1|   ap_memory|          squared_distances|         array|
+|squared_distances_q0          |   in|   32|   ap_memory|          squared_distances|         array|
+|squared_distances_address1    |  out|   13|   ap_memory|          squared_distances|         array|
+|squared_distances_ce1         |  out|    1|   ap_memory|          squared_distances|         array|
+|squared_distances_q1          |   in|   32|   ap_memory|          squared_distances|         array|
+|candidate_indices_address0    |  out|   13|   ap_memory|          candidate_indices|         array|
+|candidate_indices_ce0         |  out|    1|   ap_memory|          candidate_indices|         array|
+|candidate_indices_q0          |   in|    9|   ap_memory|          candidate_indices|         array|
+|candidate_indices_address1    |  out|   13|   ap_memory|          candidate_indices|         array|
+|candidate_indices_ce1         |  out|    1|   ap_memory|          candidate_indices|         array|
+|candidate_indices_q1          |   in|    9|   ap_memory|          candidate_indices|         array|
+|reference_indices_0_address0  |  out|    9|   ap_memory|        reference_indices_0|         array|
+|reference_indices_0_ce0       |  out|    1|   ap_memory|        reference_indices_0|         array|
+|reference_indices_0_we0       |  out|    1|   ap_memory|        reference_indices_0|         array|
+|reference_indices_0_d0        |  out|    9|   ap_memory|        reference_indices_0|         array|
+|reference_indices_1_address0  |  out|    9|   ap_memory|        reference_indices_1|         array|
+|reference_indices_1_ce0       |  out|    1|   ap_memory|        reference_indices_1|         array|
+|reference_indices_1_we0       |  out|    1|   ap_memory|        reference_indices_1|         array|
+|reference_indices_1_d0        |  out|    9|   ap_memory|        reference_indices_1|         array|
+|reference_indices_2_address0  |  out|    9|   ap_memory|        reference_indices_2|         array|
+|reference_indices_2_ce0       |  out|    1|   ap_memory|        reference_indices_2|         array|
+|reference_indices_2_we0       |  out|    1|   ap_memory|        reference_indices_2|         array|
+|reference_indices_2_d0        |  out|    9|   ap_memory|        reference_indices_2|         array|
+|reference_indices_3_address0  |  out|    9|   ap_memory|        reference_indices_3|         array|
+|reference_indices_3_ce0       |  out|    1|   ap_memory|        reference_indices_3|         array|
+|reference_indices_3_we0       |  out|    1|   ap_memory|        reference_indices_3|         array|
+|reference_indices_3_d0        |  out|    9|   ap_memory|        reference_indices_3|         array|
+|reference_indices_4_address0  |  out|    9|   ap_memory|        reference_indices_4|         array|
+|reference_indices_4_ce0       |  out|    1|   ap_memory|        reference_indices_4|         array|
+|reference_indices_4_we0       |  out|    1|   ap_memory|        reference_indices_4|         array|
+|reference_indices_4_d0        |  out|    9|   ap_memory|        reference_indices_4|         array|
+|reference_indices_5_address0  |  out|    9|   ap_memory|        reference_indices_5|         array|
+|reference_indices_5_ce0       |  out|    1|   ap_memory|        reference_indices_5|         array|
+|reference_indices_5_we0       |  out|    1|   ap_memory|        reference_indices_5|         array|
+|reference_indices_5_d0        |  out|    9|   ap_memory|        reference_indices_5|         array|
+|reference_indices_6_address0  |  out|    9|   ap_memory|        reference_indices_6|         array|
+|reference_indices_6_ce0       |  out|    1|   ap_memory|        reference_indices_6|         array|
+|reference_indices_6_we0       |  out|    1|   ap_memory|        reference_indices_6|         array|
+|reference_indices_6_d0        |  out|    9|   ap_memory|        reference_indices_6|         array|
+|reference_indices_7_address0  |  out|    9|   ap_memory|        reference_indices_7|         array|
+|reference_indices_7_ce0       |  out|    1|   ap_memory|        reference_indices_7|         array|
+|reference_indices_7_we0       |  out|    1|   ap_memory|        reference_indices_7|         array|
+|reference_indices_7_d0        |  out|    9|   ap_memory|        reference_indices_7|         array|
++------------------------------+-----+-----+------------+---------------------------+--------------+
+

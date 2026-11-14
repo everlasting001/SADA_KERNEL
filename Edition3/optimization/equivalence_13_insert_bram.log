@@ -1,0 +1,21 @@
+PASS raw-bit trace equality: 13_insert_bram experiment=0
+experiment=0 sample=0 digest=1d0e5d0272b04edc
+experiment=0 sample=1 digest=8368172de156a1be
+experiment=0 sample=2 digest=f796bf3e98e01d7a
+experiment=0 sample=3 digest=fbf77549c59ecc81
+PASS raw-bit trace equality: 13_insert_bram experiment=1
+experiment=1 sample=0 digest=3d3bf4946e33cbca
+experiment=1 sample=1 digest=71e843fd4dcf3179
+experiment=1 sample=2 digest=6130bb2fe0c641a7
+experiment=1 sample=3 digest=fbed7c79bbac0679
+PASS raw-bit trace equality: 13_insert_bram experiment=2
+experiment=2 sample=0 digest=7fbe38abfb534983
+experiment=2 sample=1 digest=c38b9af19d135a48
+experiment=2 sample=2 digest=de42b886ad690385
+experiment=2 sample=3 digest=46632d7aa157bfb4
+PASS raw-bit trace equality: 13_insert_bram experiment=3
+experiment=3 sample=0 digest=c112990ae4606c2
+experiment=3 sample=1 digest=c0a577513a0d5471
+experiment=3 sample=2 digest=cad1288babfc00bf
+experiment=3 sample=3 digest=ead17d7ad3a3b1f8
+PASS: 1000 randomized Top-4 cases, including 200 all-tie cases.

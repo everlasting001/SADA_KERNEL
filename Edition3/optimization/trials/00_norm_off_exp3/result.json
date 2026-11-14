@@ -1,0 +1,42 @@
+{
+  "profile": "00_norm_off",
+  "options": {
+    "norm": "off"
+  },
+  "experiment": 3,
+  "stage": "impl",
+  "part": "xc7z010clg400-1",
+  "clock_ns": 20,
+  "work_directory": "C:/fpga/sada_edition3_runs/00_norm_off_exp3",
+  "source_sha256": "c9acd2b3624b2bbaa16b6ecc437f12354c2d7ff99a0c233866b03a366136e027",
+  "header_sha256": "6c508818b3acd94f9eac8292a89281ee95c11f573e343406b93af02a927e4af7",
+  "test_sha256": "e50d3f8603fffa406922cf911a9494291bee618e6324a012424be522f806e7d1",
+  "exit_code": 0,
+  "elapsed_seconds": 381.62,
+  "resources": {
+    "BRAM_18K": 12,
+    "DSP": 27,
+    "FF": 9237,
+    "LUT": 15539,
+    "URAM": 0
+  },
+  "latency_cycles": 257166,
+  "interval_cycles": 257167,
+  "estimated_clock_ns": 14.574,
+  "csim_pass": true,
+  "cosim_pass": true,
+  "implementation_timing_met": true,
+  "implemented_resources": {
+    "LUT": 9343,
+    "FF": 7008,
+    "DSP": 49,
+    "BRAM": 13,
+    "SRL": 67
+  },
+  "post_route_period_ns": 17.448,
+  "power_w": {
+    "total": 0.182,
+    "dynamic": 0.091,
+    "static": 0.091
+  }
+}

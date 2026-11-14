@@ -1,0 +1,20 @@
+{
+  "profile": "16_balanced_ii16",
+  "options": {
+    "norm": "16",
+    "density_serial": true,
+    "selection_serial": true,
+    "insertion_top4": true,
+    "stable_ties": true,
+    "key_cache": "bram",
+    "bank_references": true
+  },
+  "experiment": 3,
+  "stage": "synth",
+  "part": "xc7z010clg400-1",
+  "clock_ns": 20,
+  "work_directory": "C:/fpga/sada_edition3_runs/16_balanced_ii16_exp3",
+  "source_sha256": "2057c606cae60b8da903f89182ff8d0294588ec9ca3931026707ef7eb96d40b8",
+  "header_sha256": "6c508818b3acd94f9eac8292a89281ee95c11f573e343406b93af02a927e4af7",
+  "test_sha256": "e50d3f8603fffa406922cf911a9494291bee618e6324a012424be522f806e7d1"
+}

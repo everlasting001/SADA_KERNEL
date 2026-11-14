@@ -1,0 +1,20 @@
+{
+  "profile": "14_fast_insert_bram",
+  "options": {
+    "norm": "8",
+    "density_serial": true,
+    "selection_serial": true,
+    "insertion_top4": true,
+    "stable_ties": true,
+    "key_cache": "bram",
+    "bank_references": true
+  },
+  "experiment": 3,
+  "stage": "impl",
+  "part": "xc7z010clg400-1",
+  "clock_ns": 20,
+  "work_directory": "C:/fpga/sada_edition3_runs/14_fast_insert_bram_exp3",
+  "source_sha256": "dddf15ff61e946ad962863e755e50bf472ca720a8bc9f1b0ebb61a9dd42dc034",
+  "header_sha256": "6c508818b3acd94f9eac8292a89281ee95c11f573e343406b93af02a927e4af7",
+  "test_sha256": "e50d3f8603fffa406922cf911a9494291bee618e6324a012424be522f806e7d1"
+}
