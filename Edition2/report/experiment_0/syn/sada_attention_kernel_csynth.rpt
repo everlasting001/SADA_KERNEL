@@ -1,0 +1,207 @@
+
+
+================================================================
+== Vitis HLS Report for 'sada_attention_kernel'
+================================================================
+* Date:           Sat Nov 14 16:59:36 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        sada_kernel2
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z010-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+-----------+------------+
+    |  Clock |  Target  | Estimated | Uncertainty|
+    +--------+----------+-----------+------------+
+    |ap_clk  |  20.00 ns|  14.574 ns|     5.40 ns|
+    +--------+----------+-----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+--------+--------+---------+
+    |  Latency (cycles) |  Latency (absolute) |     Interval    | Pipeline|
+    |   min   |   max   |    min   |    max   |   min  |   max  |   Type  |
+    +---------+---------+----------+----------+--------+--------+---------+
+    |   200712|   200712|  4.014 ms|  4.014 ms|  200713|  200713|       no|
+    +---------+---------+----------+----------+--------+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------------------+--------------------------+---------+---------+----------+----------+--------+--------+---------+
+        |                                     |                          |  Latency (cycles) |  Latency (absolute) |     Interval    | Pipeline|
+        |               Instance              |          Module          |   min   |   max   |    min   |    max   |   min  |   max  |   Type  |
+        +-------------------------------------+--------------------------+---------+---------+----------+----------+--------+--------+---------+
+        |grp_apply_selected_attention_fu_138  |apply_selected_attention  |   196613|   196613|  3.932 ms|  3.932 ms|  196613|  196613|       no|
+        +-------------------------------------+--------------------------+---------+---------+----------+----------+--------+--------+---------+
+
+        * Loop: 
+        +-------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                                     |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |              Loop Name              |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_174_1_VITIS_LOOP_175_2  |     4096|     4096|         2|          1|          1|  4096|       yes|
+        +-------------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP|   FF  |  LUT  | URAM|
++-----------------+---------+----+-------+-------+-----+
+|DSP              |        -|   -|      -|      -|    -|
+|Expression       |        -|   -|      0|     91|    -|
+|FIFO             |        -|   -|      -|      -|    -|
+|Instance         |        -|   3|    338|    934|    -|
+|Memory           |        2|   -|      0|      0|    0|
+|Multiplexer      |        -|   -|      -|    103|    -|
+|Register         |        -|   -|     46|      -|    -|
++-----------------+---------+----+-------+-------+-----+
+|Total            |        2|   3|    384|   1128|    0|
++-----------------+---------+----+-------+-------+-----+
+|Available        |      120|  80|  35200|  17600|    0|
++-----------------+---------+----+-------+-------+-----+
+|Utilization (%)  |        1|   3|      1|      6|    0|
++-----------------+---------+----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------------+--------------------------+---------+----+-----+-----+-----+
+    |               Instance              |          Module          | BRAM_18K| DSP|  FF | LUT | URAM|
+    +-------------------------------------+--------------------------+---------+----+-----+-----+-----+
+    |grp_apply_selected_attention_fu_138  |apply_selected_attention  |        0|   3|  338|  934|    0|
+    +-------------------------------------+--------------------------+---------+----+-----+-----+-----+
+    |Total                                |                          |        0|   3|  338|  934|    0|
+    +-------------------------------------+--------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +-----------------------+----------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |         Memory        |                 Module                 | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +-----------------------+----------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |reference_indices_V_U  |reference_indices_V_RAM_1WNR_AUTO_1R1W  |        2|  0|   0|    0|  4096|    9|     1|        36864|
+    +-----------------------+----------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total                  |                                        |        2|  0|   0|    0|  4096|    9|     1|        36864|
+    +-----------------------+----------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |add_ln174_1_fu_181_p2     |         +|   0|  0|  14|          13|           1|
+    |add_ln174_fu_193_p2       |         +|   0|  0|  13|          10|           1|
+    |add_ln175_fu_256_p2       |         +|   0|  0|  13|           4|           1|
+    |add_ln176_fu_250_p2       |         +|   0|  0|  12|          12|          12|
+    |icmp_ln174_fu_175_p2      |      icmp|   0|  0|  12|          13|          14|
+    |icmp_ln175_fu_199_p2      |      icmp|   0|  0|   9|           4|           5|
+    |select_ln174_1_fu_213_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln174_fu_205_p3    |    select|   0|  0|   4|           1|           1|
+    |ap_enable_pp0             |       xor|   0|  0|   2|           1|           2|
+    |ap_enable_reg_pp0_iter1   |       xor|   0|  0|   2|           2|           1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |Total                     |          |   0|  0|  91|          61|          48|
+    +--------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------+----+-----------+-----+-----------+
+    |             Name             | LUT| Input Size| Bits| Total Bits|
+    +------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                     |  25|          5|    1|          5|
+    |ap_enable_reg_pp0_iter1       |  14|          3|    1|          3|
+    |indvar_flatten_fu_92          |   9|          2|   13|         26|
+    |point_fu_88                   |   9|          2|   10|         20|
+    |reference_fu_84               |   9|          2|    4|          8|
+    |reference_indices_V_address0  |  14|          3|   12|         36|
+    |reference_indices_V_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_ce1       |   9|          2|    1|          2|
+    +------------------------------+----+-----------+-----+-----------+
+    |Total                         | 103|         22|   43|        103|
+    +------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------------+----+----+-----+-----------+
+    |                       Name                       | FF | LUT| Bits| Const Bits|
+    +--------------------------------------------------+----+----+-----+-----------+
+    |add_ln176_reg_320                                 |  12|   0|   12|          0|
+    |ap_CS_fsm                                         |   4|   0|    4|          0|
+    |ap_enable_reg_pp0_iter0                           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1                           |   1|   0|    1|          0|
+    |grp_apply_selected_attention_fu_138_ap_start_reg  |   1|   0|    1|          0|
+    |indvar_flatten_fu_92                              |  13|   0|   13|          0|
+    |point_fu_88                                       |  10|   0|   10|          0|
+    |reference_fu_84                                   |   4|   0|    4|          0|
+    +--------------------------------------------------+----+----+-----+-----------+
+    |Total                                             |  46|   0|   46|          0|
+    +--------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------------+-----+-----+------------+-----------------------+--------------+
+|          RTL Ports         | Dir | Bits|  Protocol  |     Source Object     |    C Type    |
++----------------------------+-----+-----+------------+-----------------------+--------------+
+|ap_clk                      |   in|    1|  ap_ctrl_hs|  sada_attention_kernel|  return value|
+|ap_rst                      |   in|    1|  ap_ctrl_hs|  sada_attention_kernel|  return value|
+|ap_start                    |   in|    1|  ap_ctrl_hs|  sada_attention_kernel|  return value|
+|ap_done                     |  out|    1|  ap_ctrl_hs|  sada_attention_kernel|  return value|
+|ap_idle                     |  out|    1|  ap_ctrl_hs|  sada_attention_kernel|  return value|
+|ap_ready                    |  out|    1|  ap_ctrl_hs|  sada_attention_kernel|  return value|
+|squared_distances_address0  |  out|   13|   ap_memory|      squared_distances|         array|
+|squared_distances_ce0       |  out|    1|   ap_memory|      squared_distances|         array|
+|squared_distances_we0       |  out|    1|   ap_memory|      squared_distances|         array|
+|squared_distances_d0        |  out|   32|   ap_memory|      squared_distances|         array|
+|squared_distances_q0        |   in|   32|   ap_memory|      squared_distances|         array|
+|squared_distances_address1  |  out|   13|   ap_memory|      squared_distances|         array|
+|squared_distances_ce1       |  out|    1|   ap_memory|      squared_distances|         array|
+|squared_distances_we1       |  out|    1|   ap_memory|      squared_distances|         array|
+|squared_distances_d1        |  out|   32|   ap_memory|      squared_distances|         array|
+|squared_distances_q1        |   in|   32|   ap_memory|      squared_distances|         array|
+|candidate_indices_address0  |  out|   13|   ap_memory|      candidate_indices|         array|
+|candidate_indices_ce0       |  out|    1|   ap_memory|      candidate_indices|         array|
+|candidate_indices_q0        |   in|    9|   ap_memory|      candidate_indices|         array|
+|query_spikes_address0       |  out|   16|   ap_memory|           query_spikes|         array|
+|query_spikes_ce0            |  out|    1|   ap_memory|           query_spikes|         array|
+|query_spikes_q0             |   in|    1|   ap_memory|           query_spikes|         array|
+|key_spikes_address0         |  out|   16|   ap_memory|             key_spikes|         array|
+|key_spikes_ce0              |  out|    1|   ap_memory|             key_spikes|         array|
+|key_spikes_q0               |   in|    1|   ap_memory|             key_spikes|         array|
+|key_spikes_address1         |  out|   16|   ap_memory|             key_spikes|         array|
+|key_spikes_ce1              |  out|    1|   ap_memory|             key_spikes|         array|
+|key_spikes_q1               |   in|    1|   ap_memory|             key_spikes|         array|
+|value_spikes_address0       |  out|   16|   ap_memory|           value_spikes|         array|
+|value_spikes_ce0            |  out|    1|   ap_memory|           value_spikes|         array|
+|value_spikes_q0             |   in|    1|   ap_memory|           value_spikes|         array|
+|decay                       |   in|   32|     ap_none|                  decay|        scalar|
+|threshold                   |   in|   32|     ap_none|              threshold|        scalar|
+|membrane_address0           |  out|   16|   ap_memory|               membrane|         array|
+|membrane_ce0                |  out|    1|   ap_memory|               membrane|         array|
+|membrane_we0                |  out|    1|   ap_memory|               membrane|         array|
+|membrane_d0                 |  out|   32|   ap_memory|               membrane|         array|
+|membrane_q0                 |   in|   32|   ap_memory|               membrane|         array|
+|gated_values_address0       |  out|   16|   ap_memory|           gated_values|         array|
+|gated_values_ce0            |  out|    1|   ap_memory|           gated_values|         array|
+|gated_values_we0            |  out|    1|   ap_memory|           gated_values|         array|
+|gated_values_d0             |  out|    1|   ap_memory|           gated_values|         array|
+|attention_sums_address0     |  out|   16|   ap_memory|         attention_sums|         array|
+|attention_sums_ce0          |  out|    1|   ap_memory|         attention_sums|         array|
+|attention_sums_we0          |  out|    1|   ap_memory|         attention_sums|         array|
+|attention_sums_d0           |  out|    6|   ap_memory|         attention_sums|         array|
++----------------------------+-----+-----+------------+-----------------------+--------------+
+

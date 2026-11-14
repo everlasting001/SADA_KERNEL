@@ -1,337 +1,299 @@
-# SADA Kernel — HLS Implementation
+# SADA Kernel — HLS Experiments
 
-面向 SADAFormer 的独立 **密度选择与脉冲 Attention 内核**。使用 Vitis HLS 2022.2，首个目标器件为 Zynq-7010。
+面向 SADAFormer 的独立 **密度选择与脉冲 Attention 内核**。当前使用 Vitis HLS 2022.2，以 Zynq-7010 为首个目标器件。
 
-当前版本保存在 `Edition1/`，优先验证完整功能链，再进行资源、精度和性能优化。
+**当前基线是 Edition2：512点、96通道、四组配置，均已有C仿真和Verilog协同仿真通过记录。** 配置3的LUT估计仍超出7010容量，尚未完成板级系统部署。
 
-## 1. 当前进度
+**初步确定的多时间步方案：PS逐步调用PL。一次调用计算一个物体的一个时间步，膜电位在调用之间保留。** 当前HLS数组接口尚未接入PS/DDR，以下调度约定是接下来板级集成的目标，并非已经实现的驱动。
 
-| 项目 | 当前状态 |
-|---|---|
-| 原始密度、均值、样本方差、标准差 | 已实现 |
-| 密度归一化、截断到 `[-3,3]` | 已实现 |
-| 最近4点＋密度差异Top-4 | 已实现 |
-| 参考K读取、XOR累加、PLIF、V门控 | 已实现并连接为顶层 |
-| 分模块与端到端测试 | 已提供测试文件 |
-| 完整内核HLS综合 | 已归档第一版 `.rpt` / `.xml` |
-| 7010完整系统实现与上板 | 尚未完成；V1 LUT估计超出器件容量 |
-| 真实点云、训练参数与PyTorch逐层对照 | 待完成 |
-| 四组配置的统一对比 | 待补齐 |
-
-目录中没有归档全部 C Simulation / Co-Simulation 运行日志。测试的具体通过状态应以重新运行的日志为准，不能仅凭存在测试文件或综合报告判断。
-
-## 2. 目录
+## 1. 目录与版本
 
 ```text
 SADA_KERNEL/
 ├── README.md
-└── Edition1/
-    ├── src/
-    │   ├── sada_kernel.h       # Configuration, types, interfaces
-    │   └── sada_kernel.cpp     # Kernel implementation
+├── Edition1/
+│   ├── src/                 # 256-point initial density/XOR implementation
+│   ├── test/                # Incremental module tests
+│   └── report/              # Original full-kernel synthesis report
+└── Edition2/
+    ├── README.md
+    ├── src/                 # 512-point four-configuration implementation
     ├── test/
-    │   └── tb_*.cpp            # One main() per test file
+    │   └── tb_sada_experiments.cpp
     └── report/
-        ├── sada_attention_kernel_csynth.rpt
-        └── sada_attention_kernel_csynth.xml
+        ├── experiment_0/
+        ├── experiment_1/
+        ├── experiment_2/
+        └── experiment_3/
+            ├── csim/        # C simulation log
+            ├── syn/         # HLS synthesis reports
+            └── sim/         # RTL co-simulation reports
 ```
 
-- [配置与接口](Edition1/src/sada_kernel.h)
-- [内核实现](Edition1/src/sada_kernel.cpp)
-- [完整内核测试](Edition1/test/tb_sada_attention_kernel.cpp)
-- [V1综合文本报告](Edition1/report/sada_attention_kernel_csynth.rpt)
-- [V1综合XML报告](Edition1/report/sada_attention_kernel_csynth.xml)
-- [任务说明](../../temp.txt)：实现范围和四组实验要求；其中早期进度文字不代表本目录当前进度。
+- [Edition2配置、类型及接口](Edition2/src/sada_kernel.h)
+- [Edition2实现](Edition2/src/sada_kernel.cpp)
+- [Edition2统一测试](Edition2/test/tb_sada_experiments.cpp)
+- [Edition2运行说明](Edition2/README.md)
+- [Edition1实现](Edition1/src/sada_kernel.cpp)
+- [Edition1综合报告](Edition1/report/sada_attention_kernel_csynth.rpt)
+- [任务说明](../../temp.txt)：其中早期进度描述不代表本目录当前状态。
 - [SADAFormer软件源码](../../SADAFormer/SADAFormer/models/point_pn.py)
 
-## 3. 实现边界
-
-内核接收已经准备好的16NN候选和Q/K/V脉冲，输出门控后的V。
+## 2. 实现范围
 
 ```text
-Sorted 16NN IDs + squared distances
-                |
-        Mean squared distance
-                |
-       Raw density: 1/(d+eps)
-                |
-     Per-sample mean and sample std
-                |
-       Normalize and clip [-3,3]
-                |
-    Nearest4 + density-difference Top4
-                |
-         8 reference point IDs
-                |
-Q + gathered reference K -> XOR -> sum over references
-                                      |
-                                     PLIF
-                                      |
-Current-point V --------------------> AND -> gated V
+Common sorted 16NN IDs + squared distances + Q/K/V spikes
+                            |
+                 select_reference_points
+          +-----------------+-------------------+
+          |                 |                   |
+       nearest8           all16          density-selected8
+                                    mean distance -> reciprocal
+                                    density mean / sample std
+                                    normalize -> clip [-3,3]
+                                    nearest4 + density Top4
+          +-----------------+-------------------+
+                            |
+                 Gather reference-point K
+                            |
+                  Q-K or XOR -> reference sum
+                            |
+                    PLIF state update
+                            |
+                 Current-point V AND gate
 ```
 
-首版允许CPU完成16NN查找。CPU必须提供配对且按距离排序的候选编号与平方距离，并排除当前点自身。
+CPU可提供公共的16NN候选编号和平方距离。配置3的密度估计、归一化、截断及Top-4均保留在PL内核中。
 
-以下部分不在当前内核中：
+不包含FPS、EncP、生成Q/K/V的卷积与神经元、Attention末尾投影卷积和BN、残差、MLP或分类器。内核输出对应软件的 `x = torch.mul(x_v, w)`，不是整个 `Attention.forward()` 的最终输出。
 
-- FPS、局部邻域特征提取和整个 EncP。
-- 生成Q/K/V的卷积、BN与脉冲神经元。
-- `Attention.forward()` 末尾的投影卷积和BN。
-- Transformer残差、MLP和分类器。
+## 3. 四组受控实验
 
-软件对照位置应取 `x = torch.mul(x_v, w)` 的结果，而非整个 `Attention.forward()` 的最终输出。
+在设计文件和测试文件中使用相同的 `-DSADA_EXPERIMENT=N`；不指定时默认3。
 
-## 4. 当前规模与顶层数据
+| N | 配置 | 参考数量 | 参考点策略 | 比较方式 |
+|---|---|---:|---|---|
+| 0 | `SubtractNearest8` | 8 | 公共候选前8个 | 有符号减法 `Q-K` |
+| 1 | `XorNearest8` | 8 | 公共候选前8个 | XOR |
+| 2 | `XorAll16` | 16 | 公共16个候选全部使用 | XOR |
+| 3 | `XorDensity8` | 8 | 最近4个＋其余候选密度差异最大的4个 | XOR |
 
-```cpp
-N_POINTS   = 256;
-N_CHANNELS = 96;
-N_CAND     = 16;
-N_REFS     = 8;
-N_NEAR     = 4;
-N_DENSITY  = 4;
-```
+配置在编译时决定，每组分别综合；不是PS在一次运行中切换的模式。当前代码没有统一运行时模式控制端口。
 
-该规模是开发用配置，不等于原模型某个阶段的完整复现。一个顶层调用处理 **一个物体、一个时间步**，不含显式B/T数组维度。头文件中的 `TIME_STEPS=1` 不会让顶层自动循环时间步。
+### 控制变量
 
-顶层函数：`sada_attention_kernel()`。
+- 四组使用相同的点云、16NN候选域、排除自身规则、距离排序、Q/K/V、PLIF参数和初始状态。
+- 统一512点、96通道、20 ns目标周期、器件及接口/优化原则。
+- 0与1隔离比较算子；1与2考察参考数量；1与3考察选择策略及其额外开销。
+- 2与3用于观察减少参考交互后，完整内核能否覆盖密度选择成本；不能把这组的全部差异只归因于一个因素。
+- 配置0/1/2不需要计算密度，不为公平而执行无用工作；配置3必须计入完整密度选择开销。
+- 四组各自对照相应参考结果，不要求输出相同。共享固定PLIF参数便于受控硬件比较，不等于已验证四种网络配置的分类精度。
+- 逻辑签名相同，但HLS可以消除配置0/1/2中未使用的距离端口。板级封装和传输计时需要另行统一，不能把函数签名相同当成实际搬运量相同。
+
+## 4. 接口与数据形状
+
+一次顶层调用没有显式B/T维度：**一个物体、一个时间步**。
 
 | 参数 | 形状 | 类型 | 含义 |
 |---|---|---|---|
-| `distances` | `[256][16]` | `distance_t` | 当前点到16个候选的平方距离 |
-| `candidate_idx` | `[256][16]` | `index_t` | 与距离逐项对应的实际点编号 |
-| `q`, `k`, `v` | 各 `[96][256]` | `spike_t` | 按 `[channel][point]` 排列的二值脉冲 |
-| `lambda` | 标量 | `fixed_t` | PLIF衰减系数 `1/tau` |
-| `threshold` | 标量 | `fixed_t` | 发放阈值 |
-| `membrane` | `[96][256]` | `fixed_t` | 输入旧状态，写回新状态 |
-| `output` | `[96][256]` | `spike_t` | 门控后的当前点V |
-| `mismatch_count` | `[96][256]` | `count_t` | XOR差异计数，调试输出 |
+| `squared_distances` | `[512][16]` | `distance_t` | 当前点到候选点的平方距离 |
+| `candidate_indices` | `[512][16]` | `point_index_t` | 与距离配对的候选点编号 |
+| `query_spikes`, `key_spikes`, `value_spikes` | 各 `[96][512]` | `spike_t` | 当前时间步Q/K/V |
+| `decay` | 标量 | `membrane_t` | `lambda=1/tau` |
+| `threshold` | 标量 | `membrane_t` | 发放阈值 |
+| `membrane` | `[96][512]` | `membrane_t` | 读旧状态、写新状态 |
+| `gated_values` | `[96][512]` | `spike_t` | 当前步门控后的V |
+| `attention_sums` | `[96][512]` | `attention_sum_t` | 比较累加值，调试输出 |
 
-### 编号与距离的对应关系
+`candidate_indices[i][r]` 是第i个当前点的第r个候选的实际编号j；`squared_distances[i][r]` 是i到j的平方距离。每行候选互不重复、排除自身，编号与距离同步按距离从近到远排列。编号范围为0..511，候选位置范围为0..15。
 
-```cpp
-candidate_idx[i][r]  // Actual point ID j, not candidate position r.
-distances[i][r]      // Squared distance from point i to point j.
-```
+静态坐标对应的候选与距离跨通道、跨时间步共用。Q/K/V可以随时间变化；不能未经软件验证就在各时间步重复使用相同脉冲。
 
-- `i` 是当前点，范围 `0..255`。
-- `r` 是候选位置，范围 `0..15`。
-- 候选数组中的值 `j` 是点编号，范围 `0..255`。
-- 每行16个候选应互不重复，且不包含 `i`。
-- 距离是已经计算好的平方距离，不要再次平方或开平方。
-- 同一静态点云的候选与距离可以跨时间步共用。当前顶层每次调用仍会重新计算密度选择，尚未做跨调用缓存。
+## 5. 数值规则
 
-## 5. 计算规则
-
-### 密度与归一化
-
-对每个点 `i`：
+### 密度分支
 
 ```text
-d[i]       = mean(distances[i][0..15])
+d[i]       = mean(squared_distances[i][0..15])
 rho[i]     = 1 / (d[i] + eps)
-mu         = mean(rho[0..255])
-variance   = sum((rho[i]-mu)^2) / (N_POINTS-1)
+mu         = mean(rho[0..511])
+variance   = sum((rho[i]-mu)^2) / 511
 std_safe   = max(sqrt(variance), eps)
 rho_clip[i]= clamp((rho[i]-mu)/std_safe, -3, 3)
 ```
 
-`eps=1e-6`，在当前 `density_t` 格式下约为 `1.01327896e-6`。密度均值和标准差在一个物体内部统计，不跨物体统计。方差采用样本方差的 `N-1` 分母，与源码 `rho.std()` 默认规则一致。
+样本方差除以 `N-1`，对应软件 `rho.std()` 的默认规则。`eps=1e-6` 在当前密度定点格式中约为 `1.01327896e-6`。整数逐位开方保留24个小数位，之后对标准差执行epsilon下限保护。
 
-`sqrt_variance()` 使用整数逐位开平方：读取方差的96位编码，生成48位根编码，对应标准差的24个小数位。该实现截断根的小数尾部，不是浮点开平方；最终还要执行epsilon下限保护。
+密度分支固定输出8个编号；配置2的16个参考点不会改变密度分支的4+4规则。密度差异并列时，本实现优先候选位置靠前者，PyTorch `topk` 不保证相同规则。
 
-### 参考点选择
-
-1. 原样保留候选位置 `0..3` 的编号。
-2. 对位置 `4..15` 计算 `abs(rho_clip[i]-rho_clip[j])`。
-3. 依次取最大且未使用的候选，共4个。
-4. 将两组编号拼接为8个参考。
-
-本实现并列分数优先选择候选位置靠前的点。PyTorch `topk` 不保证使用相同的并列规则；真实数据对照时需要明确并列处理及比较方式。
-
-### 脉冲计算与PLIF
-
-对当前通道 `c`、当前点 `i`：
+### 比较、PLIF与门控
 
 ```text
-count = sum(Q[c,i] XOR K[c,active_idx[i,r]]), r=0..7
-h     = membrane[c,i] + lambda*(count-membrane[c,i])
-gate  = (h >= threshold)
+sum = sum(Q[c,i] - K[c,j])              # Configuration 0
+sum = sum(Q[c,i] XOR K[c,j])            # Configurations 1/2/3
+h   = membrane[c,i] + decay*(sum-membrane[c,i])
+gate = (h >= threshold)
 membrane[c,i] = gate ? 0 : h
-output[c,i]   = V[c,i] AND gate
+gated_values[c,i] = V[c,i] AND gate
 ```
 
-这对应 `decay_input=True`、`v_reset=0` 的PLIF。一个模块共享 `lambda` 和阈值，各通道、各点的膜电位独立。
+PLIF使用 `decay_input=True`、`v_reset=0`。参数在同一个模块内共享，各点、各通道的膜电位独立。训练参数为w时，在软件端计算 `decay=sigmoid(w)` 后定点化；当前测试使用0.5和阈值1验证逻辑，未替代训练参数。
 
-- 独立推理序列开始前初始化膜电位，通常为零。
-- 同一序列的时间步之间保留膜电位；函数内部不清空整张状态数组。
-- 训练参数为可学习的 `w` 时，应在软件端计算 `lambda=sigmoid(w)`，再定点化后传入。
-- 测试中的 `lambda=0.5`、阈值1及部分非零初始膜电位用于验证逻辑，尚不能替代训练模型参数。
-- 参考点提供的是K；门控作用于当前点自己的V，不是对参考点V加权求和。
+`attention_sum_t` 是统一6位有符号格式，覆盖减法8点的 `[-8,8]` 和XOR16点的 `[0,16]`。实际单次减法使用2位有符号操作数，不用宽整数放大其成本。V属于当前点，没有汇总参考点V。
 
-`attention_point/channel/frame()` 是开发过程中的最近8点路径；完整密度配置使用 `sada_attention_kernel()`，由它读取 `active_idx`，不能误接旧路径。
+### 定点格式
 
-## 6. 定点格式与外部存储
-
-所有下列定点别名均使用 `AP_RND` 舍入和 `AP_SAT` 饱和模式；有符号类型的整数位数包括符号位。
+定点别名使用 `AP_RND` 和 `AP_SAT`；有符号格式的整数位包含符号位。
 
 | 类型 | 格式 | 用途 |
 |---|---|---|
-| `spike_t` | `ap_uint<1>` | Q/K/V、门控输出 |
-| `index_t` | `ap_uint<8>` | 256个点的编号 |
-| `count_t` | `ap_uint<5>` | 无符号XOR计数 |
-| `fixed_t` | `ap_fixed<32,16>` | PLIF参数、膜电位 |
+| `spike_t` | `ap_uint<1>` | 二值脉冲 |
+| `point_index_t` | `ap_uint<9>` | 点编号 |
+| `spike_difference_t` | `ap_int<2>` | 单次有符号差 |
+| `attention_sum_t` | `ap_int<6>` | 通用累加结果 |
+| `membrane_t` | `ap_fixed<32,16>` | 状态及PLIF参数 |
 | `distance_t` | `ap_ufixed<32,12>` | 平方距离，20个小数位 |
-| `distance_sum_t` | `ap_ufixed<36,16>` | 16个距离累加 |
+| `distance_sum_t` | `ap_ufixed<36,16>` | 16项距离求和 |
 | `density_t` | `ap_ufixed<48,24>` | 原始密度、均值、标准差 |
-| `density_sum_t` | `ap_ufixed<56,32>` | 256个密度累加 |
-| `density_diff_t` | `ap_fixed<49,25>` | 原始密度减均值 |
-| `variance_t` | `ap_ufixed<96,48>` | 方差、平方差 |
-| `variance_sum_t` | `ap_ufixed<104,56>` | 平方差累加 |
-| `normalization_work_t` | `ap_fixed<72,48>` | 截断前归一化值 |
-| `normalized_density_t` | `ap_fixed<27,3>` | 截断密度 |
-| `density_delta_t` | `ap_fixed<28,4>` | 截断密度差，范围 `[-6,6]` |
-| `density_score_t` | `ap_ufixed<27,3>` | 差异绝对值，范围 `[0,6]` |
+| `density_sum_t` | `ap_ufixed<57,33>` | 512项密度求和 |
+| `density_offset_t` | `ap_fixed<49,25>` | 原始密度减均值 |
+| `variance_t` | `ap_ufixed<96,48>` | 方差及平方差 |
+| `variance_sum_t` | `ap_ufixed<105,57>` | 平方差求和 |
+| `normalization_t` | `ap_fixed<72,48>` | 截断前归一化值 |
+| `normalized_density_t` | `ap_fixed<27,3>` | 截断后的密度 |
+| `density_difference_t` | `ap_fixed<28,4>` | 截断密度差，范围[-6,6] |
+| `density_score_t` | `ap_ufixed<27,3>` | 差异绝对值，范围[0,6] |
 
-这是功能验证用的保守格式，尚未完成真实数据上的位宽与误差优化。改变 `N_POINTS` 时，也要检查编号位宽、累加器余量、测试常量，以及平方根函数中硬编码的位宽。
+这些是功能验证用保守格式，真实数据位宽与误差优化尚未完成。修改规模时要一起检查索引、累加器和开方硬编码位宽。
 
-### float32文件不等于定点编码
+float32文件可以保留，但传给定点内核前需要数值转换；float32的32位编码不等于32位定点编码。当前距离的编码比例是 `2^20`，CPU预打包必须匹配HLS舍入、饱和和字节序。普通整数赋值表示数值转换，`.range()` 写入的是位模式。
 
-距离文件可以保存为float32，但必须做数值转换后再输入定点内核。将float32的32位原始编码直接当成 `distance_t` 会得到错误数值。
+## 6. 仿真、综合与报告
 
-```cpp
-float value = 0.25f;
-distance_t converted = distance_t(value);  // Numeric conversion.
+Vitis HLS 2022.2设置：
+
+```text
+Flow: Vivado IP Flow
+Part: xc7z010clg400-1
+Clock: 20 ns
+Top: sada_attention_kernel
+Design Source: Edition2/src/sada_kernel.cpp
+Test Bench: Edition2/test/tb_sada_experiments.cpp
+C flags for BOTH files:
+    -std=c++11 -I<absolute_Edition2_src_path> -DSADA_EXPERIMENT=N
 ```
 
-CPU侧预打包时，当前距离编码等价于按HLS规则对 `value*2^20` 舍入并饱和，再传输编码。直接设置HLS对象的 `.range()` 表示写入位模式；普通整数赋值则表示数值转换，两者不能混用。当前版本尚未提供二进制文件转换器或板端传输程序。
+每次只启用一个带main的测试文件。头文件搜索路径须指向对应版本的src，避免编译到Edition1或其他副本。断言测试不要定义 `NDEBUG`。
 
-## 7. 在 Vitis HLS 2022.2 中运行
+运行顺序：C Simulation → C Synthesis → C/RTL Co-Simulation。四组分别编译和保存报告；版本、器件、时钟约束、优化设置保持一致。
 
-完整内核的设置：
+当前目录保存了源文件、测试和报告，没有完整可运行的PS程序、Vivado板级工程或AXI/DDR封装，也未归档统一构建脚本。
 
-| 设置 | 值 |
+原始HLS报告一般位于 `<project>/<solution>/syn/report/`，归档后位于：
+
+```text
+Edition2/report/experiment_N/csim/sada_attention_kernel_csim.log
+Edition2/report/experiment_N/syn/sada_attention_kernel_csynth.rpt
+Edition2/report/experiment_N/syn/sada_attention_kernel_csynth.xml
+Edition2/report/experiment_N/sim/sada_attention_kernel_cosim.rpt
+```
+
+### 四组基线：2026-11-14
+
+均为512点、96通道、20 ns目标周期、5.40 ns时钟不确定度。归档的四组C仿真均为0错误，Verilog协同仿真均为Pass。
+
+| 配置 | LUT | FF | DSP | BRAM_18K | HLS延迟/周期 | HLS延迟/ms | 顶层间隔/周期 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 0：减法＋最近8点 | 1,128 | 384 | 3 | 2 | 200,712 | 4.01424 | 200,713 |
+| 1：XOR＋最近8点 | 1,056 | 384 | 3 | 2 | 200,712 | 4.01424 | 200,713 |
+| 2：XOR＋16点 | 1,402 | 399 | 3 | 5 | 401,416 | 8.02832 | 401,417 |
+| 3：XOR＋密度选择8点 | **21,354** | 17,302 | 27 | 12 | 217,310 | 4.34620 | 217,311 |
+
+对应综合报告：[配置0](Edition2/report/experiment_0/syn/sada_attention_kernel_csynth.rpt)、[配置1](Edition2/report/experiment_1/syn/sada_attention_kernel_csynth.rpt)、[配置2](Edition2/report/experiment_2/syn/sada_attention_kernel_csynth.rpt)、[配置3](Edition2/report/experiment_3/syn/sada_attention_kernel_csynth.rpt)。
+
+协同仿真延迟单独记录，避免与综合估计混用：
+
+| 配置 | Verilog状态 | 仿真延迟/周期 | 仿真间隔/周期 |
+|---|---|---:|---:|
+| 0 | Pass | 200,710 | 200,711 |
+| 1 | Pass | 200,710 | 200,711 |
+| 2 | Pass | 401,414 | 401,415 |
+| 3 | Pass | 217,297 | 217,298 |
+
+器件资源上限为17,600 LUT、35,200 FF、80 DSP、120个BRAM_18K。**配置3的LUT约为121%，不能作为已可部署版本；其他配置估计在资源范围内，也仍需完整系统实现验证。**
+
+配置3的密度选择器为20,305 LUT、24 DSP、20,694周期。主要LUT来自归一化/截断7,143、原始密度5,548、参考选择循环5,606。后续脉冲计算模块约196,613周期。资源优化和延迟优化的重点并不相同。
+
+当前观察：0换成1减少72个LUT，延迟相同；2换成1约减半延迟；3比1慢约8.3%，比2快约46%，但付出了很高的选择资源成本。这些是当前架构、位宽、端口及调度下的基线，不是能耗或分类精度结论。
+
+### 报告边界
+
+- 当前数组接口是 `ap_memory`。Q/K/V、距离、编号、膜电位和输出的外部存储与控制器未全部计入HLS内部BRAM。
+- BRAM按18 Kbit块计数，不是36 Kbit块数。
+- 延迟不包含CPU找16NN、定点打包、PS控制、DMA/DDR传输与结果读取。
+- HLS估计频率不等于布局布线后频率；协同仿真Pass不等于资源能放下或已经上板。
+- Edition1是256点基线，完整内核为21,317 LUT、108,765周期，不能直接当成512点版本对照。
+
+## 7. 多时间步执行约定：PS逐步调用
+
+### 初步选择
+
+**由PS控制时间步，每次启动PL完成一个完整时间步，不拆成逐点或逐通道由PS调用。** 暂不在PL内部增加T循环。
+
+```text
+Sequence start
+  PS: prepare shared candidates/distances; initialize membrane once
+  for t = 0 .. T-1:
+      PS: prepare Q[t], K[t], V[t] and configure buffers
+      PS: start PL
+      PL: select references -> compare -> PLIF -> gate V
+      PL: write back membrane and output
+      PS: wait for completion; synchronize/read data as needed
+  Sequence end
+```
+
+当前HLS顶层在功能上已是单步接口，膜电位由调用者保存；但把这些数组映射到DDR并由PS启动，仍需要后续新增AXI/控制封装与驱动。
+
+### 数据保存与状态生命周期
+
+| 数据 | 初步安排 |
 |---|---|
-| Flow | Vivado IP Flow |
-| Target device | `xc7z010clg400-1`，报告显示为 `xc7z010-clg400-1` |
-| Clock period | `20 ns`，50 MHz |
-| Top Function | `sada_attention_kernel` |
-| Design Source | `Edition1/src/sada_kernel.cpp` |
-| Header | `Edition1/src/sada_kernel.h` |
-| Test Bench | `Edition1/test/tb_sada_attention_kernel.cpp` |
+| 16NN编号、平方距离 | PS每个静态样本准备一次，保留在DDR，跨步复用同一数据 |
+| Q/K/V | 每步提供对应脉冲；可按步搬入，也可预先存入DDR后切换步偏移 |
+| 膜电位 `[96][512]` | 32位定点，数据量192 KiB；在序列开始初始化一次，跨步读写同一状态缓冲区 |
+| PLIF参数 | 同一模块在各步使用相同训练参数 |
+| 输出V | 每步写入输出缓冲；调试时逐步读取，不要求正式测量时都拷回PS |
+| 累加调试输出 | 当前保留以定位问题；正式去除时四组必须一致，并重新验证、综合 |
 
-测试与头文件现在分属不同目录，需要给Test Bench的编译选项设置头文件搜索路径，例如：
+不可每步清零膜电位，不可让上一步尚未完成时覆盖输入/状态。新的独立样本开始时，才重新初始化相应状态。PS需确保PL读到本步有效数据、写回结果可见；DDR缓存同步方法在确定裸机或Linux驱动后实现。
 
-```text
--IC:/your_path/SADA_KERNEL/Edition1/src
-```
+这里的192 KiB是单份状态缓冲的数据量，不代表已经计入HLS BRAM；若每步从DDR完整读写一次状态，仅状态载荷就约384 KiB/步，实际带宽和访存开销需要板级测量。
 
-使用自己电脑上的实际绝对路径；也可以将 `-I` 配置为合适的相对路径。仅把头文件列入项目不应作为编译器已经配置搜索路径的依据。
+### 当前密度计算次数
 
-运行顺序：
+同一静态点云的密度选择结果不随时间变化，但**当前每次调用顶层都会重新选择参考点**。PS逐步启动T次时，配置3的密度估计、归一化和Top-4也执行T次。
 
-1. **C Simulation**：验证C++逻辑与断言。
-2. **C Synthesis**：生成RTL，检查HLS时序、延迟和资源估计。
-3. **C/RTL Co-Simulation**：用同一测试程序验证生成的RTL行为。
-4. 功能验证后，再做接口集成、Vivado实现与上板。
+本轮先保留这个行为作为清晰的单步基线，不声称已经实现了跨步参考点缓存。若后续优化为“序列开始由PL选择一次、其余步复用参考编号”，需要新增准备/状态接口，并将一次选择的成本计入序列总成本，四组统一采用相同的序列计时边界。不能把密度转到PS后仍当作完整PL选择器结果。
 
-每次只启用一个带 `main()` 的测试文件，其他测试从本轮工程列表中移除，磁盘文件保留。测试文件不得混入Design Sources，也不要通过 `#include` 包含其他测试 `.cpp`。运行断言检查时不要定义 `NDEBUG`。
+### 为什么初期采用此方案
 
-HLS报告默认位置：
+PS逐步调用便于打印每步输出、核对膜电位及定位首次错误的时间步，也便于接入当前已验证的单步函数。代价是每步启动、同步和可能的数据搬运开销。
 
-```text
-<project>/<solution>/syn/report/<top>_csynth.rpt
-<project>/<solution>/syn/report/<top>_csynth.xml
-```
+后续如果测量显示这些开销显著，再评估PL内部一次性执行T步。PL内部跑T步不要求把全部时间步同时放进BRAM，可以从DDR流式读取；不过它需要新的调度、状态和数据接口，本版尚未实现。
 
-本目录归档了报告，没有包含完整Vitis工程、Solution指令或可一键复现的构建脚本。需要在本地重新配置并生成工程。
+### 计时原则
 
-## 8. 测试入口
+同时报告两个层次：
 
-所有测试文件位于 `Edition1/test/`。选择对应顶层，每次只添加表中的一个测试文件。
+1. 单步/多步的PL内核时间；当前报告只给出了单步内核估计及RTL仿真周期。
+2. PS可见的序列总时间，包括候选准备、定点转换、必要的数据搬运、T次启动/等待及输出读取，避免对重叠部分重复加总。
 
-| Test Bench | Top Function | 检查内容 |
-|---|---|---|
-| `tb_plif.cpp` | `plif_step` | 状态更新、达到阈值、硬重置 |
-| `tb_attention.cpp` | `attention_unit` | 单点XOR计数、PLIF、V门控 |
-| `tb_attention_point.cpp` | `attention_point` | 参考编号到K的读取 |
-| `tb_attention_channel.cpp` | `attention_channel` | 单通道256点 |
-| `tb_attention_frame.cpp` | `attention_frame` | 96通道和跨时间步状态 |
-| `tb_mean_distance.cpp` | `mean_squared_distance` | 平均距离、累加器范围 |
-| `tb_density.cpp` | `estimate_density` | 定点倒数、零距离 |
-| `tb_raw_density.cpp` | `compute_raw_density` | 全部点原始密度 |
-| `tb_mean_density.cpp` | `mean_density` | 全样本均值、累加器范围 |
-| `tb_density_variance_std.cpp` | `density_variance_std` | 样本方差、开方、epsilon保护 |
-| `tb_normalize_clip.cpp` | `normalize_clip_density` | 正负值、截断、精度和零分母保护 |
-| `tb_select_density_refs.cpp` | `select_density_refs` | 单点Top-4、并列与去重 |
-| `tb_select_all_density_refs.cpp` | `select_all_density_refs` | 256点选择、行间独立性 |
-| `tb_density_selector.cpp` | `density_selector` | 距离到参考编号的完整选择链 |
-| `tb_sada_attention_kernel.cpp` | `sada_attention_kernel` | 完整连接、两个连续时间步 |
+不能直接把单步HLS延迟乘T，称为完整推理实测时间。四组必须统一T、初始状态、每步Q/K/V、输出读取策略及缓存复用规则。四配置各自的位流/IP在序列运行前选择，不是每个时间步重新切换配置。
 
-完整测试的预期输出：
+## 8. 测试覆盖与后续工作
 
-```text
-Step 0 passed.
-Step 1 passed.
-Full attention chain passed.
-```
+当前统一测试检查索引高位、累加范围、负输入PLIF、密度差6、小方差、候选去重、选点与两步完整状态。参考选点使用独立double公式及稳定排序，PLIF使用普通数值参考；所选脉冲与状态使这些测试的PLIF运算可精确表示。
 
-### 测试覆盖范围
+人工距离与候选不保证来自真实几何点云；参考密度使用定点epsilon。仍需真实16NN、训练后Q/K/V和PLIF参数，对照原始PyTorch，统计选点变化、近似并列和阈值翻转。当前测试通过不能证明模型分类精度。
 
-- 当前输入主要是人工构造的距离、候选编号和脉冲，未证明它们来自同一份真实几何点云。
-- `tb_density_selector.cpp` 用浮点公式生成参考选点，但使用定点化后的epsilon，并采用当前硬件的并列规则。
-- `tb_sada_attention_kernel.cpp` 复用 `density_selector()` 生成参考编号，再独立计算XOR、PLIF与门控；它是连接测试，不是对整个选择器的第二份独立实现。
-- 尚需真实16NN、训练后Q/K/V和PLIF参数，对照原始PyTorch结果；量化导致的近似并列和阈值翻转需要单独统计。
-
-## 9. Edition1 综合基线
-
-以下数据直接摘自已归档报告，生成时间 **2026-11-14 13:24:44**。不代表上板实测结果。
-
-| 指标 | Edition1 | 器件可用 |
-|---|---:|---:|
-| Target period | 20.00 ns | — |
-| Estimated period | 14.414 ns | — |
-| Clock uncertainty | 5.40 ns | — |
-| Latency | 108,765 cycles，约2.175 ms | — |
-| Top-level interval | 108,766 cycles | — |
-| LUT | **21,317** | **17,600，约121%** |
-| FF | 17,260 | 35,200 |
-| DSP | 23 | 80 |
-| BRAM_18K | 12 | 120 |
-| URAM | 0 | 0 |
-
-**当前LUT估计超出7010容量，不能作为已可部署版本。** 需要降低资源并留出接口、控制和存储系统的余量，再进行完整Vivado实现。
-
-| 主要部分 | LUT | DSP | 延迟 |
-|---|---:|---:|---:|
-| `density_selector` 实例 | 20,294 | 20 | 10,454 cycles，约0.209 ms |
-| `attention_unit` 实例 | 490 | 3 | 3 cycles，调用间隔4 cycles |
-| 顶层脉冲计算循环，24,576次迭代 | 包含于实例及顶层逻辑 | — | 98,308 cycles，约1.966 ms，II=4 |
-
-资源重点在密度选择器；当前延迟重点在参考K读取与脉冲计算循环。子模块用量不包含所有顶层控制开销，不能只将计算单元资源相加作为完整资源。
-
-报告中的 `BRAM_18K` 以18 Kbit块计数，不能与36 Kbit块数直接比较。外部输入、输出和膜电位数组当前采用 `ap_memory` 接口，它们的外部存储及控制器并未全部计入该12块BRAM。
-
-当前尚未连接AXI/DDR接口。总延迟不包含CPU找16NN、CPU/FPGA数据搬运或完整模型其他层；HLS时序估计也不能替代Vivado布局布线后的时序与实测频率。
-
-## 10. 四组实验与后续工作
-
-| 配置 | 选择策略 | 比较运算 | 当前情况 |
-|---|---|---|---|
-| A | 最近8点 | 有符号减法 | 待实现 |
-| B | 最近8点 | XOR | 已有最近8点开发路径，待形成同接口基线 |
-| C | 全部16个候选 | XOR | 待实现 |
-| D | 最近4点＋密度差异4点 | XOR | Edition1完整顶层 |
-
-不要仅修改 `N_REFS=16` 就认为完成配置C：当前密度选择器要求 `N_REFS=N_NEAR+N_DENSITY`，部分测试也固定为8参考。需要把选点策略与公共计算部分明确分开。
-
-接下来按以下顺序推进：
-
-1. 保留Edition1源文件、测试与报告作为基线，后续版本单独归档。
-2. 补齐四种配置，统一候选域、排除自身规则、数据、接口、位宽和时钟约束。
-3. 使用真实软件导出数据与训练参数，完成逐层精度对照。
-4. 在不省略密度归一化和截断的前提下，统一优化位宽、运算复用、流水和缓存。
-5. 接入PS/PL数据接口，完成Vivado综合、布局布线和板端验证。
-6. 分别报告工具估计与上板测量的资源、频率、延迟、吞吐率和能耗，并计入CPU候选准备与传输开销。
-
-有符号减法的差异值可为负，不能直接复用无符号XOR计数类型。也不能通过不必要的宽整数减法放大XOR的优势；是否节省资源、密度选择是否值得，最终由公平条件下的综合和测量结果判断。
+下一阶段：保留当前四组报告作为基线，按相同原则优化资源；完成真实数据对照；设计PS逐步调用所需的AXI/DDR接口；通过Vivado实现后再上板，测量时序、资源、吞吐率及能耗。工具功耗估计与上板实测分别报告。
