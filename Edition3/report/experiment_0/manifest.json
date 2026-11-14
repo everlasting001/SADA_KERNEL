@@ -1,0 +1,14 @@
+{
+  "profile": "18_reference32",
+  "options": {
+    "snapshot": "reference32_snapshot"
+  },
+  "experiment": 0,
+  "stage": "impl",
+  "part": "xc7z010clg400-1",
+  "clock_ns": 20,
+  "work_directory": "C:/fpga/sada_edition3_runs/18_reference32_exp0",
+  "source_sha256": "44025c888a36c2a0eed17c9fc9c151e2c16dbbec7105287a4d6e99b9fe51525e",
+  "header_sha256": "0952d6a44d05079216130a6005caa26d636b87e07bf37e99a09ece35590e988e",
+  "test_sha256": "b1af1dd412cdca6847a6a074adc6b9ac003da6ecaf9152187d71bab809a7f3c9"
+}

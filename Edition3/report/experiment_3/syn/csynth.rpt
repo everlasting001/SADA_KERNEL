@@ -4,9 +4,9 @@
 == Synthesis Summary Report of 'sada_attention_kernel'
 ================================================================
 + General Information: 
-    * Date:           Sat Nov 14 18:25:32 2026
+    * Date:           Sat Nov 14 19:25:11 2026
     * Version:        2022.2 (Build 3670227 on Oct 13 2022)
-    * Project:        sada_kernel2
+    * Project:        project
     * Solution:       solution1 (Vivado IP Flow Target)
     * Product family: zynq
     * Target device:  xc7z010-clg400-1
@@ -239,27 +239,27 @@
 == Pragma Report
 ================================================================
 * Valid Pragma Syntax
-+-----------------+--------------------------------------------+-----------------------------------------------------------------------+
-| Type            | Options                                    | Location                                                              |
-+-----------------+--------------------------------------------+-----------------------------------------------------------------------+
-| pipeline        | off                                        | ../sada_kernel.cpp:45 in compute_raw_density                          |
-| pipeline        | off                                        | ../sada_kernel.cpp:89 in normalize_clip_density                       |
-| array_partition | variable=top_positions complete dim=1      | ../sada_kernel.cpp:115 in select_density_neighbors, top_positions     |
-| array_partition | variable=top_scores complete dim=1         | ../sada_kernel.cpp:116 in select_density_neighbors, top_scores        |
-| array_partition | variable=top_ids complete dim=1            | ../sada_kernel.cpp:117 in select_density_neighbors, top_ids           |
-| array_partition | variable=valid complete dim=1              | ../sada_kernel.cpp:118 in select_density_neighbors, valid             |
-| unroll          |                                            | ../sada_kernel.cpp:120 in select_density_neighbors                    |
-| pipeline        | II=1                                       | ../sada_kernel.cpp:130 in select_density_neighbors                    |
-| unroll          |                                            | ../sada_kernel.cpp:142 in select_density_neighbors                    |
-| pipeline        | off                                        | ../sada_kernel.cpp:180 in select_density_references                   |
-| array_partition | variable=reference_indices complete dim=2  | ../sada_kernel.cpp:249 in apply_selected_attention, reference_indices |
-| pipeline        | off                                        | ../sada_kernel.cpp:251 in apply_selected_attention                    |
-| array_partition | variable=cached_keys complete dim=1        | ../sada_kernel.cpp:254 in apply_selected_attention, cached_keys       |
-| bind_storage    | variable=cached_keys type=ram_2p impl=bram | ../sada_kernel.cpp:255 in apply_selected_attention, cached_keys       |
-| pipeline        | II=1                                       | ../sada_kernel.cpp:257 in apply_selected_attention                    |
-| unroll          |                                            | ../sada_kernel.cpp:260 in apply_selected_attention                    |
-| pipeline        | II=1                                       | ../sada_kernel.cpp:265 in apply_selected_attention                    |
-| array_partition | variable=reference_indices complete dim=2  | ../sada_kernel.cpp:294 in sada_attention_kernel, reference_indices    |
-+-----------------+--------------------------------------------+-----------------------------------------------------------------------+
++-----------------+--------------------------------------------+------------------------------------------------------------------------+
+| Type            | Options                                    | Location                                                               |
++-----------------+--------------------------------------------+------------------------------------------------------------------------+
+| pipeline        | off                                        | src/sada_kernel.cpp:45 in compute_raw_density                          |
+| pipeline        | off                                        | src/sada_kernel.cpp:89 in normalize_clip_density                       |
+| array_partition | variable=top_positions complete dim=1      | src/sada_kernel.cpp:115 in select_density_neighbors, top_positions     |
+| array_partition | variable=top_scores complete dim=1         | src/sada_kernel.cpp:116 in select_density_neighbors, top_scores        |
+| array_partition | variable=top_ids complete dim=1            | src/sada_kernel.cpp:117 in select_density_neighbors, top_ids           |
+| array_partition | variable=valid complete dim=1              | src/sada_kernel.cpp:118 in select_density_neighbors, valid             |
+| unroll          |                                            | src/sada_kernel.cpp:120 in select_density_neighbors                    |
+| pipeline        | II=1                                       | src/sada_kernel.cpp:130 in select_density_neighbors                    |
+| unroll          |                                            | src/sada_kernel.cpp:142 in select_density_neighbors                    |
+| pipeline        | off                                        | src/sada_kernel.cpp:180 in select_density_references                   |
+| array_partition | variable=reference_indices complete dim=2  | src/sada_kernel.cpp:249 in apply_selected_attention, reference_indices |
+| pipeline        | off                                        | src/sada_kernel.cpp:251 in apply_selected_attention                    |
+| array_partition | variable=cached_keys complete dim=1        | src/sada_kernel.cpp:254 in apply_selected_attention, cached_keys       |
+| bind_storage    | variable=cached_keys type=ram_2p impl=bram | src/sada_kernel.cpp:255 in apply_selected_attention, cached_keys       |
+| pipeline        | II=1                                       | src/sada_kernel.cpp:257 in apply_selected_attention                    |
+| unroll          |                                            | src/sada_kernel.cpp:260 in apply_selected_attention                    |
+| pipeline        | II=1                                       | src/sada_kernel.cpp:265 in apply_selected_attention                    |
+| array_partition | variable=reference_indices complete dim=2  | src/sada_kernel.cpp:294 in sada_attention_kernel, reference_indices    |
++-----------------+--------------------------------------------+------------------------------------------------------------------------+
 
 

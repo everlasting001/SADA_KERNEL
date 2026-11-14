@@ -1,0 +1,2 @@
+REAL_SAMPLE rows_changed=0 sets_changed=0 xor_sums_changed=0 values_changed=0 states_changed=0 real_channels=64 padded_channels=32 steps=4 decay=0.5 threshold=1
+PASS experiment=3 references=8 points=512 channels=96 steps=2

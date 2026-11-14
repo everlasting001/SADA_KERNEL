@@ -18,7 +18,7 @@ static spike_t output[CHANNEL_COUNT][POINT_COUNT];
 static attention_sum_t sums[CHANNEL_COUNT][POINT_COUNT];
 
 static void prepare_inputs() {
-    // Synthetic interface vectors, not a geometric 16NN data set.
+    // Synthetic interface vectors, not a geometric nearest-neighbor data set.
     for (int point = 0; point < POINT_COUNT; ++point) {
         double base = (point % 4 + 1) * 0.125;
         for (int slot = 0; slot < CANDIDATE_COUNT; ++slot) {
@@ -97,6 +97,7 @@ static void build_reference_ids() {
 static void check_index_and_accumulator_ranges() {
     point_index_t last_point = POINT_COUNT - 1;
     assert(last_point.to_uint() == unsigned(POINT_COUNT - 1));
+    assert(attention_sum_t(REFERENCE_COUNT).to_int() == REFERENCE_COUNT);
 
     // The mean is small enough for density_t; the sum needs extra bits.
     density_t raw[POINT_COUNT];
@@ -107,6 +108,15 @@ static void check_index_and_accumulator_ranges() {
 
 static void check_reduction_and_state() {
     spike_t reference_keys[REFERENCE_COUNT];
+    // All mismatches must produce +32 in experiment 2, without signed overflow.
+    for (int slot = 0; slot < REFERENCE_COUNT; ++slot) reference_keys[slot] = 1;
+    if (EXPERIMENT != Experiment::SubtractNearest8) {
+        attention_sum_t maximum = reduce_reference_spikes(spike_t(0), reference_keys);
+        assert(maximum.to_int() == REFERENCE_COUNT);
+        membrane_t maximum_state = 0;
+        assert(update_plif(maximum, membrane_t(1), membrane_t(64), maximum_state) == 0);
+        assert(maximum_state == membrane_t(REFERENCE_COUNT));
+    }
     for (int query = 0; query <= 1; ++query) {
         for (int pattern = 0; pattern < 3; ++pattern) {
             int expected = 0;

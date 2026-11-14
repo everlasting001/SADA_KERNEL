@@ -2,6 +2,8 @@
 
 日期：2026-11-14。工具：实际运行的 Windows Vitis HLS 2022.2 与 Vivado 2022.2。器件：`xc7z010clg400-1`。
 
+**历史版本说明：本报告保留实验2使用16参考点时的结果。** 后续用户要求实验2改为32参考点，当前源码使用 `18_reference32`，新增结果见 [32参考点实验报告](REFERENCE32_REPORT.md)。下文的“默认版”“源码哈希”和配置2数据均指当时的 `13_insert_bram` 归档，不再指当前32参考点源码或更新后的 `report/`。
+
 ## 1. 先看结论
 
 **默认采用 `13_insert_bram`，已写入 `Edition3/src/sada_kernel.cpp`。四种配置均通过C仿真、Verilog协同仿真和50 MHz独立IP布局布线。** 本轮优化时未修改Edition1、Edition2和用户提供的Edition3原报告；此后用户已将 `Edition3/report/` 更新为优化后的综合及仿真报告，顶层结果已核对一致。完整试验归档仍在 `optimization/trials/`。用户授权清理后，`report/experiment_3/syn/` 残留的10个旧分模块文件已删除，详见[清理记录](optimization/cleanup_legacy_reports.json)。

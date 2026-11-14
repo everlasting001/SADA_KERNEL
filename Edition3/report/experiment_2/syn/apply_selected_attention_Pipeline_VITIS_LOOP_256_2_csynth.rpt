@@ -3,10 +3,10 @@
 ================================================================
 == Vitis HLS Report for 'apply_selected_attention_Pipeline_VITIS_LOOP_256_2'
 ================================================================
-* Date:           Sat Nov 14 18:29:43 2026
+* Date:           Sat Nov 14 19:24:34 2026
 
 * Version:        2022.2 (Build 3670227 on Oct 13 2022)
-* Project:        sada_kernel2
+* Project:        project
 * Solution:       solution1 (Vivado IP Flow Target)
 * Product family: zynq
 * Target device:  xc7z010-clg400-1
@@ -85,9 +85,9 @@
     +----------------------+----------+----+---+----+------------+------------+
     |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
     +----------------------+----------+----+---+----+------------+------------+
-    |add_ln256_fu_241_p2   |         +|   0|  0|  13|          10|           1|
-    |add_ln261_fu_251_p2   |         +|   0|  0|  23|          16|          16|
-    |icmp_ln256_fu_235_p2  |      icmp|   0|  0|  11|          10|          11|
+    |add_ln256_fu_401_p2   |         +|   0|  0|  13|          10|           1|
+    |add_ln261_fu_411_p2   |         +|   0|  0|  23|          16|          16|
+    |icmp_ln256_fu_395_p2  |      icmp|   0|  0|  11|          10|          11|
     |ap_enable_pp0         |       xor|   0|  0|   2|           1|           2|
     +----------------------+----------+----+---+----+------------+------------+
     |Total                 |          |   0|  0|  49|          37|          30|
@@ -100,7 +100,7 @@
     |ap_done_int              |   9|          2|    1|          2|
     |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
     |ap_sig_allocacmp_load_1  |   9|          2|   10|         20|
-    |load_fu_60               |   9|          2|   10|         20|
+    |load_fu_76               |   9|          2|   10|         20|
     +-------------------------+----+-----------+-----+-----------+
     |Total                    |  36|          8|   22|         44|
     +-------------------------+----+-----------+-----+-----------+
@@ -112,8 +112,8 @@
     |ap_CS_fsm                |   1|   0|    1|          0|
     |ap_done_reg              |   1|   0|    1|          0|
     |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
-    |load_1_reg_285           |  10|   0|   10|          0|
-    |load_fu_60               |  10|   0|   10|          0|
+    |load_1_reg_453           |  10|   0|   10|          0|
+    |load_fu_76               |  10|   0|   10|          0|
     +-------------------------+----+----+-----+-----------+
     |Total                    |  23|   0|   23|          0|
     +-------------------------+----+----+-----+-----------+
@@ -124,50 +124,82 @@
 == Interface
 ================================================================
 * Summary: 
-+--------------------------+-----+-----+------------+----------------------------------------------------+--------------+
-|         RTL Ports        | Dir | Bits|  Protocol  |                    Source Object                   |    C Type    |
-+--------------------------+-----+-----+------------+----------------------------------------------------+--------------+
-|ap_clk                    |   in|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_256_2|  return value|
-|ap_rst                    |   in|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_256_2|  return value|
-|ap_start                  |   in|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_256_2|  return value|
-|ap_done                   |  out|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_256_2|  return value|
-|ap_idle                   |  out|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_256_2|  return value|
-|ap_ready                  |  out|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_256_2|  return value|
-|zext_ln272                |   in|   16|     ap_none|                                          zext_ln272|        scalar|
-|key_spikes_address0       |  out|   16|   ap_memory|                                          key_spikes|         array|
-|key_spikes_ce0            |  out|    1|   ap_memory|                                          key_spikes|         array|
-|key_spikes_q0             |   in|    1|   ap_memory|                                          key_spikes|         array|
-|cached_keys_V_7_address1  |  out|    9|   ap_memory|                                     cached_keys_V_7|         array|
-|cached_keys_V_7_ce1       |  out|    1|   ap_memory|                                     cached_keys_V_7|         array|
-|cached_keys_V_7_we1       |  out|    1|   ap_memory|                                     cached_keys_V_7|         array|
-|cached_keys_V_7_d1        |  out|    1|   ap_memory|                                     cached_keys_V_7|         array|
-|cached_keys_V_6_address1  |  out|    9|   ap_memory|                                     cached_keys_V_6|         array|
-|cached_keys_V_6_ce1       |  out|    1|   ap_memory|                                     cached_keys_V_6|         array|
-|cached_keys_V_6_we1       |  out|    1|   ap_memory|                                     cached_keys_V_6|         array|
-|cached_keys_V_6_d1        |  out|    1|   ap_memory|                                     cached_keys_V_6|         array|
-|cached_keys_V_5_address1  |  out|    9|   ap_memory|                                     cached_keys_V_5|         array|
-|cached_keys_V_5_ce1       |  out|    1|   ap_memory|                                     cached_keys_V_5|         array|
-|cached_keys_V_5_we1       |  out|    1|   ap_memory|                                     cached_keys_V_5|         array|
-|cached_keys_V_5_d1        |  out|    1|   ap_memory|                                     cached_keys_V_5|         array|
-|cached_keys_V_4_address1  |  out|    9|   ap_memory|                                     cached_keys_V_4|         array|
-|cached_keys_V_4_ce1       |  out|    1|   ap_memory|                                     cached_keys_V_4|         array|
-|cached_keys_V_4_we1       |  out|    1|   ap_memory|                                     cached_keys_V_4|         array|
-|cached_keys_V_4_d1        |  out|    1|   ap_memory|                                     cached_keys_V_4|         array|
-|cached_keys_V_3_address1  |  out|    9|   ap_memory|                                     cached_keys_V_3|         array|
-|cached_keys_V_3_ce1       |  out|    1|   ap_memory|                                     cached_keys_V_3|         array|
-|cached_keys_V_3_we1       |  out|    1|   ap_memory|                                     cached_keys_V_3|         array|
-|cached_keys_V_3_d1        |  out|    1|   ap_memory|                                     cached_keys_V_3|         array|
-|cached_keys_V_2_address1  |  out|    9|   ap_memory|                                     cached_keys_V_2|         array|
-|cached_keys_V_2_ce1       |  out|    1|   ap_memory|                                     cached_keys_V_2|         array|
-|cached_keys_V_2_we1       |  out|    1|   ap_memory|                                     cached_keys_V_2|         array|
-|cached_keys_V_2_d1        |  out|    1|   ap_memory|                                     cached_keys_V_2|         array|
-|cached_keys_V_1_address1  |  out|    9|   ap_memory|                                     cached_keys_V_1|         array|
-|cached_keys_V_1_ce1       |  out|    1|   ap_memory|                                     cached_keys_V_1|         array|
-|cached_keys_V_1_we1       |  out|    1|   ap_memory|                                     cached_keys_V_1|         array|
-|cached_keys_V_1_d1        |  out|    1|   ap_memory|                                     cached_keys_V_1|         array|
-|cached_keys_V_address1    |  out|    9|   ap_memory|                                       cached_keys_V|         array|
-|cached_keys_V_ce1         |  out|    1|   ap_memory|                                       cached_keys_V|         array|
-|cached_keys_V_we1         |  out|    1|   ap_memory|                                       cached_keys_V|         array|
-|cached_keys_V_d1          |  out|    1|   ap_memory|                                       cached_keys_V|         array|
-+--------------------------+-----+-----+------------+----------------------------------------------------+--------------+
++---------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+|         RTL Ports         | Dir | Bits|  Protocol  |                    Source Object                   |    C Type    |
++---------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+|ap_clk                     |   in|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_256_2|  return value|
+|ap_rst                     |   in|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_256_2|  return value|
+|ap_start                   |   in|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_256_2|  return value|
+|ap_done                    |  out|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_256_2|  return value|
+|ap_idle                    |  out|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_256_2|  return value|
+|ap_ready                   |  out|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_256_2|  return value|
+|zext_ln272                 |   in|   16|     ap_none|                                          zext_ln272|        scalar|
+|key_spikes_address0        |  out|   16|   ap_memory|                                          key_spikes|         array|
+|key_spikes_ce0             |  out|    1|   ap_memory|                                          key_spikes|         array|
+|key_spikes_q0              |   in|    1|   ap_memory|                                          key_spikes|         array|
+|cached_keys_V_15_address1  |  out|    9|   ap_memory|                                    cached_keys_V_15|         array|
+|cached_keys_V_15_ce1       |  out|    1|   ap_memory|                                    cached_keys_V_15|         array|
+|cached_keys_V_15_we1       |  out|    1|   ap_memory|                                    cached_keys_V_15|         array|
+|cached_keys_V_15_d1        |  out|    1|   ap_memory|                                    cached_keys_V_15|         array|
+|cached_keys_V_14_address1  |  out|    9|   ap_memory|                                    cached_keys_V_14|         array|
+|cached_keys_V_14_ce1       |  out|    1|   ap_memory|                                    cached_keys_V_14|         array|
+|cached_keys_V_14_we1       |  out|    1|   ap_memory|                                    cached_keys_V_14|         array|
+|cached_keys_V_14_d1        |  out|    1|   ap_memory|                                    cached_keys_V_14|         array|
+|cached_keys_V_13_address1  |  out|    9|   ap_memory|                                    cached_keys_V_13|         array|
+|cached_keys_V_13_ce1       |  out|    1|   ap_memory|                                    cached_keys_V_13|         array|
+|cached_keys_V_13_we1       |  out|    1|   ap_memory|                                    cached_keys_V_13|         array|
+|cached_keys_V_13_d1        |  out|    1|   ap_memory|                                    cached_keys_V_13|         array|
+|cached_keys_V_12_address1  |  out|    9|   ap_memory|                                    cached_keys_V_12|         array|
+|cached_keys_V_12_ce1       |  out|    1|   ap_memory|                                    cached_keys_V_12|         array|
+|cached_keys_V_12_we1       |  out|    1|   ap_memory|                                    cached_keys_V_12|         array|
+|cached_keys_V_12_d1        |  out|    1|   ap_memory|                                    cached_keys_V_12|         array|
+|cached_keys_V_11_address1  |  out|    9|   ap_memory|                                    cached_keys_V_11|         array|
+|cached_keys_V_11_ce1       |  out|    1|   ap_memory|                                    cached_keys_V_11|         array|
+|cached_keys_V_11_we1       |  out|    1|   ap_memory|                                    cached_keys_V_11|         array|
+|cached_keys_V_11_d1        |  out|    1|   ap_memory|                                    cached_keys_V_11|         array|
+|cached_keys_V_10_address1  |  out|    9|   ap_memory|                                    cached_keys_V_10|         array|
+|cached_keys_V_10_ce1       |  out|    1|   ap_memory|                                    cached_keys_V_10|         array|
+|cached_keys_V_10_we1       |  out|    1|   ap_memory|                                    cached_keys_V_10|         array|
+|cached_keys_V_10_d1        |  out|    1|   ap_memory|                                    cached_keys_V_10|         array|
+|cached_keys_V_9_address1   |  out|    9|   ap_memory|                                     cached_keys_V_9|         array|
+|cached_keys_V_9_ce1        |  out|    1|   ap_memory|                                     cached_keys_V_9|         array|
+|cached_keys_V_9_we1        |  out|    1|   ap_memory|                                     cached_keys_V_9|         array|
+|cached_keys_V_9_d1         |  out|    1|   ap_memory|                                     cached_keys_V_9|         array|
+|cached_keys_V_8_address1   |  out|    9|   ap_memory|                                     cached_keys_V_8|         array|
+|cached_keys_V_8_ce1        |  out|    1|   ap_memory|                                     cached_keys_V_8|         array|
+|cached_keys_V_8_we1        |  out|    1|   ap_memory|                                     cached_keys_V_8|         array|
+|cached_keys_V_8_d1         |  out|    1|   ap_memory|                                     cached_keys_V_8|         array|
+|cached_keys_V_7_address1   |  out|    9|   ap_memory|                                     cached_keys_V_7|         array|
+|cached_keys_V_7_ce1        |  out|    1|   ap_memory|                                     cached_keys_V_7|         array|
+|cached_keys_V_7_we1        |  out|    1|   ap_memory|                                     cached_keys_V_7|         array|
+|cached_keys_V_7_d1         |  out|    1|   ap_memory|                                     cached_keys_V_7|         array|
+|cached_keys_V_6_address1   |  out|    9|   ap_memory|                                     cached_keys_V_6|         array|
+|cached_keys_V_6_ce1        |  out|    1|   ap_memory|                                     cached_keys_V_6|         array|
+|cached_keys_V_6_we1        |  out|    1|   ap_memory|                                     cached_keys_V_6|         array|
+|cached_keys_V_6_d1         |  out|    1|   ap_memory|                                     cached_keys_V_6|         array|
+|cached_keys_V_5_address1   |  out|    9|   ap_memory|                                     cached_keys_V_5|         array|
+|cached_keys_V_5_ce1        |  out|    1|   ap_memory|                                     cached_keys_V_5|         array|
+|cached_keys_V_5_we1        |  out|    1|   ap_memory|                                     cached_keys_V_5|         array|
+|cached_keys_V_5_d1         |  out|    1|   ap_memory|                                     cached_keys_V_5|         array|
+|cached_keys_V_4_address1   |  out|    9|   ap_memory|                                     cached_keys_V_4|         array|
+|cached_keys_V_4_ce1        |  out|    1|   ap_memory|                                     cached_keys_V_4|         array|
+|cached_keys_V_4_we1        |  out|    1|   ap_memory|                                     cached_keys_V_4|         array|
+|cached_keys_V_4_d1         |  out|    1|   ap_memory|                                     cached_keys_V_4|         array|
+|cached_keys_V_3_address1   |  out|    9|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_3_ce1        |  out|    1|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_3_we1        |  out|    1|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_3_d1         |  out|    1|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_2_address1   |  out|    9|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_2_ce1        |  out|    1|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_2_we1        |  out|    1|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_2_d1         |  out|    1|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_1_address1   |  out|    9|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_1_ce1        |  out|    1|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_1_we1        |  out|    1|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_1_d1         |  out|    1|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_address1     |  out|    9|   ap_memory|                                       cached_keys_V|         array|
+|cached_keys_V_ce1          |  out|    1|   ap_memory|                                       cached_keys_V|         array|
+|cached_keys_V_we1          |  out|    1|   ap_memory|                                       cached_keys_V|         array|
+|cached_keys_V_d1           |  out|    1|   ap_memory|                                       cached_keys_V|         array|
++---------------------------+-----+-----+------------+----------------------------------------------------+--------------+
 

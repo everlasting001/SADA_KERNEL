@@ -1,0 +1,5 @@
+profile,label,hls_LUT,hls_FF,hls_DSP,hls_BRAM_18K,impl_LUT,impl_FF,impl_DSP,impl_BRAM_18K,hls_cycles,hls_ms,rtl_cycles,max_relative_density_error_sample,changed_reference_sets,changed_xor_sums,dynamic_w,total_w
+24_lut_exact_control,精确定点除法,3991,2100,3,14,1142,1242,4,14,162852,3.25704,161444,0,0,0,0.018,0.109
+20_lut_constant256,256项直接查表,4854,1635,3,16,1746,1060,4,15,137766,2.75532,136358,0.0018419428145290714,12,92,0.018,0.109
+21_lut_linear64,64项线性插值,4777,1710,5,16,1930,1144,5,16,138277,2.76554,136869,5.9961848242391994e-05,0,0,0.019,0.109
+22_lut_linear256,256项线性插值,4696,1686,4,16,1886,1106,5,16,139301,2.78602,137893,3.7843644498446115e-06,0,0,0.02,0.11

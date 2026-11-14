@@ -111,7 +111,7 @@ void select_density_neighbors(
     density_score_t top_scores[DENSITY_EXTRA_COUNT];
     point_index_t top_ids[DENSITY_EXTRA_COUNT];
     bool valid[DENSITY_EXTRA_COUNT];
-    ap_uint<4> top_positions[DENSITY_EXTRA_COUNT];
+    candidate_slot_t top_positions[DENSITY_EXTRA_COUNT];
 #pragma HLS ARRAY_PARTITION variable=top_positions complete dim=1
 #pragma HLS ARRAY_PARTITION variable=top_scores complete dim=1
 #pragma HLS ARRAY_PARTITION variable=top_ids complete dim=1
@@ -136,7 +136,7 @@ void select_density_neighbors(
         if (difference < 0) carry_score = density_score_t(-difference);
         else carry_score = density_score_t(difference);
         point_index_t carry_id = candidate;
-        ap_uint<4> carry_position = neighbor;
+        candidate_slot_t carry_position = neighbor;
         bool carry_valid = true;
         for (int rank = 0; rank < DENSITY_EXTRA_COUNT; ++rank) {
 #pragma HLS UNROLL
@@ -146,7 +146,7 @@ void select_density_neighbors(
                 density_score_t previous_score = top_scores[rank];
                 point_index_t previous_id = top_ids[rank];
                 bool previous_valid = valid[rank];
-                ap_uint<4> previous_position = top_positions[rank];
+                candidate_slot_t previous_position = top_positions[rank];
                 top_scores[rank] = carry_score;
                 top_ids[rank] = carry_id;
                 valid[rank] = true;
@@ -199,7 +199,7 @@ void select_reference_points(
         for (int reference = 0; reference < REFERENCE_COUNT; ++reference) {
             reference_indices[point][reference] = candidate_indices[point][reference];
         }
-    }   // 否则找到最近的8/16个点， 具体多少点由REFERENCE_COUNT决定 REFERENCE_COUNT = (SADA_EXPERIMENT == 2) ? 16 : 8;
+    }   // Reference count: 32 for experiment 2, otherwise 8.
 #endif
 }
 

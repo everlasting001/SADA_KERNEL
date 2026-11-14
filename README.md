@@ -4,6 +4,12 @@
 
 **当前优化版本为 [Edition3](Edition3/README.md)，优化过程和结果见 [优化报告](Edition3/OPTIMIZATION_REPORT.md)。** Edition2保留为512点、96通道的四配置基线，以下原始资源表均明确属于Edition2；Edition2配置3的LUT估计超出7010容量。尚未完成板级系统部署。
 
+**当前Edition3追加实验：配置2改为XOR＋32个参考点，配置0/1/3仍为8个。** 构建profile为 `18_reference32`；原 `13_insert_bram` 的配置2仍是16参考点历史版本。最新状态与数据见 [32参考点实验报告](Edition3/REFERENCE32_REPORT.md)，不要将旧16点报告对应到当前32点源码。
+
+**另有独立的16候选消融：[去掉归一化与截断，直接比较原始密度差](Edition3/ablation_no_normalization16/README.md)。** 该组使用 `19_raw_density16`，配置2仍为16参考点，其余为8个。源码、测试与报告在独立目录中，没有替换上述32点版；资源对比见 [消融报告](Edition3/ablation_no_normalization16/REPORT.md)。
+
+**查表倒数试验与真实样本验证：** [lut_reciprocal16](Edition3/lut_reciprocal16/README.md)，在上述原始密度消融版中比较精确定点除法、直接查表与查表插值。输入为用户导出的512点、4步、64通道样本；硬件综合保持96通道，差异统计只计实际64通道。见 [查表报告](Edition3/lut_reciprocal16/REPORT.md)。
+
 **初步确定的多时间步方案：PS逐步调用PL。一次调用计算一个物体的一个时间步，膜电位在调用之间保留。** 当前HLS数组接口尚未接入PS/DDR，以下调度约定是接下来板级集成的目标，并非已经实现的驱动。
 
 ## 1. 目录与版本
@@ -50,31 +56,31 @@ SADA_KERNEL/
 
 ### Edition3的src、test、report分别是什么版本？
 
-**当前源码已优化，原统一测试保持不变，`report/`已由用户更新为优化后四组配置的HLS综合及仿真报告。** 已核对四组顶层综合资源、周期和C/RTL仿真结果，与默认 `13_insert_bram` 优化结果一致。`optimization/trials/`继续保留本轮各次试验的独立归档及Vivado实现报告。
+**当前源码为 `18_reference32`：在已优化电路上，仅将配置2参考预算扩大为32。** 统一测试追加了最大累加值检查；`report/`已发布四组最新报告，全部通过C仿真、Verilog协同仿真及Vivado独立IP布局布线与时序检查。完整构建归档保留在 `optimization/trials/`，结果分析见 [追加报告](Edition3/REFERENCE32_REPORT.md)。
 
 | 路径 | 当前内容 | 如何使用 |
 |---|---|---|
-| [Edition3/src/sada_kernel.cpp](Edition3/src/sada_kernel.cpp) | 已更新为默认优化方案 `13_insert_bram` | 用于四种配置分别编译、仿真和综合 |
-| [Edition3/src/sada_kernel.h](Edition3/src/sada_kernel.h) | 保留原配置、接口和数值类型，未修改 | 与上述源码一起使用；仍为512点、96通道 |
-| [Edition3/test/tb_sada_experiments.cpp](Edition3/test/tb_sada_experiments.cpp) | 与优化前快照内容相同的统一正确性测试 | 已用于验证优化源码；没有为了适应优化而改动预期结果 |
-| [Edition3/report/](Edition3/report/) | 用户更新的默认优化版四配置综合及仿真报告 | 日常查看 `experiment_N/syn/`、`csim/`、`sim/`；顶层结果与当前默认优化版一致 |
+| [Edition3/src/sada_kernel.cpp](Edition3/src/sada_kernel.cpp) | 保留原优化实现，候选位置类型适配32个候选 | 用于四种配置分别编译、仿真和综合 |
+| [Edition3/src/sada_kernel.h](Edition3/src/sada_kernel.h) | 配置2改为32候选/32参考、7位累加；其他配置仍16候选/8参考、6位累加 | 仍为512点、96通道；PLIF状态和参数格式不变 |
+| [Edition3/test/tb_sada_experiments.cpp](Edition3/test/tb_sada_experiments.cpp) | 保留独立参考模型，追加最大XOR累加及PLIF输入检查 | 验证32个不匹配得到+32，不能发生有符号溢出 |
+| [Edition3/report/](Edition3/report/) | 最新四配置综合及仿真报告入口 | 日常查看 `experiment_N/syn/`、`csim/`、`sim/`；版本状态见32参考点报告 |
 | [Edition3/optimization/initial_snapshot/](Edition3/optimization/initial_snapshot/) | 本轮开始前的源码、头文件及统一测试快照 | 核对优化前后的变化 |
 | [Edition3/optimization/trials/](Edition3/optimization/trials/) | 多轮试验的源码快照、测试、参数、日志及新报告 | 按试验名称和配置编号读取，不能混用不同试验 |
 | [Edition3/optimization/test_top4_random.cpp](Edition3/optimization/test_top4_random.cpp) | 新增的Top-4随机正确性测试 | 以独立稳定排序检查同分顺序 |
 | [Edition3/optimization/test_equivalence_trace.cpp](Edition3/optimization/test_equivalence_trace.cpp) | 新增的优化前后原始位摘要回归测试 | 由脚本分别构建优化前后版本，对照四种配置 |
 
-测试用于检查优化有没有改变计算结果，不是需要“优化性能”的硬件模块。新增回归测试放在 `optimization/`，并未替换 `test/` 中的原测试台。每次构建只添加一个包含 `main()` 的测试文件，避免重复定义。
+测试用于检查实现结果。扩展32参考点后，测试参考模型也按32个实际编号计算，不能继续期望原16参考点输出；其余三组的数学定义不变。新增回归测试放在 `optimization/`。每次构建只添加一个包含 `main()` 的测试文件，避免重复定义。
 
-**与当前 `Edition3/src` 对应的正式四配置结果如下，均采用 `13_insert_bram`、20 ns目标周期（50 MHz）。** 日常报告入口为 [Edition3/report](Edition3/report/) 中的 `experiment_0` 至 `experiment_3`；下表链接保留源码哈希和Vivado实现结果的完整试验归档：
+**当前四配置均采用 `18_reference32`、20 ns目标周期（50 MHz）。** 日常报告入口为 [Edition3/report](Edition3/report/) 中的 `experiment_0` 至 `experiment_3`；下表是保留源码哈希与工具记录的试验归档，具体完成状态见追加报告：
 
 | 配置 | 对应新报告目录 | 已完成验证 |
 |---|---|---|
-| 0：减法＋最近8点 | [13_insert_bram_exp0](Edition3/optimization/trials/13_insert_bram_exp0/) | C仿真、Verilog协同仿真、Vivado独立IP布局布线与时序检查 |
-| 1：XOR＋最近8点 | [13_insert_bram_exp1](Edition3/optimization/trials/13_insert_bram_exp1/) | 同上 |
-| 2：XOR＋全部16点 | [13_insert_bram_exp2](Edition3/optimization/trials/13_insert_bram_exp2/) | 同上 |
-| 3：XOR＋密度选择8点 | [13_insert_bram_exp3](Edition3/optimization/trials/13_insert_bram_exp3/) | 同上 |
+| 0：减法＋最近8点 | [18_reference32_exp0](Edition3/optimization/trials/18_reference32_exp0/) | C仿真、Verilog协同仿真、Vivado独立IP布局布线与时序检查均通过 |
+| 1：XOR＋最近8点 | [18_reference32_exp1](Edition3/optimization/trials/18_reference32_exp1/) | 同上 |
+| 2：XOR＋全部32点 | [18_reference32_exp2](Edition3/optimization/trials/18_reference32_exp2/) | 同上 |
+| 3：XOR＋密度选择8点 | [18_reference32_exp3](Edition3/optimization/trials/18_reference32_exp3/) | 同上 |
 
-各目录内：`src/`、`test/`是当次构建快照；`manifest.json`记录源码哈希与参数；`syn/report/`是HLS综合报告；`sim/report/`是RTL协同仿真报告；`impl/report/`、`impl/routed/`是Vivado实现和时序、功耗报告；`impl/export.zip`是导出的IP包，不能直接作为板级bitstream使用。当前源码、头文件和统一测试的SHA-256均已与这四组记录核对一致。
+各目录内：`src/`、`test/`是当次构建快照；`manifest.json`记录源码哈希与参数；`syn/report/`是HLS综合报告；`sim/report/`是RTL协同仿真报告；`impl/report/`、`impl/routed/`是Vivado实现和时序、功耗报告；`impl/export.zip`是导出的IP包，不能直接作为板级bitstream使用。历史 `13_insert_bram_expN` 继续保留，不覆盖为新32参考点结果。
 
 已清理 `Edition3/report/experiment_3/syn/` 中确认残留的5组旧分模块报告（共10个rpt/xml文件）。四组 `syn/` 的报告文件名集合均已与默认优化试验归档核对一致；删除路径及文件哈希见[清理记录](Edition3/optimization/cleanup_legacy_reports.json)。独立试验归档继续保留完整构建与实现记录。
 
@@ -92,7 +98,7 @@ Common sorted 16NN IDs + squared distances + Q/K/V spikes
                  select_reference_points
           +-----------------+-------------------+
           |                 |                   |
-       nearest8           all16          density-selected8
+       nearest8           all32          density-selected8
                                     mean distance -> reciprocal
                                     density mean / sample std
                                     normalize -> clip [-3,3]
@@ -108,7 +114,7 @@ Common sorted 16NN IDs + squared distances + Q/K/V spikes
                  Current-point V AND gate
 ```
 
-CPU可提供公共的16NN候选编号和平方距离。配置3的密度估计、归一化、截断及Top-4均保留在PL内核中。
+当前Edition3配置2输入32NN，其他配置仍输入16NN；可从同一32NN结果取前16项供其他配置使用。配置3的密度估计、归一化、截断及Top-4均保留在PL内核中，候选范围仍是16点。
 
 不包含FPS、EncP、生成Q/K/V的卷积与神经元、Attention末尾投影卷积和BN、残差、MLP或分类器。内核输出对应软件的 `x = torch.mul(x_v, w)`，不是整个 `Attention.forward()` 的最终输出。
 
@@ -120,20 +126,20 @@ CPU可提供公共的16NN候选编号和平方距离。配置3的密度估计、
 |---|---|---:|---|---|
 | 0 | `SubtractNearest8` | 8 | 公共候选前8个 | 有符号减法 `Q-K` |
 | 1 | `XorNearest8` | 8 | 公共候选前8个 | XOR |
-| 2 | `XorAll16` | 16 | 公共16个候选全部使用 | XOR |
+| 2 | `XorAll32` | 32 | 32个最近候选全部使用 | XOR |
 | 3 | `XorDensity8` | 8 | 最近4个＋其余候选密度差异最大的4个 | XOR |
 
 配置在编译时决定，每组分别综合；不是PS在一次运行中切换的模式。当前代码没有统一运行时模式控制端口。
 
 ### 控制变量
 
-- 四组使用相同的点云、16NN候选域、排除自身规则、距离排序、Q/K/V、PLIF参数和初始状态。
+- 四组使用相同的点云、排除自身规则、距离排序、Q/K/V、PLIF参数和初始状态。当前配置2扩展为32NN，其余仍用同一32NN列表的前16项；配置3的密度定义不改成32邻域。若比较完整PS端开销，应统一生成32NN并计入公共预处理成本。
 - 统一512点、96通道、20 ns目标周期、器件及接口/优化原则。
 - 0与1隔离比较算子；1与2考察参考数量；1与3考察选择策略及其额外开销。
 - 2与3用于观察减少参考交互后，完整内核能否覆盖密度选择成本；不能把这组的全部差异只归因于一个因素。
 - 配置0/1/2不需要计算密度，不为公平而执行无用工作；配置3必须计入完整密度选择开销。
 - 四组各自对照相应参考结果，不要求输出相同。共享固定PLIF参数便于受控硬件比较，不等于已验证四种网络配置的分类精度。
-- 逻辑签名相同，但HLS可以消除配置0/1/2中未使用的距离端口。板级封装和传输计时需要另行统一，不能把函数签名相同当成实际搬运量相同。
+- 参数名称和职责相同，但当前配置2候选数组为32列，其余16列；HLS还可以消除配置0/1/2中未使用的距离端口。板级封装和传输计时需要另行统一，不能把参数名称相同当成接口宽度或实际搬运量相同。
 
 ## 4. 接口与数据形状
 
@@ -141,8 +147,8 @@ CPU可提供公共的16NN候选编号和平方距离。配置3的密度估计、
 
 | 参数 | 形状 | 类型 | 含义 |
 |---|---|---|---|
-| `squared_distances` | `[512][16]` | `distance_t` | 当前点到候选点的平方距离 |
-| `candidate_indices` | `[512][16]` | `point_index_t` | 与距离配对的候选点编号 |
+| `squared_distances` | `[512][CANDIDATE_COUNT]` | `distance_t` | 当前点到候选点的平方距离；配置2为32列，其余16列 |
+| `candidate_indices` | `[512][CANDIDATE_COUNT]` | `point_index_t` | 与距离配对的候选点编号 |
 | `query_spikes`, `key_spikes`, `value_spikes` | 各 `[96][512]` | `spike_t` | 当前时间步Q/K/V |
 | `decay` | 标量 | `membrane_t` | `lambda=1/tau` |
 | `threshold` | 标量 | `membrane_t` | 发放阈值 |
@@ -150,7 +156,7 @@ CPU可提供公共的16NN候选编号和平方距离。配置3的密度估计、
 | `gated_values` | `[96][512]` | `spike_t` | 当前步门控后的V |
 | `attention_sums` | `[96][512]` | `attention_sum_t` | 比较累加值，调试输出 |
 
-`candidate_indices[i][r]` 是第i个当前点的第r个候选的实际编号j；`squared_distances[i][r]` 是i到j的平方距离。每行候选互不重复、排除自身，编号与距离同步按距离从近到远排列。编号范围为0..511，候选位置范围为0..15。
+`candidate_indices[i][r]` 是第i个当前点的第r个候选的实际编号j；`squared_distances[i][r]` 是i到j的平方距离。每行候选互不重复、排除自身，编号与距离同步按距离从近到远排列。编号范围为0..511；配置2的候选位置为0..31，其余配置为0..15。
 
 静态坐标对应的候选与距离跨通道、跨时间步共用。Q/K/V可以随时间变化；不能未经软件验证就在各时间步重复使用相同脉冲。
 
@@ -169,7 +175,7 @@ rho_clip[i]= clamp((rho[i]-mu)/std_safe, -3, 3)
 
 样本方差除以 `N-1`，对应软件 `rho.std()` 的默认规则。`eps=1e-6` 在当前密度定点格式中约为 `1.01327896e-6`。整数逐位开方保留24个小数位，之后对标准差执行epsilon下限保护。
 
-密度分支固定输出8个编号；配置2的16个参考点不会改变密度分支的4+4规则。密度差异并列时，本实现优先候选位置靠前者，PyTorch `topk` 不保证相同规则。
+密度分支固定在16个候选中输出8个编号；配置2的32个参考点不会改变配置3的4+4规则。密度差异并列时，本实现优先候选位置靠前者，PyTorch `topk` 不保证相同规则。
 
 ### 比较、PLIF与门控
 
@@ -184,7 +190,7 @@ gated_values[c,i] = V[c,i] AND gate
 
 PLIF使用 `decay_input=True`、`v_reset=0`。参数在同一个模块内共享，各点、各通道的膜电位独立。训练参数为w时，在软件端计算 `decay=sigmoid(w)` 后定点化；当前测试使用0.5和阈值1验证逻辑，未替代训练参数。
 
-`attention_sum_t` 是统一6位有符号格式，覆盖减法8点的 `[-8,8]` 和XOR16点的 `[0,16]`。实际单次减法使用2位有符号操作数，不用宽整数放大其成本。V属于当前点，没有汇总参考点V。
+当前Edition3的 `attention_sum_t` 在配置2使用7位有符号格式，以表示 `[0,32]`；其他配置保持6位。原6位有符号数最大只能表示31，不能直接用于32次XOR累加。单次减法仍使用2位有符号操作数。V属于当前点，没有汇总参考点V。
 
 ### 定点格式
 
@@ -195,10 +201,10 @@ PLIF使用 `decay_input=True`、`v_reset=0`。参数在同一个模块内共享�
 | `spike_t` | `ap_uint<1>` | 二值脉冲 |
 | `point_index_t` | `ap_uint<9>` | 点编号 |
 | `spike_difference_t` | `ap_int<2>` | 单次有符号差 |
-| `attention_sum_t` | `ap_int<6>` | 通用累加结果 |
+| `attention_sum_t` | 配置2 `ap_int<7>`，其余 `ap_int<6>` | 比较累加结果 |
 | `membrane_t` | `ap_fixed<32,16>` | 状态及PLIF参数 |
 | `distance_t` | `ap_ufixed<32,12>` | 平方距离，20个小数位 |
-| `distance_sum_t` | `ap_ufixed<36,16>` | 16项距离求和 |
+| `distance_sum_t` | 配置2 `ap_ufixed<37,17>`，其余 `ap_ufixed<36,16>` | 适配32/16项求和；配置2顶层不计算密度 |
 | `density_t` | `ap_ufixed<48,24>` | 原始密度、均值、标准差 |
 | `density_sum_t` | `ap_ufixed<57,33>` | 512项密度求和 |
 | `density_offset_t` | `ap_fixed<49,25>` | 原始密度减均值 |

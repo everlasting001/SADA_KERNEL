@@ -1,0 +1,9 @@
+variant,experiment,references,hls_LUT,hls_FF,hls_DSP,hls_BRAM_18K,impl_LUT,impl_FF,impl_DSP,impl_BRAM_18K,hls_latency_cycles,hls_latency_ms,target_clock_ns,post_route_period_ns
+normalized_clip,0,8,1374,511,3,12,299,231,4,12,103460,2.0692,20,12.794
+normalized_clip,1,8,1302,511,3,12,298,231,4,12,103460,2.0692,20,12.875
+normalized_clip,2,16,1833,514,3,24,351,234,4,24,107556,2.15112,20,12.472
+normalized_clip,3,8,7099,3949,27,15,2645,2538,49,15,204390,4.0878,20,15.981
+raw_density,0,8,1374,511,3,12,299,231,4,12,103460,2.0692,20,12.794
+raw_density,1,8,1302,511,3,12,298,231,4,12,103460,2.0692,20,12.875
+raw_density,2,16,1833,514,3,24,351,234,4,24,107556,2.15112,20,12.472
+raw_density,3,8,3991,2100,3,14,1142,1242,4,14,162852,3.25704,20,12.984

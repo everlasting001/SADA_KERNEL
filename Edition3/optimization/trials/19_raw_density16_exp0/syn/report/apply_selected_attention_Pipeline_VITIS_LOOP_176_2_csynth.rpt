@@ -1,0 +1,157 @@
+
+
+================================================================
+== Vitis HLS Report for 'apply_selected_attention_Pipeline_VITIS_LOOP_176_2'
+================================================================
+* Date:           Sat Nov 14 19:36:14 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        project
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z010-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  20.00 ns|  6.508 ns|     5.40 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |      514|      514|  10.280 us|  10.280 us|  514|  514|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_176_2  |      512|      512|         2|          1|          1|   512|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP|   FF  |  LUT  | URAM|
++-----------------+---------+----+-------+-------+-----+
+|DSP              |        -|   -|      -|      -|    -|
+|Expression       |        -|   -|      0|     49|    -|
+|FIFO             |        -|   -|      -|      -|    -|
+|Instance         |        -|   -|      -|      -|    -|
+|Memory           |        -|   -|      -|      -|    -|
+|Multiplexer      |        -|   -|      -|     36|    -|
+|Register         |        -|   -|     23|      -|    -|
++-----------------+---------+----+-------+-------+-----+
+|Total            |        0|   0|     23|     85|    0|
++-----------------+---------+----+-------+-------+-----+
+|Available        |      120|  80|  35200|  17600|    0|
++-----------------+---------+----+-------+-------+-----+
+|Utilization (%)  |        0|   0|     ~0|     ~0|    0|
++-----------------+---------+----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln176_fu_161_p2   |         +|   0|  0|  13|          10|           1|
+    |add_ln181_fu_171_p2   |         +|   0|  0|  23|          16|          16|
+    |icmp_ln176_fu_155_p2  |      icmp|   0|  0|  11|          10|          11|
+    |ap_enable_pp0         |       xor|   0|  0|   2|           1|           2|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  49|          37|          30|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_load_1  |   9|          2|   10|         20|
+    |load_fu_52               |   9|          2|   10|         20|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  36|          8|   22|         44|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_done_reg              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |load_1_reg_201           |  10|   0|   10|          0|
+    |load_fu_52               |  10|   0|   10|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  23|   0|   23|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+|         RTL Ports        | Dir | Bits|  Protocol  |                    Source Object                   |    C Type    |
++--------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+|ap_clk                    |   in|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_176_2|  return value|
+|ap_rst                    |   in|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_176_2|  return value|
+|ap_start                  |   in|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_176_2|  return value|
+|ap_done                   |  out|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_176_2|  return value|
+|ap_idle                   |  out|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_176_2|  return value|
+|ap_ready                  |  out|    1|  ap_ctrl_hs|  apply_selected_attention_Pipeline_VITIS_LOOP_176_2|  return value|
+|zext_ln192                |   in|   16|     ap_none|                                          zext_ln192|        scalar|
+|key_spikes_address0       |  out|   16|   ap_memory|                                          key_spikes|         array|
+|key_spikes_ce0            |  out|    1|   ap_memory|                                          key_spikes|         array|
+|key_spikes_q0             |   in|    1|   ap_memory|                                          key_spikes|         array|
+|cached_keys_V_3_address1  |  out|    9|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_3_ce1       |  out|    1|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_3_we1       |  out|    1|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_3_d1        |  out|    1|   ap_memory|                                     cached_keys_V_3|         array|
+|cached_keys_V_2_address1  |  out|    9|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_2_ce1       |  out|    1|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_2_we1       |  out|    1|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_2_d1        |  out|    1|   ap_memory|                                     cached_keys_V_2|         array|
+|cached_keys_V_1_address1  |  out|    9|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_1_ce1       |  out|    1|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_1_we1       |  out|    1|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_1_d1        |  out|    1|   ap_memory|                                     cached_keys_V_1|         array|
+|cached_keys_V_address1    |  out|    9|   ap_memory|                                       cached_keys_V|         array|
+|cached_keys_V_ce1         |  out|    1|   ap_memory|                                       cached_keys_V|         array|
+|cached_keys_V_we1         |  out|    1|   ap_memory|                                       cached_keys_V|         array|
+|cached_keys_V_d1          |  out|    1|   ap_memory|                                       cached_keys_V|         array|
++--------------------------+-----+-----+------------+----------------------------------------------------+--------------+
+

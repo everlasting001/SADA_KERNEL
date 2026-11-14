@@ -3,10 +3,10 @@
 ================================================================
 == Vitis HLS Report for 'apply_selected_attention'
 ================================================================
-* Date:           Sat Nov 14 18:29:44 2026
+* Date:           Sat Nov 14 19:24:35 2026
 
 * Version:        2022.2 (Build 3670227 on Oct 13 2022)
-* Project:        sada_kernel2
+* Project:        project
 * Solution:       solution1 (Vivado IP Flow Target)
 * Product family: zynq
 * Target device:  xc7z010-clg400-1
@@ -38,8 +38,8 @@
         |                                                               |                                                    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
         |                            Instance                           |                       Module                       |   min   |   max   |    min    |    max    | min | max |   Type  |
         +---------------------------------------------------------------+----------------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
-        |grp_apply_selected_attention_Pipeline_VITIS_LOOP_256_2_fu_142  |apply_selected_attention_Pipeline_VITIS_LOOP_256_2  |      514|      514|  10.280 us|  10.280 us|  514|  514|       no|
-        |grp_apply_selected_attention_Pipeline_VITIS_LOOP_264_4_fu_157  |apply_selected_attention_Pipeline_VITIS_LOOP_264_4  |      517|      517|  10.340 us|  10.340 us|  517|  517|       no|
+        |grp_apply_selected_attention_Pipeline_VITIS_LOOP_256_2_fu_206  |apply_selected_attention_Pipeline_VITIS_LOOP_256_2  |      514|      514|  10.280 us|  10.280 us|  514|  514|       no|
+        |grp_apply_selected_attention_Pipeline_VITIS_LOOP_264_4_fu_229  |apply_selected_attention_Pipeline_VITIS_LOOP_264_4  |      517|      517|  10.340 us|  10.340 us|  517|  517|       no|
         +---------------------------------------------------------------+----------------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
 
         * Loop: 
@@ -62,16 +62,16 @@
 |DSP              |        -|   -|      -|      -|    -|
 |Expression       |        -|   -|      0|     24|    -|
 |FIFO             |        -|   -|      -|      -|    -|
-|Instance         |        -|   3|    443|    789|    -|
-|Memory           |        8|   -|      0|      0|    -|
-|Multiplexer      |        -|   -|      -|    408|    -|
+|Instance         |        -|   3|    449|    998|    -|
+|Memory           |       16|   -|      0|      0|    -|
+|Multiplexer      |        -|   -|      -|    776|    -|
 |Register         |        -|   -|     21|      -|    -|
 +-----------------+---------+----+-------+-------+-----+
-|Total            |        8|   3|    464|   1221|    0|
+|Total            |       16|   3|    470|   1798|    0|
 +-----------------+---------+----+-------+-------+-----+
 |Available        |      120|  80|  35200|  17600|    0|
 +-----------------+---------+----+-------+-------+-----+
-|Utilization (%)  |        6|   3|      1|      6|    0|
+|Utilization (%)  |       13|   3|      1|     10|    0|
 +-----------------+---------+----+-------+-------+-----+
 
 + Detail: 
@@ -79,30 +79,38 @@
     +---------------------------------------------------------------+----------------------------------------------------+---------+----+-----+-----+-----+
     |                            Instance                           |                       Module                       | BRAM_18K| DSP|  FF | LUT | URAM|
     +---------------------------------------------------------------+----------------------------------------------------+---------+----+-----+-----+-----+
-    |grp_apply_selected_attention_Pipeline_VITIS_LOOP_256_2_fu_142  |apply_selected_attention_Pipeline_VITIS_LOOP_256_2  |        0|   0|   23|   85|    0|
-    |grp_apply_selected_attention_Pipeline_VITIS_LOOP_264_4_fu_157  |apply_selected_attention_Pipeline_VITIS_LOOP_264_4  |        0|   3|  420|  704|    0|
+    |grp_apply_selected_attention_Pipeline_VITIS_LOOP_256_2_fu_206  |apply_selected_attention_Pipeline_VITIS_LOOP_256_2  |        0|   0|   23|   85|    0|
+    |grp_apply_selected_attention_Pipeline_VITIS_LOOP_264_4_fu_229  |apply_selected_attention_Pipeline_VITIS_LOOP_264_4  |        0|   3|  426|  913|    0|
     +---------------------------------------------------------------+----------------------------------------------------+---------+----+-----+-----+-----+
-    |Total                                                          |                                                    |        0|   3|  443|  789|    0|
+    |Total                                                          |                                                    |        0|   3|  449|  998|    0|
     +---------------------------------------------------------------+----------------------------------------------------+---------+----+-----+-----+-----+
 
     * DSP: 
     N/A
 
     * Memory: 
-    +-------------------+---------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
-    |       Memory      |                          Module                         | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
-    +-------------------+---------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
-    |cached_keys_V_U    |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
-    |cached_keys_V_1_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
-    |cached_keys_V_2_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
-    |cached_keys_V_3_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
-    |cached_keys_V_4_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
-    |cached_keys_V_5_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
-    |cached_keys_V_6_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
-    |cached_keys_V_7_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
-    +-------------------+---------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
-    |Total              |                                                         |        8|  0|   0|    0|  4096|    8|     8|         4096|
-    +-------------------+---------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    +--------------------+---------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |       Memory       |                          Module                         | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +--------------------+---------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |cached_keys_V_U     |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_1_U   |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_2_U   |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_3_U   |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_4_U   |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_5_U   |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_6_U   |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_7_U   |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_8_U   |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_9_U   |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_10_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_11_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_12_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_13_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_14_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    |cached_keys_V_15_U  |apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W  |        1|  0|   0|    0|   512|    1|     1|          512|
+    +--------------------+---------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total               |                                                         |       16|  0|   0|    0|  8192|   16|    16|         8192|
+    +--------------------+---------------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
 
     * FIFO: 
     N/A
@@ -111,63 +119,95 @@
     +----------------------+----------+----+---+----+------------+------------+
     |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
     +----------------------+----------+----+---+----+------------+------------+
-    |add_ln250_fu_228_p2   |         +|   0|  0|  14|           7|           1|
-    |icmp_ln250_fu_222_p2  |      icmp|   0|  0|  10|           7|           7|
+    |add_ln250_fu_340_p2   |         +|   0|  0|  14|           7|           1|
+    |icmp_ln250_fu_334_p2  |      icmp|   0|  0|  10|           7|           7|
     +----------------------+----------+----+---+----+------------+------------+
     |Total                 |          |   0|  0|  24|          14|           8|
     +----------------------+----------+----+---+----+------------+------------+
 
     * Multiplexer: 
-    +--------------------------+----+-----------+-----+-----------+
-    |           Name           | LUT| Input Size| Bits| Total Bits|
-    +--------------------------+----+-----------+-----+-----------+
-    |ap_NS_fsm                 |  31|          6|    1|          6|
-    |cached_keys_V_1_address1  |  14|          3|    9|         27|
-    |cached_keys_V_1_ce0       |   9|          2|    1|          2|
-    |cached_keys_V_1_ce1       |  14|          3|    1|          3|
-    |cached_keys_V_1_we1       |   9|          2|    1|          2|
-    |cached_keys_V_2_address1  |  14|          3|    9|         27|
-    |cached_keys_V_2_ce0       |   9|          2|    1|          2|
-    |cached_keys_V_2_ce1       |  14|          3|    1|          3|
-    |cached_keys_V_2_we1       |   9|          2|    1|          2|
-    |cached_keys_V_3_address1  |  14|          3|    9|         27|
-    |cached_keys_V_3_ce0       |   9|          2|    1|          2|
-    |cached_keys_V_3_ce1       |  14|          3|    1|          3|
-    |cached_keys_V_3_we1       |   9|          2|    1|          2|
-    |cached_keys_V_4_address1  |  14|          3|    9|         27|
-    |cached_keys_V_4_ce0       |   9|          2|    1|          2|
-    |cached_keys_V_4_ce1       |  14|          3|    1|          3|
-    |cached_keys_V_4_we1       |   9|          2|    1|          2|
-    |cached_keys_V_5_address1  |  14|          3|    9|         27|
-    |cached_keys_V_5_ce0       |   9|          2|    1|          2|
-    |cached_keys_V_5_ce1       |  14|          3|    1|          3|
-    |cached_keys_V_5_we1       |   9|          2|    1|          2|
-    |cached_keys_V_6_address1  |  14|          3|    9|         27|
-    |cached_keys_V_6_ce0       |   9|          2|    1|          2|
-    |cached_keys_V_6_ce1       |  14|          3|    1|          3|
-    |cached_keys_V_6_we1       |   9|          2|    1|          2|
-    |cached_keys_V_7_address1  |  14|          3|    9|         27|
-    |cached_keys_V_7_ce0       |   9|          2|    1|          2|
-    |cached_keys_V_7_ce1       |  14|          3|    1|          3|
-    |cached_keys_V_7_we1       |   9|          2|    1|          2|
-    |cached_keys_V_address1    |  14|          3|    9|         27|
-    |cached_keys_V_ce0         |   9|          2|    1|          2|
-    |cached_keys_V_ce1         |  14|          3|    1|          3|
-    |cached_keys_V_we1         |   9|          2|    1|          2|
-    |channel_fu_94             |   9|          2|    7|         14|
-    +--------------------------+----+-----------+-----+-----------+
-    |Total                     | 408|         88|  104|        292|
-    +--------------------------+----+-----------+-----+-----------+
+    +---------------------------+----+-----------+-----+-----------+
+    |            Name           | LUT| Input Size| Bits| Total Bits|
+    +---------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                  |  31|          6|    1|          6|
+    |cached_keys_V_10_address1  |  14|          3|    9|         27|
+    |cached_keys_V_10_ce0       |   9|          2|    1|          2|
+    |cached_keys_V_10_ce1       |  14|          3|    1|          3|
+    |cached_keys_V_10_we1       |   9|          2|    1|          2|
+    |cached_keys_V_11_address1  |  14|          3|    9|         27|
+    |cached_keys_V_11_ce0       |   9|          2|    1|          2|
+    |cached_keys_V_11_ce1       |  14|          3|    1|          3|
+    |cached_keys_V_11_we1       |   9|          2|    1|          2|
+    |cached_keys_V_12_address1  |  14|          3|    9|         27|
+    |cached_keys_V_12_ce0       |   9|          2|    1|          2|
+    |cached_keys_V_12_ce1       |  14|          3|    1|          3|
+    |cached_keys_V_12_we1       |   9|          2|    1|          2|
+    |cached_keys_V_13_address1  |  14|          3|    9|         27|
+    |cached_keys_V_13_ce0       |   9|          2|    1|          2|
+    |cached_keys_V_13_ce1       |  14|          3|    1|          3|
+    |cached_keys_V_13_we1       |   9|          2|    1|          2|
+    |cached_keys_V_14_address1  |  14|          3|    9|         27|
+    |cached_keys_V_14_ce0       |   9|          2|    1|          2|
+    |cached_keys_V_14_ce1       |  14|          3|    1|          3|
+    |cached_keys_V_14_we1       |   9|          2|    1|          2|
+    |cached_keys_V_15_address1  |  14|          3|    9|         27|
+    |cached_keys_V_15_ce0       |   9|          2|    1|          2|
+    |cached_keys_V_15_ce1       |  14|          3|    1|          3|
+    |cached_keys_V_15_we1       |   9|          2|    1|          2|
+    |cached_keys_V_1_address1   |  14|          3|    9|         27|
+    |cached_keys_V_1_ce0        |   9|          2|    1|          2|
+    |cached_keys_V_1_ce1        |  14|          3|    1|          3|
+    |cached_keys_V_1_we1        |   9|          2|    1|          2|
+    |cached_keys_V_2_address1   |  14|          3|    9|         27|
+    |cached_keys_V_2_ce0        |   9|          2|    1|          2|
+    |cached_keys_V_2_ce1        |  14|          3|    1|          3|
+    |cached_keys_V_2_we1        |   9|          2|    1|          2|
+    |cached_keys_V_3_address1   |  14|          3|    9|         27|
+    |cached_keys_V_3_ce0        |   9|          2|    1|          2|
+    |cached_keys_V_3_ce1        |  14|          3|    1|          3|
+    |cached_keys_V_3_we1        |   9|          2|    1|          2|
+    |cached_keys_V_4_address1   |  14|          3|    9|         27|
+    |cached_keys_V_4_ce0        |   9|          2|    1|          2|
+    |cached_keys_V_4_ce1        |  14|          3|    1|          3|
+    |cached_keys_V_4_we1        |   9|          2|    1|          2|
+    |cached_keys_V_5_address1   |  14|          3|    9|         27|
+    |cached_keys_V_5_ce0        |   9|          2|    1|          2|
+    |cached_keys_V_5_ce1        |  14|          3|    1|          3|
+    |cached_keys_V_5_we1        |   9|          2|    1|          2|
+    |cached_keys_V_6_address1   |  14|          3|    9|         27|
+    |cached_keys_V_6_ce0        |   9|          2|    1|          2|
+    |cached_keys_V_6_ce1        |  14|          3|    1|          3|
+    |cached_keys_V_6_we1        |   9|          2|    1|          2|
+    |cached_keys_V_7_address1   |  14|          3|    9|         27|
+    |cached_keys_V_7_ce0        |   9|          2|    1|          2|
+    |cached_keys_V_7_ce1        |  14|          3|    1|          3|
+    |cached_keys_V_7_we1        |   9|          2|    1|          2|
+    |cached_keys_V_8_address1   |  14|          3|    9|         27|
+    |cached_keys_V_8_ce0        |   9|          2|    1|          2|
+    |cached_keys_V_8_ce1        |  14|          3|    1|          3|
+    |cached_keys_V_8_we1        |   9|          2|    1|          2|
+    |cached_keys_V_9_address1   |  14|          3|    9|         27|
+    |cached_keys_V_9_ce0        |   9|          2|    1|          2|
+    |cached_keys_V_9_ce1        |  14|          3|    1|          3|
+    |cached_keys_V_9_we1        |   9|          2|    1|          2|
+    |cached_keys_V_address1     |  14|          3|    9|         27|
+    |cached_keys_V_ce0          |   9|          2|    1|          2|
+    |cached_keys_V_ce1          |  14|          3|    1|          3|
+    |cached_keys_V_we1          |   9|          2|    1|          2|
+    |channel_fu_126             |   9|          2|    7|         14|
+    +---------------------------+----+-----------+-----+-----------+
+    |Total                      | 776|        168|  200|        564|
+    +---------------------------+----+-----------+-----+-----------+
 
     * Register: 
     +----------------------------------------------------------------------------+---+----+-----+-----------+
     |                                    Name                                    | FF| LUT| Bits| Const Bits|
     +----------------------------------------------------------------------------+---+----+-----+-----------+
     |ap_CS_fsm                                                                   |  5|   0|    5|          0|
-    |channel_fu_94                                                               |  7|   0|    7|          0|
-    |grp_apply_selected_attention_Pipeline_VITIS_LOOP_256_2_fu_142_ap_start_reg  |  1|   0|    1|          0|
-    |grp_apply_selected_attention_Pipeline_VITIS_LOOP_264_4_fu_157_ap_start_reg  |  1|   0|    1|          0|
-    |tmp_reg_268                                                                 |  7|   0|   16|          9|
+    |channel_fu_126                                                              |  7|   0|    7|          0|
+    |grp_apply_selected_attention_Pipeline_VITIS_LOOP_256_2_fu_206_ap_start_reg  |  1|   0|    1|          0|
+    |grp_apply_selected_attention_Pipeline_VITIS_LOOP_264_4_fu_229_ap_start_reg  |  1|   0|    1|          0|
+    |tmp_reg_380                                                                 |  7|   0|   16|          9|
     +----------------------------------------------------------------------------+---+----+-----+-----------+
     |Total                                                                       | 21|   0|   30|          9|
     +----------------------------------------------------------------------------+---+----+-----+-----------+
@@ -235,6 +275,54 @@
 |reference_indices_15_address0  |  out|    9|   ap_memory|      reference_indices_15|         array|
 |reference_indices_15_ce0       |  out|    1|   ap_memory|      reference_indices_15|         array|
 |reference_indices_15_q0        |   in|    9|   ap_memory|      reference_indices_15|         array|
+|reference_indices_16_address0  |  out|    9|   ap_memory|      reference_indices_16|         array|
+|reference_indices_16_ce0       |  out|    1|   ap_memory|      reference_indices_16|         array|
+|reference_indices_16_q0        |   in|    9|   ap_memory|      reference_indices_16|         array|
+|reference_indices_17_address0  |  out|    9|   ap_memory|      reference_indices_17|         array|
+|reference_indices_17_ce0       |  out|    1|   ap_memory|      reference_indices_17|         array|
+|reference_indices_17_q0        |   in|    9|   ap_memory|      reference_indices_17|         array|
+|reference_indices_18_address0  |  out|    9|   ap_memory|      reference_indices_18|         array|
+|reference_indices_18_ce0       |  out|    1|   ap_memory|      reference_indices_18|         array|
+|reference_indices_18_q0        |   in|    9|   ap_memory|      reference_indices_18|         array|
+|reference_indices_19_address0  |  out|    9|   ap_memory|      reference_indices_19|         array|
+|reference_indices_19_ce0       |  out|    1|   ap_memory|      reference_indices_19|         array|
+|reference_indices_19_q0        |   in|    9|   ap_memory|      reference_indices_19|         array|
+|reference_indices_20_address0  |  out|    9|   ap_memory|      reference_indices_20|         array|
+|reference_indices_20_ce0       |  out|    1|   ap_memory|      reference_indices_20|         array|
+|reference_indices_20_q0        |   in|    9|   ap_memory|      reference_indices_20|         array|
+|reference_indices_21_address0  |  out|    9|   ap_memory|      reference_indices_21|         array|
+|reference_indices_21_ce0       |  out|    1|   ap_memory|      reference_indices_21|         array|
+|reference_indices_21_q0        |   in|    9|   ap_memory|      reference_indices_21|         array|
+|reference_indices_22_address0  |  out|    9|   ap_memory|      reference_indices_22|         array|
+|reference_indices_22_ce0       |  out|    1|   ap_memory|      reference_indices_22|         array|
+|reference_indices_22_q0        |   in|    9|   ap_memory|      reference_indices_22|         array|
+|reference_indices_23_address0  |  out|    9|   ap_memory|      reference_indices_23|         array|
+|reference_indices_23_ce0       |  out|    1|   ap_memory|      reference_indices_23|         array|
+|reference_indices_23_q0        |   in|    9|   ap_memory|      reference_indices_23|         array|
+|reference_indices_24_address0  |  out|    9|   ap_memory|      reference_indices_24|         array|
+|reference_indices_24_ce0       |  out|    1|   ap_memory|      reference_indices_24|         array|
+|reference_indices_24_q0        |   in|    9|   ap_memory|      reference_indices_24|         array|
+|reference_indices_25_address0  |  out|    9|   ap_memory|      reference_indices_25|         array|
+|reference_indices_25_ce0       |  out|    1|   ap_memory|      reference_indices_25|         array|
+|reference_indices_25_q0        |   in|    9|   ap_memory|      reference_indices_25|         array|
+|reference_indices_26_address0  |  out|    9|   ap_memory|      reference_indices_26|         array|
+|reference_indices_26_ce0       |  out|    1|   ap_memory|      reference_indices_26|         array|
+|reference_indices_26_q0        |   in|    9|   ap_memory|      reference_indices_26|         array|
+|reference_indices_27_address0  |  out|    9|   ap_memory|      reference_indices_27|         array|
+|reference_indices_27_ce0       |  out|    1|   ap_memory|      reference_indices_27|         array|
+|reference_indices_27_q0        |   in|    9|   ap_memory|      reference_indices_27|         array|
+|reference_indices_28_address0  |  out|    9|   ap_memory|      reference_indices_28|         array|
+|reference_indices_28_ce0       |  out|    1|   ap_memory|      reference_indices_28|         array|
+|reference_indices_28_q0        |   in|    9|   ap_memory|      reference_indices_28|         array|
+|reference_indices_29_address0  |  out|    9|   ap_memory|      reference_indices_29|         array|
+|reference_indices_29_ce0       |  out|    1|   ap_memory|      reference_indices_29|         array|
+|reference_indices_29_q0        |   in|    9|   ap_memory|      reference_indices_29|         array|
+|reference_indices_30_address0  |  out|    9|   ap_memory|      reference_indices_30|         array|
+|reference_indices_30_ce0       |  out|    1|   ap_memory|      reference_indices_30|         array|
+|reference_indices_30_q0        |   in|    9|   ap_memory|      reference_indices_30|         array|
+|reference_indices_31_address0  |  out|    9|   ap_memory|      reference_indices_31|         array|
+|reference_indices_31_ce0       |  out|    1|   ap_memory|      reference_indices_31|         array|
+|reference_indices_31_q0        |   in|    9|   ap_memory|      reference_indices_31|         array|
 |query_spikes_address0          |  out|   16|   ap_memory|              query_spikes|         array|
 |query_spikes_ce0               |  out|    1|   ap_memory|              query_spikes|         array|
 |query_spikes_q0                |   in|    1|   ap_memory|              query_spikes|         array|
@@ -260,6 +348,6 @@
 |attention_sums_address0        |  out|   16|   ap_memory|            attention_sums|         array|
 |attention_sums_ce0             |  out|    1|   ap_memory|            attention_sums|         array|
 |attention_sums_we0             |  out|    1|   ap_memory|            attention_sums|         array|
-|attention_sums_d0              |  out|    6|   ap_memory|            attention_sums|         array|
+|attention_sums_d0              |  out|    7|   ap_memory|            attention_sums|         array|
 +-------------------------------+-----+-----+------------+--------------------------+--------------+
 

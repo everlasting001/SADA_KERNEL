@@ -1,0 +1,299 @@
+
+
+================================================================
+== Vitis HLS Report for 'sada_attention_kernel'
+================================================================
+* Date:           Sat Nov 14 19:24:37 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        project
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z010-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+-----------+------------+
+    |  Clock |  Target  | Estimated | Uncertainty|
+    +--------+----------+-----------+------------+
+    |ap_clk  |  20.00 ns|  14.574 ns|     5.40 ns|
+    +--------+----------+-----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+--------+--------+---------+
+    |  Latency (cycles) |  Latency (absolute) |     Interval    | Pipeline|
+    |   min   |   max   |    min   |    max   |   min  |   max  |   Type  |
+    +---------+---------+----------+----------+--------+--------+---------+
+    |   115748|   115748|  2.315 ms|  2.315 ms|  115749|  115749|       no|
+    +---------+---------+----------+----------+--------+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------------------+--------------------------+---------+---------+----------+----------+-------+-------+---------+
+        |                                     |                          |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+        |               Instance              |          Module          |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+        +-------------------------------------+--------------------------+---------+---------+----------+----------+-------+-------+---------+
+        |grp_apply_selected_attention_fu_723  |apply_selected_attention  |    99361|    99361|  1.987 ms|  1.987 ms|  99361|  99361|       no|
+        +-------------------------------------+--------------------------+---------+---------+----------+----------+-------+-------+---------+
+
+        * Loop: 
+        +-------------------------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |                                     |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip |          |
+        |              Loop Name              |   min   |   max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +-------------------------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |- VITIS_LOOP_198_1_VITIS_LOOP_199_2  |    16384|    16384|         2|          1|          1|  16384|       yes|
+        +-------------------------------------+---------+---------+----------+-----------+-----------+-------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+----+-------+-------+-----+
+|       Name      | BRAM_18K| DSP|   FF  |  LUT  | URAM|
++-----------------+---------+----+-------+-------+-----+
+|DSP              |        -|   -|      -|      -|    -|
+|Expression       |        -|   -|      0|    107|    -|
+|FIFO             |        -|   -|      -|      -|    -|
+|Instance         |       16|   3|    470|   1798|    -|
+|Memory           |       32|   -|      0|      0|    0|
+|Multiplexer      |        -|   -|      -|    962|    -|
+|Register         |        -|   -|     53|      -|    -|
++-----------------+---------+----+-------+-------+-----+
+|Total            |       48|   3|    523|   2867|    0|
++-----------------+---------+----+-------+-------+-----+
+|Available        |      120|  80|  35200|  17600|    0|
++-----------------+---------+----+-------+-------+-----+
+|Utilization (%)  |       40|   3|      1|     16|    0|
++-----------------+---------+----+-------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------------+--------------------------+---------+----+-----+------+-----+
+    |               Instance              |          Module          | BRAM_18K| DSP|  FF |  LUT | URAM|
+    +-------------------------------------+--------------------------+---------+----+-----+------+-----+
+    |grp_apply_selected_attention_fu_723  |apply_selected_attention  |       16|   3|  470|  1798|    0|
+    +-------------------------------------+--------------------------+---------+----+-----+------+-----+
+    |Total                                |                          |       16|   3|  470|  1798|    0|
+    +-------------------------------------+--------------------------+---------+----+-----+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +--------------------------+-----------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |          Memory          |               Module              | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +--------------------------+-----------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |reference_indices_V_U     |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_1_U   |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_2_U   |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_3_U   |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_4_U   |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_5_U   |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_6_U   |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_7_U   |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_8_U   |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_9_U   |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_10_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_11_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_12_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_13_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_14_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_15_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_16_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_17_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_18_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_19_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_20_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_21_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_22_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_23_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_24_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_25_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_26_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_27_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_28_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_29_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_30_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    |reference_indices_V_31_U  |reference_indices_V_RAM_AUTO_1R1W  |        1|  0|   0|    0|   512|    9|     1|         4608|
+    +--------------------------+-----------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total                     |                                   |       32|  0|   0|    0| 16384|  288|    32|       147456|
+    +--------------------------+-----------------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |add_ln198_1_fu_797_p2     |         +|   0|  0|  20|          15|           1|
+    |add_ln198_fu_809_p2       |         +|   0|  0|  13|          10|           1|
+    |add_ln199_fu_868_p2       |         +|   0|  0|  14|           6|           1|
+    |add_ln200_fu_853_p2       |         +|   0|  0|  17|          14|          14|
+    |icmp_ln198_fu_791_p2      |      icmp|   0|  0|  13|          15|          16|
+    |icmp_ln199_fu_815_p2      |      icmp|   0|  0|  10|           6|           7|
+    |select_ln198_1_fu_829_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln198_fu_821_p3    |    select|   0|  0|   6|           1|           1|
+    |ap_enable_pp0             |       xor|   0|  0|   2|           1|           2|
+    |ap_enable_reg_pp0_iter1   |       xor|   0|  0|   2|           2|           1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |Total                     |          |   0|  0| 107|          71|          54|
+    +--------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------------+----+-----------+-----+-----------+
+    |               Name              | LUT| Input Size| Bits| Total Bits|
+    +---------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                        |  25|          5|    1|          5|
+    |ap_enable_reg_pp0_iter1          |  14|          3|    1|          3|
+    |indvar_flatten_fu_150            |   9|          2|   15|         30|
+    |point_fu_146                     |   9|          2|   10|         20|
+    |reference_fu_142                 |   9|          2|    6|         12|
+    |reference_indices_V_10_address0  |  14|          3|    9|         27|
+    |reference_indices_V_10_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_11_address0  |  14|          3|    9|         27|
+    |reference_indices_V_11_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_12_address0  |  14|          3|    9|         27|
+    |reference_indices_V_12_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_13_address0  |  14|          3|    9|         27|
+    |reference_indices_V_13_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_14_address0  |  14|          3|    9|         27|
+    |reference_indices_V_14_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_15_address0  |  14|          3|    9|         27|
+    |reference_indices_V_15_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_16_address0  |  14|          3|    9|         27|
+    |reference_indices_V_16_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_17_address0  |  14|          3|    9|         27|
+    |reference_indices_V_17_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_18_address0  |  14|          3|    9|         27|
+    |reference_indices_V_18_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_19_address0  |  14|          3|    9|         27|
+    |reference_indices_V_19_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_1_address0   |  14|          3|    9|         27|
+    |reference_indices_V_1_ce0        |  14|          3|    1|          3|
+    |reference_indices_V_20_address0  |  14|          3|    9|         27|
+    |reference_indices_V_20_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_21_address0  |  14|          3|    9|         27|
+    |reference_indices_V_21_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_22_address0  |  14|          3|    9|         27|
+    |reference_indices_V_22_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_23_address0  |  14|          3|    9|         27|
+    |reference_indices_V_23_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_24_address0  |  14|          3|    9|         27|
+    |reference_indices_V_24_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_25_address0  |  14|          3|    9|         27|
+    |reference_indices_V_25_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_26_address0  |  14|          3|    9|         27|
+    |reference_indices_V_26_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_27_address0  |  14|          3|    9|         27|
+    |reference_indices_V_27_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_28_address0  |  14|          3|    9|         27|
+    |reference_indices_V_28_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_29_address0  |  14|          3|    9|         27|
+    |reference_indices_V_29_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_2_address0   |  14|          3|    9|         27|
+    |reference_indices_V_2_ce0        |  14|          3|    1|          3|
+    |reference_indices_V_30_address0  |  14|          3|    9|         27|
+    |reference_indices_V_30_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_31_address0  |  14|          3|    9|         27|
+    |reference_indices_V_31_ce0       |  14|          3|    1|          3|
+    |reference_indices_V_3_address0   |  14|          3|    9|         27|
+    |reference_indices_V_3_ce0        |  14|          3|    1|          3|
+    |reference_indices_V_4_address0   |  14|          3|    9|         27|
+    |reference_indices_V_4_ce0        |  14|          3|    1|          3|
+    |reference_indices_V_5_address0   |  14|          3|    9|         27|
+    |reference_indices_V_5_ce0        |  14|          3|    1|          3|
+    |reference_indices_V_6_address0   |  14|          3|    9|         27|
+    |reference_indices_V_6_ce0        |  14|          3|    1|          3|
+    |reference_indices_V_7_address0   |  14|          3|    9|         27|
+    |reference_indices_V_7_ce0        |  14|          3|    1|          3|
+    |reference_indices_V_8_address0   |  14|          3|    9|         27|
+    |reference_indices_V_8_ce0        |  14|          3|    1|          3|
+    |reference_indices_V_9_address0   |  14|          3|    9|         27|
+    |reference_indices_V_9_ce0        |  14|          3|    1|          3|
+    |reference_indices_V_address0     |  14|          3|    9|         27|
+    |reference_indices_V_ce0          |  14|          3|    1|          3|
+    +---------------------------------+----+-----------+-----+-----------+
+    |Total                            | 962|        206|  353|       1030|
+    +---------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------------+----+----+-----+-----------+
+    |                       Name                       | FF | LUT| Bits| Const Bits|
+    +--------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                         |   4|   0|    4|          0|
+    |ap_enable_reg_pp0_iter0                           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1                           |   1|   0|    1|          0|
+    |grp_apply_selected_attention_fu_723_ap_start_reg  |   1|   0|    1|          0|
+    |indvar_flatten_fu_150                             |  15|   0|   15|          0|
+    |point_fu_146                                      |  10|   0|   10|          0|
+    |reference_fu_142                                  |   6|   0|    6|          0|
+    |select_ln198_1_reg_958                            |  10|   0|   10|          0|
+    |trunc_ln200_reg_968                               |   5|   0|    5|          0|
+    +--------------------------------------------------+----+----+-----+-----------+
+    |Total                                             |  53|   0|   53|          0|
+    +--------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------------+-----+-----+------------+-----------------------+--------------+
+|          RTL Ports         | Dir | Bits|  Protocol  |     Source Object     |    C Type    |
++----------------------------+-----+-----+------------+-----------------------+--------------+
+|ap_clk                      |   in|    1|  ap_ctrl_hs|  sada_attention_kernel|  return value|
+|ap_rst                      |   in|    1|  ap_ctrl_hs|  sada_attention_kernel|  return value|
+|ap_start                    |   in|    1|  ap_ctrl_hs|  sada_attention_kernel|  return value|
+|ap_done                     |  out|    1|  ap_ctrl_hs|  sada_attention_kernel|  return value|
+|ap_idle                     |  out|    1|  ap_ctrl_hs|  sada_attention_kernel|  return value|
+|ap_ready                    |  out|    1|  ap_ctrl_hs|  sada_attention_kernel|  return value|
+|squared_distances_address0  |  out|   14|   ap_memory|      squared_distances|         array|
+|squared_distances_ce0       |  out|    1|   ap_memory|      squared_distances|         array|
+|squared_distances_we0       |  out|    1|   ap_memory|      squared_distances|         array|
+|squared_distances_d0        |  out|   32|   ap_memory|      squared_distances|         array|
+|squared_distances_q0        |   in|   32|   ap_memory|      squared_distances|         array|
+|squared_distances_address1  |  out|   14|   ap_memory|      squared_distances|         array|
+|squared_distances_ce1       |  out|    1|   ap_memory|      squared_distances|         array|
+|squared_distances_we1       |  out|    1|   ap_memory|      squared_distances|         array|
+|squared_distances_d1        |  out|   32|   ap_memory|      squared_distances|         array|
+|squared_distances_q1        |   in|   32|   ap_memory|      squared_distances|         array|
+|candidate_indices_address0  |  out|   14|   ap_memory|      candidate_indices|         array|
+|candidate_indices_ce0       |  out|    1|   ap_memory|      candidate_indices|         array|
+|candidate_indices_q0        |   in|    9|   ap_memory|      candidate_indices|         array|
+|query_spikes_address0       |  out|   16|   ap_memory|           query_spikes|         array|
+|query_spikes_ce0            |  out|    1|   ap_memory|           query_spikes|         array|
+|query_spikes_q0             |   in|    1|   ap_memory|           query_spikes|         array|
+|key_spikes_address0         |  out|   16|   ap_memory|             key_spikes|         array|
+|key_spikes_ce0              |  out|    1|   ap_memory|             key_spikes|         array|
+|key_spikes_q0               |   in|    1|   ap_memory|             key_spikes|         array|
+|value_spikes_address0       |  out|   16|   ap_memory|           value_spikes|         array|
+|value_spikes_ce0            |  out|    1|   ap_memory|           value_spikes|         array|
+|value_spikes_q0             |   in|    1|   ap_memory|           value_spikes|         array|
+|decay                       |   in|   32|     ap_none|                  decay|        scalar|
+|threshold                   |   in|   32|     ap_none|              threshold|        scalar|
+|membrane_address0           |  out|   16|   ap_memory|               membrane|         array|
+|membrane_ce0                |  out|    1|   ap_memory|               membrane|         array|
+|membrane_we0                |  out|    1|   ap_memory|               membrane|         array|
+|membrane_d0                 |  out|   32|   ap_memory|               membrane|         array|
+|membrane_address1           |  out|   16|   ap_memory|               membrane|         array|
+|membrane_ce1                |  out|    1|   ap_memory|               membrane|         array|
+|membrane_q1                 |   in|   32|   ap_memory|               membrane|         array|
+|gated_values_address0       |  out|   16|   ap_memory|           gated_values|         array|
+|gated_values_ce0            |  out|    1|   ap_memory|           gated_values|         array|
+|gated_values_we0            |  out|    1|   ap_memory|           gated_values|         array|
+|gated_values_d0             |  out|    1|   ap_memory|           gated_values|         array|
+|attention_sums_address0     |  out|   16|   ap_memory|         attention_sums|         array|
+|attention_sums_ce0          |  out|    1|   ap_memory|         attention_sums|         array|
+|attention_sums_we0          |  out|    1|   ap_memory|         attention_sums|         array|
+|attention_sums_d0           |  out|    7|   ap_memory|         attention_sums|         array|
++----------------------------+-----+-----+------------+-----------------------+--------------+
+

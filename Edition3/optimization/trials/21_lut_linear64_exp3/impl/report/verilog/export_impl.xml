@@ -1,0 +1,298 @@
+<profile>
+  <RunData>
+    <RUN_TYPE>impl</RUN_TYPE>
+    <VIVADO_VERSION>v.2022.2</VIVADO_VERSION>
+    <ROOT_MODULE_CELL>bd_0_i/hls_inst</ROOT_MODULE_CELL>
+  </RunData>
+  <TimingReport>
+    <TargetClockPeriod>20.000</TargetClockPeriod>
+    <AchievedClockPeriod>12.478</AchievedClockPeriod>
+    <CLOCK_NAME>ap_clk</CLOCK_NAME>
+    <CP_FINAL>12.478</CP_FINAL>
+    <CP_ROUTE>12.478</CP_ROUTE>
+    <CP_SYNTH>12.192</CP_SYNTH>
+    <CP_TARGET>20.000</CP_TARGET>
+    <SLACK_FINAL>7.522</SLACK_FINAL>
+    <SLACK_ROUTE>7.522</SLACK_ROUTE>
+    <SLACK_SYNTH>7.808</SLACK_SYNTH>
+    <TIMING_MET>TRUE</TIMING_MET>
+    <TNS_FINAL>0.000</TNS_FINAL>
+    <TNS_ROUTE>0.000</TNS_ROUTE>
+    <TNS_SYNTH>0.000</TNS_SYNTH>
+    <WNS_FINAL>7.522</WNS_FINAL>
+    <WNS_ROUTE>7.522</WNS_ROUTE>
+    <WNS_SYNTH>7.808</WNS_SYNTH>
+  </TimingReport>
+  <AreaReport>
+    <Resources>
+      <BRAM>16</BRAM>
+      <CLB>0</CLB>
+      <DSP>5</DSP>
+      <FF>1144</FF>
+      <LATCH>0</LATCH>
+      <LUT>1930</LUT>
+      <SLICE>656</SLICE>
+      <SRL>2</SRL>
+      <URAM>0</URAM>
+    </Resources>
+    <AvailableResources>
+      <BRAM>120</BRAM>
+      <CLB>0</CLB>
+      <DSP>80</DSP>
+      <FF>35200</FF>
+      <LUT>17600</LUT>
+      <SLICE>4400</SLICE>
+      <URAM>0</URAM>
+    </AvailableResources>
+  </AreaReport>
+  <RtlModules>
+    <RtlModule CELL="inst" DEPTH="0" IS_TOP="1" TYPE="function" MODULENAME="sada_attention_kernel" DISPNAME="inst" RTLNAME="sada_attention_kernel">
+      <SubModules count="12">grp_apply_selected_attention_fu_226 grp_compute_raw_density_fu_216 grp_select_density_neighbors_fu_252 raw_density_V_U reference_indices_V_1_U reference_indices_V_2_U reference_indices_V_3_U reference_indices_V_4_U reference_indices_V_5_U reference_indices_V_6_U reference_indices_V_7_U reference_indices_V_U</SubModules>
+      <Resources BRAM="16" DSP="5" FF="1144" LUT="1930"/>
+      <LocalResources FF="109" LUT="45"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_apply_selected_attention_fu_226" DEPTH="1" TYPE="function" MODULENAME="apply_selected_attention" DISPNAME="grp_apply_selected_attention_fu_226" RTLNAME="sada_attention_kernel_apply_selected_attention">
+      <SubModules count="6">cached_keys_V_1_U cached_keys_V_2_U cached_keys_V_3_U cached_keys_V_U grp_apply_selected_attention_Pipeline_VITIS_LOOP_199_2_fu_110 grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121</SubModules>
+      <Resources BRAM="4" DSP="4" FF="186" LUT="282"/>
+      <LocalResources FF="21" LUT="13"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_apply_selected_attention_fu_226/cached_keys_V_1_U" BINDMODULE="sada_attention_kernel_apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W" DEPTH="2" TYPE="resource" MODULENAME="apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W" DISPNAME="cached_keys_V_1_U" RTLNAME="sada_attention_kernel_apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W">
+      <Resources BRAM="1" LUT="1"/>
+      <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_2p" PRAGMA="yes" RTLNAME="cached_keys_V_1_U" SOURCE="src/sada_kernel.cpp:196" URAM="0" VARIABLE="cached_keys_V_1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_apply_selected_attention_fu_226/cached_keys_V_2_U" BINDMODULE="sada_attention_kernel_apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W" DEPTH="2" TYPE="resource" MODULENAME="apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W" DISPNAME="cached_keys_V_2_U" RTLNAME="sada_attention_kernel_apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W">
+      <Resources BRAM="1" LUT="2"/>
+      <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_2p" PRAGMA="yes" RTLNAME="cached_keys_V_2_U" SOURCE="src/sada_kernel.cpp:196" URAM="0" VARIABLE="cached_keys_V_2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_apply_selected_attention_fu_226/cached_keys_V_3_U" BINDMODULE="sada_attention_kernel_apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W" DEPTH="2" TYPE="resource" MODULENAME="apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W" DISPNAME="cached_keys_V_3_U" RTLNAME="sada_attention_kernel_apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W">
+      <Resources BRAM="1" LUT="10"/>
+      <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_2p" PRAGMA="yes" RTLNAME="cached_keys_V_3_U" SOURCE="src/sada_kernel.cpp:196" URAM="0" VARIABLE="cached_keys_V_3"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_apply_selected_attention_fu_226/cached_keys_V_U" BINDMODULE="sada_attention_kernel_apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W" DEPTH="2" TYPE="resource" MODULENAME="apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W" DISPNAME="cached_keys_V_U" RTLNAME="sada_attention_kernel_apply_selected_attention_cached_keys_V_RAM_2P_BRAM_1R1W">
+      <Resources BRAM="1" LUT="2"/>
+      <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_2p" PRAGMA="yes" RTLNAME="cached_keys_V_U" SOURCE="src/sada_kernel.cpp:196" URAM="0" VARIABLE="cached_keys_V"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_199_2_fu_110" DEPTH="2" TYPE="function" MODULENAME="apply_selected_attention_Pipeline_VITIS_LOOP_199_2" DISPNAME="grp_apply_selected_attention_Pipeline_VITIS_LOOP_199_2_fu_110" RTLNAME="sada_attention_kernel_apply_selected_attention_Pipeline_VITIS_LOOP_199_2">
+      <SubModules count="1">flow_control_loop_pipe_sequential_init_U</SubModules>
+      <Resources FF="22" LUT="44"/>
+      <LocalResources FF="20" LUT="20"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_199_2_fu_110/flow_control_loop_pipe_sequential_init_U" BINDMODULE="sada_attention_kernel_flow_control_loop_pipe_sequential_init" DEPTH="3" TYPE="rtl" MODULENAME="flow_control_loop_pipe_sequential_init" DISPNAME="flow_control_loop_pipe_sequential_init_U" RTLNAME="sada_attention_kernel_flow_control_loop_pipe_sequential_init">
+      <Resources FF="2" LUT="24"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121" DEPTH="2" TYPE="function" MODULENAME="apply_selected_attention_Pipeline_VITIS_LOOP_207_4" DISPNAME="grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121" RTLNAME="sada_attention_kernel_apply_selected_attention_Pipeline_VITIS_LOOP_207_4">
+      <SubModules count="2">flow_control_loop_pipe_sequential_init_U mul_33s_32s_64_1_1_U34</SubModules>
+      <Resources DSP="4" FF="143" LUT="214"/>
+      <LocalResources FF="141" LUT="87"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/flow_control_loop_pipe_sequential_init_U" BINDMODULE="sada_attention_kernel_flow_control_loop_pipe_sequential_init" DEPTH="3" TYPE="rtl" MODULENAME="flow_control_loop_pipe_sequential_init" DISPNAME="flow_control_loop_pipe_sequential_init_U" RTLNAME="sada_attention_kernel_flow_control_loop_pipe_sequential_init">
+      <Resources FF="2" LUT="28"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34" BINDMODULE="sada_attention_kernel_mul_33s_32s_64_1_1" DEPTH="3" TYPE="resource" MODULENAME="mul_33s_32s_64_1_1" DISPNAME="mul_33s_32s_64_1_1_U34" RTLNAME="sada_attention_kernel_mul_33s_32s_64_1_1">
+      <Resources DSP="4" LUT="99"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="3" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_207_4" OPTYPE="mul" PRAGMA="" RTLNAME="mul_33s_32s_64_1_1_U34" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:1273" URAM="0" VARIABLE="r_V"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_compute_raw_density_fu_216" DEPTH="1" TYPE="function" MODULENAME="compute_raw_density" DISPNAME="grp_compute_raw_density_fu_216" RTLNAME="sada_attention_kernel_compute_raw_density">
+      <SubModules count="2">RECIPROCAL_TABLE_V_U mul_26ns_16ns_42_1_1_U1</SubModules>
+      <Resources BRAM="2" DSP="1" FF="237" LUT="985"/>
+      <LocalResources FF="234" LUT="798"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_compute_raw_density_fu_216/RECIPROCAL_TABLE_V_U" BINDMODULE="sada_attention_kernel_compute_raw_density_RECIPROCAL_TABLE_V_ROM_1P_BRAM_1R" DEPTH="2" TYPE="resource" MODULENAME="compute_raw_density_RECIPROCAL_TABLE_V_ROM_1P_BRAM_1R" DISPNAME="RECIPROCAL_TABLE_V_U" RTLNAME="sada_attention_kernel_compute_raw_density_RECIPROCAL_TABLE_V_ROM_1P_BRAM_1R">
+      <Resources BRAM="2" FF="3" LUT="52"/>
+      <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage rom_1p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="rom_1p" PRAGMA="pragma" RTLNAME="RECIPROCAL_TABLE_V_U" SOURCE="src/sada_kernel.cpp:22" URAM="0" VARIABLE="RECIPROCAL_TABLE_V"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_compute_raw_density_fu_216/mul_26ns_16ns_42_1_1_U1" BINDMODULE="sada_attention_kernel_mul_26ns_16ns_42_1_1" DEPTH="2" TYPE="resource" MODULENAME="mul_26ns_16ns_42_1_1" DISPNAME="mul_26ns_16ns_42_1_1_U1" RTLNAME="sada_attention_kernel_mul_26ns_16ns_42_1_1">
+      <Resources DSP="1" LUT="140"/>
+      <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="2" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_47_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_26ns_16ns_42_1_1_U1" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_int_base.h:1494" URAM="0" VARIABLE="ret_V_5"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_select_density_neighbors_fu_252" DEPTH="1" TYPE="function" MODULENAME="select_density_neighbors" DISPNAME="grp_select_density_neighbors_fu_252" RTLNAME="sada_attention_kernel_select_density_neighbors">
+      <SubModules count="1">grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254</SubModules>
+      <Resources FF="612" LUT="613"/>
+      <LocalResources FF="157" LUT="85"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254" DEPTH="2" TYPE="function" MODULENAME="select_density_neighbors_Pipeline_VITIS_LOOP_78_3" DISPNAME="grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254" RTLNAME="sada_attention_kernel_select_density_neighbors_Pipeline_VITIS_LOOP_78_3">
+      <SubModules count="1">flow_control_loop_pipe_sequential_init_U</SubModules>
+      <Resources FF="455" LUT="528"/>
+      <LocalResources FF="453" LUT="513"/>
+    </RtlModule>
+    <RtlModule CELL="inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/flow_control_loop_pipe_sequential_init_U" BINDMODULE="sada_attention_kernel_flow_control_loop_pipe_sequential_init" DEPTH="3" TYPE="rtl" MODULENAME="flow_control_loop_pipe_sequential_init" DISPNAME="flow_control_loop_pipe_sequential_init_U" RTLNAME="sada_attention_kernel_flow_control_loop_pipe_sequential_init">
+      <Resources FF="2" LUT="15"/>
+    </RtlModule>
+    <RtlModule CELL="inst/raw_density_V_U" BINDMODULE="sada_attention_kernel_raw_density_V_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="raw_density_V_RAM_AUTO_1R1W" DISPNAME="raw_density_V_U" RTLNAME="sada_attention_kernel_raw_density_V_RAM_AUTO_1R1W">
+      <Resources BRAM="2" LUT="1"/>
+      <BindNode BINDTYPE="storage" BRAM="3" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="raw_density_V_U" SOURCE="src/sada_kernel.cpp:120" URAM="0" VARIABLE="raw_density_V"/>
+    </RtlModule>
+    <RtlModule CELL="inst/reference_indices_V_1_U" BINDMODULE="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="reference_indices_V_RAM_AUTO_1R1W" DISPNAME="reference_indices_V_1_U" RTLNAME="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W">
+      <Resources BRAM="1"/>
+      <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_1_U" SOURCE="src/sada_kernel.cpp:236" URAM="0" VARIABLE="reference_indices_V_1"/>
+    </RtlModule>
+    <RtlModule CELL="inst/reference_indices_V_2_U" BINDMODULE="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="reference_indices_V_RAM_AUTO_1R1W" DISPNAME="reference_indices_V_2_U" RTLNAME="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W">
+      <Resources BRAM="1"/>
+      <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_2_U" SOURCE="src/sada_kernel.cpp:236" URAM="0" VARIABLE="reference_indices_V_2"/>
+    </RtlModule>
+    <RtlModule CELL="inst/reference_indices_V_3_U" BINDMODULE="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="reference_indices_V_RAM_AUTO_1R1W" DISPNAME="reference_indices_V_3_U" RTLNAME="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W">
+      <Resources BRAM="1"/>
+      <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_3_U" SOURCE="src/sada_kernel.cpp:236" URAM="0" VARIABLE="reference_indices_V_3"/>
+    </RtlModule>
+    <RtlModule CELL="inst/reference_indices_V_4_U" BINDMODULE="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="reference_indices_V_RAM_AUTO_1R1W" DISPNAME="reference_indices_V_4_U" RTLNAME="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W">
+      <Resources BRAM="1"/>
+      <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_4_U" SOURCE="src/sada_kernel.cpp:236" URAM="0" VARIABLE="reference_indices_V_4"/>
+    </RtlModule>
+    <RtlModule CELL="inst/reference_indices_V_5_U" BINDMODULE="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="reference_indices_V_RAM_AUTO_1R1W" DISPNAME="reference_indices_V_5_U" RTLNAME="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W">
+      <Resources BRAM="1"/>
+      <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_5_U" SOURCE="src/sada_kernel.cpp:236" URAM="0" VARIABLE="reference_indices_V_5"/>
+    </RtlModule>
+    <RtlModule CELL="inst/reference_indices_V_6_U" BINDMODULE="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="reference_indices_V_RAM_AUTO_1R1W" DISPNAME="reference_indices_V_6_U" RTLNAME="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W">
+      <Resources BRAM="1"/>
+      <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_6_U" SOURCE="src/sada_kernel.cpp:236" URAM="0" VARIABLE="reference_indices_V_6"/>
+    </RtlModule>
+    <RtlModule CELL="inst/reference_indices_V_7_U" BINDMODULE="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="reference_indices_V_RAM_AUTO_1R1W" DISPNAME="reference_indices_V_7_U" RTLNAME="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W">
+      <Resources BRAM="1" LUT="4"/>
+      <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_7_U" SOURCE="src/sada_kernel.cpp:236" URAM="0" VARIABLE="reference_indices_V_7"/>
+    </RtlModule>
+    <RtlModule CELL="inst/reference_indices_V_U" BINDMODULE="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W" DEPTH="1" TYPE="resource" MODULENAME="reference_indices_V_RAM_AUTO_1R1W" DISPNAME="reference_indices_V_U" RTLNAME="sada_attention_kernel_reference_indices_V_RAM_AUTO_1R1W">
+      <Resources BRAM="1"/>
+      <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_U" SOURCE="src/sada_kernel.cpp:236" URAM="0" VARIABLE="reference_indices_V"/>
+    </RtlModule>
+  </RtlModules>
+  <TimingPaths>
+    <TPATH DATAPATH_DELAY="12.425" DATAPATH_LOGIC_DELAY="9.255" DATAPATH_NET_DELAY="3.170" ENDPOINT_PIN="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_zeros_reg_1122_reg[0]/D" LOGIC_LEVELS="18" MAX_FANOUT="2" SLACK="7.522" STARTPOINT_PIN="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout__1/CLK">
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout__1" PRIMITIVE_TYPE="MULT.dsp.DSP48E1" LINE_NUMBER="19"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout__2" PRIMITIVE_TYPE="MULT.dsp.DSP48E1" LINE_NUMBER="19"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry_i_3__0" PRIMITIVE_TYPE="LUT.others.LUT2" LINE_NUMBER="19"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry__0" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry__1" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/ret_V_24_fu_704_p2_carry__1_i_3" PRIMITIVE_TYPE="LUT.others.LUT2" LINE_NUMBER="884"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__1" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__3" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__4" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__5" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__6" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__7" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__8" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__9" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__10" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_zeros_reg_1122[0]_i_2" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_zeros_reg_1122[0]_i_1" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_zeros_reg_1122_reg[0]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="446"/>
+    </TPATH>
+    <TPATH DATAPATH_DELAY="12.307" DATAPATH_LOGIC_DELAY="2.956" DATAPATH_NET_DELAY="9.351" ENDPOINT_PIN="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363_reg[41]/D" LOGIC_LEVELS="13" MAX_FANOUT="176" SLACK="7.542" STARTPOINT_PIN="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_1_fu_70_reg[8]/C">
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_1_fu_70_reg[8]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="405"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82[47]_i_72" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_57" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_43" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_29" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_19" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82[47]_i_7" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="10"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82[28]_i_1" PRIMITIVE_TYPE="LUT.others.LUT3" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355[3]_i_24" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355[3]_i_11" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355_reg[3]_i_3" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355_reg[3]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363[47]_i_2" PRIMITIVE_TYPE="LUT.others.LUT3" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363[41]_i_1" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363_reg[41]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="519"/>
+    </TPATH>
+    <TPATH DATAPATH_DELAY="12.385" DATAPATH_LOGIC_DELAY="9.255" DATAPATH_NET_DELAY="3.130" ENDPOINT_PIN="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_ones_reg_1115_reg[0]/D" LOGIC_LEVELS="18" MAX_FANOUT="2" SLACK="7.560" STARTPOINT_PIN="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout__1/CLK">
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout__1" PRIMITIVE_TYPE="MULT.dsp.DSP48E1" LINE_NUMBER="19"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout__2" PRIMITIVE_TYPE="MULT.dsp.DSP48E1" LINE_NUMBER="19"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry_i_3__0" PRIMITIVE_TYPE="LUT.others.LUT2" LINE_NUMBER="19"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry__0" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry__1" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/ret_V_24_fu_704_p2_carry__1_i_3" PRIMITIVE_TYPE="LUT.others.LUT2" LINE_NUMBER="884"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__1" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__3" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__4" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__5" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__6" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__7" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__8" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__9" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__10" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_ones_reg_1115[0]_i_2" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_ones_reg_1115[0]_i_1" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="445"/>
+      <CELL NAME="grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_ones_reg_1115_reg[0]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="445"/>
+    </TPATH>
+    <TPATH DATAPATH_DELAY="12.115" DATAPATH_LOGIC_DELAY="2.956" DATAPATH_NET_DELAY="9.159" ENDPOINT_PIN="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363_reg[19]/D" LOGIC_LEVELS="13" MAX_FANOUT="176" SLACK="7.771" STARTPOINT_PIN="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_1_fu_70_reg[8]/C">
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_1_fu_70_reg[8]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="405"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82[47]_i_72" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_57" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_43" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_29" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_19" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82[47]_i_7" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="10"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82[28]_i_1" PRIMITIVE_TYPE="LUT.others.LUT3" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355[3]_i_24" PRIMITIVE_TYPE="LUT.others.LUT6" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355[3]_i_11" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355_reg[3]_i_3" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355_reg[3]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363[47]_i_2" PRIMITIVE_TYPE="LUT.others.LUT3" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363[19]_i_1" PRIMITIVE_TYPE="LUT.others.LUT5" LINE_NUMBER="67"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363_reg[19]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDRE" LINE_NUMBER="519"/>
+    </TPATH>
+    <TPATH DATAPATH_DELAY="11.679" DATAPATH_LOGIC_DELAY="5.846" DATAPATH_NET_DELAY="5.833" ENDPOINT_PIN="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[1]/S" LOGIC_LEVELS="16" MAX_FANOUT="48" SLACK="7.808" STARTPOINT_PIN="raw_density_V_U/ram_reg_0/CLKARDCLK">
+      <CELL NAME="raw_density_V_U/ram_reg_0" PRIMITIVE_TYPE="BMEM.bram.RAMB18E1" LINE_NUMBER="42"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339[0]_i_5" PRIMITIVE_TYPE="LUT.others.LUT2" LINE_NUMBER="10"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[0]_i_1" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[7]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339[8]_i_5" PRIMITIVE_TYPE="LUT.others.LUT1" LINE_NUMBER="939"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[8]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[12]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[16]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[20]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[24]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[28]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[32]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[36]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[40]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[44]_i_2" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[47]_i_5" PRIMITIVE_TYPE="CARRY.others.CARRY4" LINE_NUMBER="867"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339[47]_i_1" PRIMITIVE_TYPE="LUT.others.LUT3" LINE_NUMBER="10"/>
+      <CELL NAME="grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[1]" PRIMITIVE_TYPE="FLOP_LATCH.flop.FDSE" LINE_NUMBER="560"/>
+    </TPATH>
+  </TimingPaths>
+  <VivadoReportFiles>
+    <ReportFile TYPE="design_analysis" PATH="verilog/report/sada_attention_kernel_design_analysis_routed.rpt"/>
+    <ReportFile TYPE="failfast" PATH="verilog/report/sada_attention_kernel_failfast_routed.rpt"/>
+    <ReportFile TYPE="status" PATH="verilog/report/sada_attention_kernel_status_routed.rpt"/>
+    <ReportFile TYPE="timing" PATH="verilog/report/sada_attention_kernel_timing_routed.rpt"/>
+    <ReportFile TYPE="timing_paths" PATH="verilog/report/sada_attention_kernel_timing_paths_routed.rpt"/>
+    <ReportFile TYPE="utilization" PATH="verilog/report/sada_attention_kernel_utilization_routed.rpt"/>
+    <ReportFile TYPE="utilization_hierarchical" PATH="verilog/report/sada_attention_kernel_utilization_hierarchical_routed.rpt"/>
+  </VivadoReportFiles>
+  <GeneralInfo NAME="General Information">
+    <item NAME="Date" VALUE="Sat Nov 14 20:12:20 +0800 2026"/>
+    <item NAME="Version" VALUE="2022.2 (Build 3670227 on Oct 13 2022)"/>
+    <item NAME="Project" VALUE="project"/>
+    <item NAME="Solution" VALUE="solution1 (Vivado IP Flow Target)"/>
+    <item NAME="Product family" VALUE="zynq"/>
+    <item NAME="Target device" VALUE="xc7z010-clg400-1"/>
+  </GeneralInfo>
+  <RunOptions NAME="Run Constraints &amp; Options">
+    <General NAME="Design Constraints &amp; Options">
+      <item NAME="Place &amp; Route target clock" VALUE="20 ns"/>
+      <item NAME="C-Synthesis target clock" VALUE="20 ns"/>
+      <item NAME="C-Synthesis uncertainty" VALUE="27%"/>
+      <item NAME="config_export -ip_xdc_file" VALUE=""/>
+      <item NAME="config_export -ip_xdc_ooc_file" VALUE=""/>
+    </General>
+    <Syn NAME="RTL Synthesis Options">
+      <item NAME="config_export -vivado_synth_strategy" VALUE="default"/>
+      <item NAME="config_export -vivado_synth_design_args" VALUE="-directive sdx_optimization_effort_high"/>
+    </Syn>
+    <Impl NAME="Place &amp; Route Options">
+      <item NAME="config_export -vivado_impl_strategy" VALUE="default"/>
+      <item NAME="config_export -vivado_phys_opt" VALUE="none"/>
+      <item NAME="config_export -vivado_pblock" VALUE=""/>
+    </Impl>
+    <Reporting NAME="Reporting Options">
+      <item NAME="config_export -vivado_report_level" VALUE="2"/>
+      <item NAME="config_export -vivado_max_timing_paths" VALUE="10"/>
+    </Reporting>
+  </RunOptions>
+</profile>
+

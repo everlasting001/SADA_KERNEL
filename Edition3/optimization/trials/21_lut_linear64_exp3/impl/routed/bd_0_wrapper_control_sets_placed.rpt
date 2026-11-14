@@ -1,0 +1,121 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Sat Nov 14 20:11:58 2026
+| Host         : Kevin running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file bd_0_wrapper_control_sets_placed.rpt
+| Design       : bd_0_wrapper
+| Device       : xc7z010
+-----------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    43 |
+|    Minimum number of control sets                        |    43 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   184 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    43 |
+| >= 0 to < 4        |     1 |
+| >= 4 to < 6        |     3 |
+| >= 6 to < 8        |     4 |
+| >= 8 to < 10       |    13 |
+| >= 10 to < 12      |     5 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    17 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |             173 |           48 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              76 |           26 |
+| Yes          | No                    | No                     |             514 |          166 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             381 |          126 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+| Clock Signal |                                                                                   Enable Signal                                                                                   |                                                                               Set/Reset Signal                                                                               | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_compute_raw_density_fu_216/mul_26ns_16ns_42_1_1_U1/ap_NS_fsm1                                                                                            | bd_0_i/hls_inst/inst/grp_compute_raw_density_fu_216/r_V_7_reg_618[6]_i_1_n_0                                                                                                 |                1 |              1 |         1.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/flow_control_loop_pipe_sequential_init_U/E[0]               |                                                                                                                                                                              |                2 |              4 |         2.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_compute_raw_density_fu_216/squared_distances_ce0                                                                                                         |                                                                                                                                                                              |                1 |              5 |         5.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/flow_control_loop_pipe_sequential_init_U/neighbor_1_fu_1180 |                                                                                                                                                                              |                1 |              5 |         5.00 |
+|  ap_clk      |                                                                                                                                                                                   | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/ap_NS_fsm12_out                                                                                                     |                2 |              7 |         3.50 |
+|  ap_clk      |                                                                                                                                                                                   | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/ap_NS_fsm13_out                                                                                                     |                2 |              7 |         3.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_199_2_fu_110_ap_start_reg0                                              |                                                                                                                                                                              |                2 |              7 |         3.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_199_2_fu_110_ap_start_reg0                                              | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_226/ap_NS_fsm11_out                                                                                                     |                3 |              7 |         2.33 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/ap_CS_fsm_state1                                                                                                         |                                                                                                                                                                              |                2 |              9 |         4.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/reference_indices_V_7_U/E[0]                                                                                                                                 |                                                                                                                                                                              |                3 |              9 |         3.00 |
+|  ap_clk      |                                                                                                                                                                                   | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_199_2_fu_110/flow_control_loop_pipe_sequential_init_U/ap_loop_init |                4 |              9 |         2.25 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/reference_indices_3_014_fu_100[8]_i_1_n_0                                                                                |                                                                                                                                                                              |                2 |              9 |         4.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/ap_CS_fsm_state3                                                                                                                                             |                                                                                                                                                                              |                2 |              9 |         4.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/candidate_V_reg_13270                                                                                                    |                                                                                                                                                                              |                3 |              9 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/reference_indices_2_015_fu_112[8]_i_1_n_0                                                                                |                                                                                                                                                                              |                3 |              9 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/reference_indices_5_011_fu_152[8]_i_1_n_0                                                                                |                                                                                                                                                                              |                2 |              9 |         4.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/reference_indices_0_010_fu_88[8]_i_1_n_0                                                                                 |                                                                                                                                                                              |                3 |              9 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/reference_indices_7_08_fu_136[8]_i_1_n_0                                                                                 |                                                                                                                                                                              |                2 |              9 |         4.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/reference_indices_6_09_fu_144[8]_i_1_n_0                                                                                 |                                                                                                                                                                              |                2 |              9 |         4.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/reference_indices_4_012_fu_160[8]_i_1_n_0                                                                                |                                                                                                                                                                              |                2 |              9 |         4.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/reference_indices_1_013_fu_96[8]_i_1_n_0                                                                                 |                                                                                                                                                                              |                3 |              9 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/flow_control_loop_pipe_sequential_init_U/E[0]              | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/flow_control_loop_pipe_sequential_init_U/SR[0]        |                4 |             10 |         2.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/reference_indices_V_7_U/E[0]                                                                                                                                 | bd_0_i/hls_inst/inst/ap_NS_fsm11_out                                                                                                                                         |                4 |             10 |         2.50 |
+|  ap_clk      |                                                                                                                                                                                   | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/flow_control_loop_pipe_sequential_init_U/ap_loop_init |                2 |             10 |         5.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_compute_raw_density_fu_216/mul_26ns_16ns_42_1_1_U1/ap_NS_fsm1                                                                                            | bd_0_i/hls_inst/inst/grp_compute_raw_density_fu_216/ap_NS_fsm10_out                                                                                                          |                4 |             10 |         2.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_199_2_fu_110/flow_control_loop_pipe_sequential_init_U/E[0]              | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_199_2_fu_110/flow_control_loop_pipe_sequential_init_U/SR[0]        |                3 |             10 |         3.33 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_compute_raw_density_fu_216/ap_CS_fsm_state2                                                                                                              |                                                                                                                                                                              |                5 |             19 |         3.80 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_compute_raw_density_fu_216/mul_26ns_16ns_42_1_1_U1/ap_NS_fsm1                                                                                            |                                                                                                                                                                              |               11 |             21 |         1.91 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/E[0]                                                       |                                                                                                                                                                              |                9 |             32 |         3.56 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_compute_raw_density_fu_216/ap_CS_fsm_state5                                                                                                              |                                                                                                                                                                              |                8 |             36 |         4.50 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_compute_raw_density_fu_216/ap_CS_fsm_state4                                                                                                              | bd_0_i/hls_inst/inst/grp_compute_raw_density_fu_216/neighbor_reg_1650                                                                                                        |                9 |             41 |         4.56 |
+|  ap_clk      |                                                                                                                                                                                   | ap_rst                                                                                                                                                                       |               16 |             43 |         2.69 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_compute_raw_density_fu_216/ap_CS_fsm_state6                                                                                                              |                                                                                                                                                                              |               13 |             45 |         3.46 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/ap_CS_fsm_state4__0                                                                                                      |                                                                                                                                                                              |               16 |             48 |         3.00 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_compute_raw_density_fu_216/ap_CS_fsm_state7                                                                                                              |                                                                                                                                                                              |               33 |             48 |         1.45 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339[47]_i_2_n_0                          | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339[47]_i_1_n_0                     |               11 |             48 |         4.36 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_1_fu_86                                    | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/flow_control_loop_pipe_sequential_init_U/SR[0]         |               26 |             61 |         2.35 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_3_fu_110                                   | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/flow_control_loop_pipe_sequential_init_U/SR[0]         |               25 |             61 |         2.44 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_fu_74                                      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/flow_control_loop_pipe_sequential_init_U/SR[0]         |               19 |             61 |         3.21 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_2_fu_98                                    | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/flow_control_loop_pipe_sequential_init_U/SR[0]         |               17 |             61 |         3.59 |
+|  ap_clk      | bd_0_i/hls_inst/inst/grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/and_ln1027_14_reg_1392[0]_i_1_n_0                           |                                                                                                                                                                              |               19 |             64 |         3.37 |
+|  ap_clk      | bd_0_i/hls_inst/inst/ap_CS_fsm_state4                                                                                                                                             |                                                                                                                                                                              |               17 |             72 |         4.24 |
+|  ap_clk      |                                                                                                                                                                                   |                                                                                                                                                                              |               48 |            175 |         3.65 |
++--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+
+

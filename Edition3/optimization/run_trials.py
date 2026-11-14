@@ -41,6 +41,13 @@ PROFILES = {
                             insertion_top4=True, stable_ties=True, key_cache='bram', bank_references=True),
     '17_balanced_ii32': dict(norm='32', density_serial=True, selection_serial=True,
                             insertion_top4=True, stable_ties=True, key_cache='bram', bank_references=True),
+    '18_reference32': dict(snapshot='reference32_snapshot'),
+    '19_raw_density16': dict(snapshot='no_normalization16_snapshot'),
+    '20_lut_constant256': dict(snapshot='lut_constant256_snapshot'),
+    '21_lut_linear64': dict(snapshot='lut_linear64_snapshot'),
+    '22_lut_linear256': dict(snapshot='lut_linear256_snapshot'),
+    '23_lut_linear1024': dict(snapshot='lut_linear1024_snapshot'),
+    '24_lut_exact_control': dict(snapshot='lut_exact_control_snapshot'),
 }
 
 
@@ -69,8 +76,10 @@ def loop_pragma(text, name, pragma):
 
 
 def source_for(profile):
-    source = (HERE / 'initial_snapshot/src/sada_kernel.cpp').read_text()
     options = PROFILES[profile]
+    if options.get('snapshot'):
+        return (HERE / options['snapshot'] / 'src/sada_kernel.cpp').read_text()
+    source = (HERE / 'initial_snapshot/src/sada_kernel.cpp').read_text()
 
     def normalize(body):
         body = '\n'.join(line for line in body.split('\n')
@@ -211,8 +220,9 @@ def prepare(profile, experiment, stage, clock_ns=20):
     archive.mkdir(parents=True, exist_ok=True)
     (work / 'src').mkdir(parents=True, exist_ok=True)
     (work / 'test').mkdir(exist_ok=True)
-    for sub, filename in [('src', 'sada_kernel.h'), ('test', 'tb_sada_experiments.cpp')]:
-        shutil.copy2(HERE / 'initial_snapshot' / sub / filename, work / sub / filename)
+    snapshot = PROFILES[profile].get('snapshot', 'initial_snapshot')
+    for sub in ['src', 'test']:
+        shutil.copytree(HERE / snapshot / sub, work / sub, dirs_exist_ok=True)
     (work / 'src/sada_kernel.cpp').write_text(source_for(profile))
     for sub in ['src', 'test']:
         shutil.copytree(work / sub, archive / sub, dirs_exist_ok=True)
@@ -241,6 +251,9 @@ csynth_design
         'source_sha256': hashlib.sha256((work / 'src/sada_kernel.cpp').read_bytes()).hexdigest(),
         'header_sha256': hashlib.sha256((work / 'src/sada_kernel.h').read_bytes()).hexdigest(),
         'test_sha256': hashlib.sha256((work / 'test/tb_sada_experiments.cpp').read_bytes()).hexdigest(),
+        'files_sha256': {str(path.relative_to(work)): hashlib.sha256(path.read_bytes()).hexdigest()
+                         for sub in ['src', 'test'] for path in sorted((work / sub).rglob('*'))
+                         if path.is_file()},
     }
     (archive / 'manifest.json').write_text(json.dumps(metadata, indent=2) + '\n')
     return work, archive, metadata

@@ -1,0 +1,14 @@
+{
+  "profile": "19_raw_density16",
+  "options": {
+    "snapshot": "no_normalization16_snapshot"
+  },
+  "experiment": 0,
+  "stage": "impl",
+  "part": "xc7z010clg400-1",
+  "clock_ns": 20,
+  "work_directory": "C:/fpga/sada_edition3_runs/19_raw_density16_exp0",
+  "source_sha256": "1f04796de50c47c65947ede030550fef4f9daa86d82942ee424892a7464c4dfa",
+  "header_sha256": "6d615d1c0f50ee21ccbe37d36ddf1d6446a57e3d378ad59063f7c2beeb82b96a",
+  "test_sha256": "8e6a9728e14aedc75ef376faf32539ddf18ec73a0956bb35039c549aaec45f95"
+}

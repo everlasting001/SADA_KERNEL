@@ -1,0 +1,297 @@
+
+
+================================================================
+== Synthesis Summary Report of 'sada_attention_kernel'
+================================================================
++ General Information: 
+    * Date:           Sat Nov 14 19:24:37 2026
+    * Version:        2022.2 (Build 3670227 on Oct 13 2022)
+    * Project:        project
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z010-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +---------------------------------------------------------+------+-------+---------+-----------+----------+---------+-------+----------+----------+--------+----------+------------+-----+
+    |                         Modules                         | Issue|       | Latency |  Latency  | Iteration|         |  Trip |          |          |        |          |            |     |
+    |                         & Loops                         | Type | Slack | (cycles)|    (ns)   |  Latency | Interval| Count | Pipelined|   BRAM   |   DSP  |    FF    |     LUT    | URAM|
+    +---------------------------------------------------------+------+-------+---------+-----------+----------+---------+-------+----------+----------+--------+----------+------------+-----+
+    |+ sada_attention_kernel                                  |     -|   0.03|   115748|  2.315e+06|         -|   115749|      -|        no|  48 (40%)|  3 (3%)|  523 (1%)|  2867 (16%)|    -|
+    | + apply_selected_attention                              |     -|   0.03|    99361|  1.987e+06|         -|    99361|      -|        no|  16 (13%)|  3 (3%)|  470 (1%)|  1798 (10%)|    -|
+    |  o VITIS_LOOP_250_1                                     |     -|  14.60|    99360|  1.987e+06|      1035|        -|     96|        no|         -|       -|         -|           -|    -|
+    |   + apply_selected_attention_Pipeline_VITIS_LOOP_256_2  |     -|   8.09|      514|  1.028e+04|         -|      514|      -|        no|         -|       -|  23 (~0%)|    85 (~0%)|    -|
+    |    o VITIS_LOOP_256_2                                   |     -|  14.60|      512|  1.024e+04|         2|        1|    512|       yes|         -|       -|         -|           -|    -|
+    |   + apply_selected_attention_Pipeline_VITIS_LOOP_264_4  |     -|   0.03|      517|  1.034e+04|         -|      517|      -|        no|         -|  3 (3%)|  426 (1%)|    913 (5%)|    -|
+    |    o VITIS_LOOP_264_4                                   |     -|  14.60|      515|  1.030e+04|         5|        1|    512|       yes|         -|       -|         -|           -|    -|
+    | o VITIS_LOOP_198_1_VITIS_LOOP_199_2                     |     -|  14.60|    16384|  3.277e+05|         2|        1|  16384|       yes|         -|       -|         -|           -|    -|
+    +---------------------------------------------------------+------+-------+---------+-----------+----------+---------+-------+----------+----------+--------+----------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++----------------------------+----------+
+| Interface                  | Bitwidth |
++----------------------------+----------+
+| attention_sums_address0    | 16       |
+| attention_sums_d0          | 7        |
+| candidate_indices_address0 | 14       |
+| candidate_indices_q0       | 9        |
+| gated_values_address0      | 16       |
+| gated_values_d0            | 1        |
+| key_spikes_address0        | 16       |
+| key_spikes_q0              | 1        |
+| membrane_address0          | 16       |
+| membrane_address1          | 16       |
+| membrane_d0                | 32       |
+| membrane_q1                | 32       |
+| query_spikes_address0      | 16       |
+| query_spikes_q0            | 1        |
+| squared_distances_address0 | 14       |
+| squared_distances_address1 | 14       |
+| squared_distances_d0       | 32       |
+| squared_distances_d1       | 32       |
+| squared_distances_q0       | 32       |
+| squared_distances_q1       | 32       |
+| value_spikes_address0      | 16       |
+| value_spikes_q0            | 1        |
++----------------------------+----------+
+
+* Other Ports
++-----------+---------+----------+
+| Interface | Mode    | Bitwidth |
++-----------+---------+----------+
+| decay     | ap_none | 32       |
+| threshold | ap_none | 32       |
++-----------+---------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++-------------------+-----------+----------------------------------------------+
+| Argument          | Direction | Datatype                                     |
++-------------------+-----------+----------------------------------------------+
+| squared_distances | unused    | ap_ufixed<32, 12, AP_RND, AP_SAT, 0> const * |
+| candidate_indices | in        | ap_uint<9> const *                           |
+| query_spikes      | in        | ap_uint<1> const *                           |
+| key_spikes        | in        | ap_uint<1> const *                           |
+| value_spikes      | in        | ap_uint<1> const *                           |
+| decay             | in        | ap_fixed<32, 16, AP_RND, AP_SAT, 0>          |
+| threshold         | in        | ap_fixed<32, 16, AP_RND, AP_SAT, 0>          |
+| membrane          | inout     | ap_fixed<32, 16, AP_RND, AP_SAT, 0>*         |
+| gated_values      | out       | ap_uint<1>*                                  |
+| attention_sums    | out       | ap_int<7>*                                   |
++-------------------+-----------+----------------------------------------------+
+
+* SW-to-HW Mapping
++-------------------+----------------------------+---------+----------+
+| Argument          | HW Interface               | HW Type | HW Usage |
++-------------------+----------------------------+---------+----------+
+| squared_distances | squared_distances_address0 | port    | offset   |
+| squared_distances | squared_distances_ce0      | port    |          |
+| squared_distances | squared_distances_we0      | port    |          |
+| squared_distances | squared_distances_d0       | port    |          |
+| squared_distances | squared_distances_q0       | port    |          |
+| squared_distances | squared_distances_address1 | port    | offset   |
+| squared_distances | squared_distances_ce1      | port    |          |
+| squared_distances | squared_distances_we1      | port    |          |
+| squared_distances | squared_distances_d1       | port    |          |
+| squared_distances | squared_distances_q1       | port    |          |
+| candidate_indices | candidate_indices_address0 | port    | offset   |
+| candidate_indices | candidate_indices_ce0      | port    |          |
+| candidate_indices | candidate_indices_q0       | port    |          |
+| query_spikes      | query_spikes_address0      | port    | offset   |
+| query_spikes      | query_spikes_ce0           | port    |          |
+| query_spikes      | query_spikes_q0            | port    |          |
+| key_spikes        | key_spikes_address0        | port    | offset   |
+| key_spikes        | key_spikes_ce0             | port    |          |
+| key_spikes        | key_spikes_q0              | port    |          |
+| value_spikes      | value_spikes_address0      | port    | offset   |
+| value_spikes      | value_spikes_ce0           | port    |          |
+| value_spikes      | value_spikes_q0            | port    |          |
+| decay             | decay                      | port    |          |
+| threshold         | threshold                  | port    |          |
+| membrane          | membrane_address0          | port    | offset   |
+| membrane          | membrane_ce0               | port    |          |
+| membrane          | membrane_we0               | port    |          |
+| membrane          | membrane_d0                | port    |          |
+| membrane          | membrane_address1          | port    | offset   |
+| membrane          | membrane_ce1               | port    |          |
+| membrane          | membrane_q1                | port    |          |
+| gated_values      | gated_values_address0      | port    | offset   |
+| gated_values      | gated_values_ce0           | port    |          |
+| gated_values      | gated_values_we0           | port    |          |
+| gated_values      | gated_values_d0            | port    |          |
+| attention_sums    | attention_sums_address0    | port    | offset   |
+| attention_sums    | attention_sums_ce0         | port    |          |
+| attention_sums    | attention_sums_we0         | port    |          |
+| attention_sums    | attention_sums_d0          | port    |          |
++-------------------+----------------------------+---------+----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++--------------------------------------------------------+-----+--------+--------------+-----+--------+---------+
+| Name                                                   | DSP | Pragma | Variable     | Op  | Impl   | Latency |
++--------------------------------------------------------+-----+--------+--------------+-----+--------+---------+
+| + sada_attention_kernel                                | 3   |        |              |     |        |         |
+|   add_ln198_1_fu_797_p2                                | -   |        | add_ln198_1  | add | fabric | 0       |
+|   add_ln198_fu_809_p2                                  | -   |        | add_ln198    | add | fabric | 0       |
+|   add_ln200_fu_853_p2                                  | -   |        | add_ln200    | add | fabric | 0       |
+|   add_ln199_fu_868_p2                                  | -   |        | add_ln199    | add | fabric | 0       |
+|  + apply_selected_attention                            | 3   |        |              |     |        |         |
+|    add_ln250_fu_340_p2                                 | -   |        | add_ln250    | add | fabric | 0       |
+|   + apply_selected_attention_Pipeline_VITIS_LOOP_256_2 | 0   |        |              |     |        |         |
+|     add_ln256_fu_401_p2                                | -   |        | add_ln256    | add | fabric | 0       |
+|     add_ln261_fu_411_p2                                | -   |        | add_ln261    | add | fabric | 0       |
+|   + apply_selected_attention_Pipeline_VITIS_LOOP_264_4 | 3   |        |              |     |        |         |
+|     add_ln264_fu_1119_p2                               | -   |        | add_ln264    | add | fabric | 0       |
+|     add_ln272_fu_1169_p2                               | -   |        | add_ln272    | add | fabric | 0       |
+|     add_ln840_fu_1660_p2                               | -   |        | add_ln840    | add | fabric | 0       |
+|     add_ln840_1_fu_1670_p2                             | -   |        | add_ln840_1  | add | fabric | 0       |
+|     add_ln840_2_fu_1680_p2                             | -   |        | add_ln840_2  | add | fabric | 0       |
+|     add_ln840_3_fu_1690_p2                             | -   |        | add_ln840_3  | add | fabric | 0       |
+|     add_ln840_4_fu_1700_p2                             | -   |        | add_ln840_4  | add | fabric | 0       |
+|     add_ln840_5_fu_1710_p2                             | -   |        | add_ln840_5  | add | fabric | 0       |
+|     add_ln840_6_fu_1720_p2                             | -   |        | add_ln840_6  | add | fabric | 0       |
+|     add_ln840_7_fu_1730_p2                             | -   |        | add_ln840_7  | add | fabric | 0       |
+|     add_ln840_8_fu_1740_p2                             | -   |        | add_ln840_8  | add | fabric | 0       |
+|     add_ln840_9_fu_1750_p2                             | -   |        | add_ln840_9  | add | fabric | 0       |
+|     add_ln840_10_fu_1760_p2                            | -   |        | add_ln840_10 | add | fabric | 0       |
+|     add_ln840_11_fu_1770_p2                            | -   |        | add_ln840_11 | add | fabric | 0       |
+|     add_ln840_12_fu_1780_p2                            | -   |        | add_ln840_12 | add | fabric | 0       |
+|     add_ln840_13_fu_1790_p2                            | -   |        | add_ln840_13 | add | fabric | 0       |
+|     add_ln840_14_fu_1800_p2                            | -   |        | add_ln840_14 | add | fabric | 0       |
+|     add_ln840_15_fu_1810_p2                            | -   |        | add_ln840_15 | add | fabric | 0       |
+|     add_ln840_16_fu_1820_p2                            | -   |        | add_ln840_16 | add | fabric | 0       |
+|     add_ln840_17_fu_1830_p2                            | -   |        | add_ln840_17 | add | fabric | 0       |
+|     add_ln840_18_fu_1840_p2                            | -   |        | add_ln840_18 | add | fabric | 0       |
+|     add_ln840_19_fu_1850_p2                            | -   |        | add_ln840_19 | add | fabric | 0       |
+|     add_ln840_20_fu_1860_p2                            | -   |        | add_ln840_20 | add | fabric | 0       |
+|     add_ln840_21_fu_1870_p2                            | -   |        | add_ln840_21 | add | fabric | 0       |
+|     add_ln840_22_fu_1880_p2                            | -   |        | add_ln840_22 | add | fabric | 0       |
+|     add_ln840_23_fu_1890_p2                            | -   |        | add_ln840_23 | add | fabric | 0       |
+|     add_ln840_24_fu_1900_p2                            | -   |        | add_ln840_24 | add | fabric | 0       |
+|     add_ln840_25_fu_1910_p2                            | -   |        | add_ln840_25 | add | fabric | 0       |
+|     add_ln840_26_fu_1920_p2                            | -   |        | add_ln840_26 | add | fabric | 0       |
+|     add_ln840_27_fu_1930_p2                            | -   |        | add_ln840_27 | add | fabric | 0       |
+|     add_ln840_28_fu_1940_p2                            | -   |        | add_ln840_28 | add | fabric | 0       |
+|     add_ln840_29_fu_1950_p2                            | -   |        | add_ln840_29 | add | fabric | 0       |
+|     sum_V_fu_1960_p2                                   | -   |        | sum_V        | add | fabric | 0       |
+|     ret_V_fu_1982_p2                                   | -   |        | ret_V        | sub | fabric | 0       |
+|     mul_33s_32s_64_1_1_U19                             | 3   |        | r_V          | mul | auto   | 0       |
+|     ret_V_67_fu_2011_p2                                | -   |        | ret_V_67     | add | fabric | 0       |
+|     charged_V_4_fu_2055_p2                             | -   |        | charged_V_4  | add | fabric | 0       |
++--------------------------------------------------------+-----+--------+--------------+-----+--------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++-----------------------------+------+------+--------+------------------------+---------+------+---------+
+| Name                        | BRAM | URAM | Pragma | Variable               | Storage | Impl | Latency |
++-----------------------------+------+------+--------+------------------------+---------+------+---------+
+| + sada_attention_kernel     | 48   | 0    |        |                        |         |      |         |
+|   reference_indices_V_U     | 1    | -    |        | reference_indices_V    | ram_1p  | auto | 1       |
+|   reference_indices_V_1_U   | 1    | -    |        | reference_indices_V_1  | ram_1p  | auto | 1       |
+|   reference_indices_V_2_U   | 1    | -    |        | reference_indices_V_2  | ram_1p  | auto | 1       |
+|   reference_indices_V_3_U   | 1    | -    |        | reference_indices_V_3  | ram_1p  | auto | 1       |
+|   reference_indices_V_4_U   | 1    | -    |        | reference_indices_V_4  | ram_1p  | auto | 1       |
+|   reference_indices_V_5_U   | 1    | -    |        | reference_indices_V_5  | ram_1p  | auto | 1       |
+|   reference_indices_V_6_U   | 1    | -    |        | reference_indices_V_6  | ram_1p  | auto | 1       |
+|   reference_indices_V_7_U   | 1    | -    |        | reference_indices_V_7  | ram_1p  | auto | 1       |
+|   reference_indices_V_8_U   | 1    | -    |        | reference_indices_V_8  | ram_1p  | auto | 1       |
+|   reference_indices_V_9_U   | 1    | -    |        | reference_indices_V_9  | ram_1p  | auto | 1       |
+|   reference_indices_V_10_U  | 1    | -    |        | reference_indices_V_10 | ram_1p  | auto | 1       |
+|   reference_indices_V_11_U  | 1    | -    |        | reference_indices_V_11 | ram_1p  | auto | 1       |
+|   reference_indices_V_12_U  | 1    | -    |        | reference_indices_V_12 | ram_1p  | auto | 1       |
+|   reference_indices_V_13_U  | 1    | -    |        | reference_indices_V_13 | ram_1p  | auto | 1       |
+|   reference_indices_V_14_U  | 1    | -    |        | reference_indices_V_14 | ram_1p  | auto | 1       |
+|   reference_indices_V_15_U  | 1    | -    |        | reference_indices_V_15 | ram_1p  | auto | 1       |
+|   reference_indices_V_16_U  | 1    | -    |        | reference_indices_V_16 | ram_1p  | auto | 1       |
+|   reference_indices_V_17_U  | 1    | -    |        | reference_indices_V_17 | ram_1p  | auto | 1       |
+|   reference_indices_V_18_U  | 1    | -    |        | reference_indices_V_18 | ram_1p  | auto | 1       |
+|   reference_indices_V_19_U  | 1    | -    |        | reference_indices_V_19 | ram_1p  | auto | 1       |
+|   reference_indices_V_20_U  | 1    | -    |        | reference_indices_V_20 | ram_1p  | auto | 1       |
+|   reference_indices_V_21_U  | 1    | -    |        | reference_indices_V_21 | ram_1p  | auto | 1       |
+|   reference_indices_V_22_U  | 1    | -    |        | reference_indices_V_22 | ram_1p  | auto | 1       |
+|   reference_indices_V_23_U  | 1    | -    |        | reference_indices_V_23 | ram_1p  | auto | 1       |
+|   reference_indices_V_24_U  | 1    | -    |        | reference_indices_V_24 | ram_1p  | auto | 1       |
+|   reference_indices_V_25_U  | 1    | -    |        | reference_indices_V_25 | ram_1p  | auto | 1       |
+|   reference_indices_V_26_U  | 1    | -    |        | reference_indices_V_26 | ram_1p  | auto | 1       |
+|   reference_indices_V_27_U  | 1    | -    |        | reference_indices_V_27 | ram_1p  | auto | 1       |
+|   reference_indices_V_28_U  | 1    | -    |        | reference_indices_V_28 | ram_1p  | auto | 1       |
+|   reference_indices_V_29_U  | 1    | -    |        | reference_indices_V_29 | ram_1p  | auto | 1       |
+|   reference_indices_V_30_U  | 1    | -    |        | reference_indices_V_30 | ram_1p  | auto | 1       |
+|   reference_indices_V_31_U  | 1    | -    |        | reference_indices_V_31 | ram_1p  | auto | 1       |
+|  + apply_selected_attention | 16   | 0    |        |                        |         |      |         |
+|    cached_keys_V_U          | 1    | -    | yes    | cached_keys_V          | ram_2p  | bram | 1       |
+|    cached_keys_V_1_U        | 1    | -    | yes    | cached_keys_V_1        | ram_2p  | bram | 1       |
+|    cached_keys_V_2_U        | 1    | -    | yes    | cached_keys_V_2        | ram_2p  | bram | 1       |
+|    cached_keys_V_3_U        | 1    | -    | yes    | cached_keys_V_3        | ram_2p  | bram | 1       |
+|    cached_keys_V_4_U        | 1    | -    | yes    | cached_keys_V_4        | ram_2p  | bram | 1       |
+|    cached_keys_V_5_U        | 1    | -    | yes    | cached_keys_V_5        | ram_2p  | bram | 1       |
+|    cached_keys_V_6_U        | 1    | -    | yes    | cached_keys_V_6        | ram_2p  | bram | 1       |
+|    cached_keys_V_7_U        | 1    | -    | yes    | cached_keys_V_7        | ram_2p  | bram | 1       |
+|    cached_keys_V_8_U        | 1    | -    | yes    | cached_keys_V_8        | ram_2p  | bram | 1       |
+|    cached_keys_V_9_U        | 1    | -    | yes    | cached_keys_V_9        | ram_2p  | bram | 1       |
+|    cached_keys_V_10_U       | 1    | -    | yes    | cached_keys_V_10       | ram_2p  | bram | 1       |
+|    cached_keys_V_11_U       | 1    | -    | yes    | cached_keys_V_11       | ram_2p  | bram | 1       |
+|    cached_keys_V_12_U       | 1    | -    | yes    | cached_keys_V_12       | ram_2p  | bram | 1       |
+|    cached_keys_V_13_U       | 1    | -    | yes    | cached_keys_V_13       | ram_2p  | bram | 1       |
+|    cached_keys_V_14_U       | 1    | -    | yes    | cached_keys_V_14       | ram_2p  | bram | 1       |
+|    cached_keys_V_15_U       | 1    | -    | yes    | cached_keys_V_15       | ram_2p  | bram | 1       |
++-----------------------------+------+------+--------+------------------------+---------+------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+--------------------------------------------+------------------------------------------------------------------------+
+| Type            | Options                                    | Location                                                               |
++-----------------+--------------------------------------------+------------------------------------------------------------------------+
+| pipeline        | off                                        | src/sada_kernel.cpp:45 in compute_raw_density                          |
+| pipeline        | off                                        | src/sada_kernel.cpp:89 in normalize_clip_density                       |
+| array_partition | variable=top_positions complete dim=1      | src/sada_kernel.cpp:115 in select_density_neighbors, top_positions     |
+| array_partition | variable=top_scores complete dim=1         | src/sada_kernel.cpp:116 in select_density_neighbors, top_scores        |
+| array_partition | variable=top_ids complete dim=1            | src/sada_kernel.cpp:117 in select_density_neighbors, top_ids           |
+| array_partition | variable=valid complete dim=1              | src/sada_kernel.cpp:118 in select_density_neighbors, valid             |
+| unroll          |                                            | src/sada_kernel.cpp:120 in select_density_neighbors                    |
+| pipeline        | II=1                                       | src/sada_kernel.cpp:130 in select_density_neighbors                    |
+| unroll          |                                            | src/sada_kernel.cpp:142 in select_density_neighbors                    |
+| pipeline        | off                                        | src/sada_kernel.cpp:180 in select_density_references                   |
+| array_partition | variable=reference_indices complete dim=2  | src/sada_kernel.cpp:249 in apply_selected_attention, reference_indices |
+| pipeline        | off                                        | src/sada_kernel.cpp:251 in apply_selected_attention                    |
+| array_partition | variable=cached_keys complete dim=1        | src/sada_kernel.cpp:254 in apply_selected_attention, cached_keys       |
+| bind_storage    | variable=cached_keys type=ram_2p impl=bram | src/sada_kernel.cpp:255 in apply_selected_attention, cached_keys       |
+| pipeline        | II=1                                       | src/sada_kernel.cpp:257 in apply_selected_attention                    |
+| unroll          |                                            | src/sada_kernel.cpp:260 in apply_selected_attention                    |
+| pipeline        | II=1                                       | src/sada_kernel.cpp:265 in apply_selected_attention                    |
+| array_partition | variable=reference_indices complete dim=2  | src/sada_kernel.cpp:294 in sada_attention_kernel, reference_indices    |
++-----------------+--------------------------------------------+------------------------------------------------------------------------+
+
+* Inferred Pragmas
++----------------------------------+-----------------+----------------------------------------------+-----------------------------------------------------+
+| Source Pragma                    | Inferred Pragma | Options                                      | Location                                            |
++----------------------------------+-----------------+----------------------------------------------+-----------------------------------------------------+
+| pipeline src/sada_kernel.cpp:265 | array_partition | dim=1 type=complete  variable=reference_keys | variable reference_keys in apply_selected_attention |
++----------------------------------+-----------------+----------------------------------------------+-----------------------------------------------------+
+
+

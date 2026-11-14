@@ -6,7 +6,7 @@
 
 // Use the same -DSADA_EXPERIMENT value for design and test sources.
 // 0: subtract + nearest8; 1: XOR + nearest8;
-// 2: XOR + all16;        3: XOR + density-selected8.
+// 2: XOR + all32;        3: XOR + density-selected8.
 #ifndef SADA_EXPERIMENT
 #define SADA_EXPERIMENT 3
 #endif
@@ -18,18 +18,18 @@
 enum class Experiment {
     SubtractNearest8 = 0,
     XorNearest8 = 1,
-    XorAll16 = 2,
+    XorAll32 = 2,
     XorDensity8 = 3
 };
 
 constexpr Experiment EXPERIMENT = static_cast<Experiment>(SADA_EXPERIMENT);
 constexpr int POINT_COUNT = 512;
 constexpr int CHANNEL_COUNT = 96;
-constexpr int CANDIDATE_COUNT = 16;
+constexpr int CANDIDATE_COUNT = (SADA_EXPERIMENT == 2) ? 32 : 16;
 constexpr int NEAREST_COUNT = 4;
 constexpr int DENSITY_EXTRA_COUNT = 4;
 constexpr int DENSITY_REFERENCE_COUNT = NEAREST_COUNT + DENSITY_EXTRA_COUNT;
-constexpr int REFERENCE_COUNT = (SADA_EXPERIMENT == 2) ? 16 : 8;
+constexpr int REFERENCE_COUNT = (SADA_EXPERIMENT == 2) ? 32 : 8;
 
 static_assert(POINT_COUNT > CANDIDATE_COUNT, "Candidates exclude self.");
 static_assert(POINT_COUNT <= 512, "Point IDs use nine bits.");
@@ -41,12 +41,18 @@ using point_index_t = ap_uint<9>;
 
 // The subtraction itself uses only two-bit signed operands.
 using spike_difference_t = ap_int<2>;
-// Common accumulator/debug format covers all four modes: [-8, 16].
+// A signed six-bit accumulator cannot represent +32.
+#if SADA_EXPERIMENT == 2
+using attention_sum_t = ap_int<7>;
+#else
 using attention_sum_t = ap_int<6>;
+#endif
+using candidate_slot_t = ap_uint<(CANDIDATE_COUNT <= 16 ? 4 : 5)>;
 
 using membrane_t = ap_fixed<32, 16, AP_RND, AP_SAT>;
 using distance_t = ap_ufixed<32, 12, AP_RND, AP_SAT>;
-using distance_sum_t = ap_ufixed<36, 16, AP_RND, AP_SAT>;
+using distance_sum_t = ap_ufixed<(SADA_EXPERIMENT == 2 ? 37 : 36),
+                                (SADA_EXPERIMENT == 2 ? 17 : 16), AP_RND, AP_SAT>;
 using density_t = ap_ufixed<48, 24, AP_RND, AP_SAT>;
 // Nine extra integer bits for accumulating 512 values.
 using density_sum_t = ap_ufixed<57, 33, AP_RND, AP_SAT>;
@@ -92,7 +98,7 @@ void select_density_references(
     point_index_t reference_indices[POINT_COUNT][DENSITY_REFERENCE_COUNT]
 );
 
-// Compile-time policy: nearest8, all16, or density-selected8.
+// Compile-time policy: nearest8, all32, or density-selected8.
 void select_reference_points(
     const distance_t squared_distances[POINT_COUNT][CANDIDATE_COUNT],
     const point_index_t candidate_indices[POINT_COUNT][CANDIDATE_COUNT],

@@ -1,0 +1,289 @@
+================================================================
+== Vivado Place & Route Results
+================================================================
++ General Information:
+    * Date:            Sat Nov 14 20:12:20 +0800 2026
+    * Version:         2022.2 (Build 3670227 on Oct 13 2022)
+    * Project:         project
+    * Solution:        solution1 (Vivado IP Flow Target)
+    * Product family:  zynq
+    * Target device:   xc7z010-clg400-1
+
+
+================================================================
+== Run Constraints & Options
+================================================================
++ Design Constraints & Options:
+    * Place & Route target clock:  20 ns
+    * C-Synthesis target clock:    20 ns
+    * C-Synthesis uncertainty:     27%
+
++ RTL Synthesis Options:
+    * config_export -vivado_synth_strategy:     default
+    * config_export -vivado_synth_design_args:  -directive sdx_optimization_effort_high
+
++ Place & Route Options:
+    * config_export -vivado_impl_strategy:  default
+    * config_export -vivado_phys_opt:       none
+
++ Reporting Options:
+    * config_export -vivado_report_level:      2
+    * config_export -vivado_max_timing_paths:  10
+
+
+================================================================
+== Place & Route Resource Summary
+================================================================
+LUT:              1930
+FF:               1144
+DSP:              5
+BRAM:             16
+URAM:             0
+SRL:              2
+
+
+================================================================
+== Place & Route Timing Summary
+================================================================
+* Timing was met
++----------------+-------------+
+| Timing         | Period (ns) |
++----------------+-------------+
+| Target         | 20.000      |
+| Post-Synthesis | 12.192      |
+| Post-Route     | 12.478      |
++----------------+-------------+
+
+
+================================================================
+== Place & Route Resources
+================================================================
++-----------------------------------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+-----------------------+-----------------------------------------------------------------------------+
+| Name                                                                  | LUT  | FF   | DSP | BRAM | URAM | SRL | Pragma | Impl | Latency | Variable              | Source                                                                      |
++-----------------------------------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+-----------------------+-----------------------------------------------------------------------------+
+| inst                                                                  | 1930 | 1144 | 5   | 16   |      |     |        |      |         |                       |                                                                             |
+|   (inst)                                                              | 45   | 109  |     |      |      |     |        |      |         |                       |                                                                             |
+|   grp_apply_selected_attention_fu_226                                 | 282  | 186  | 4   | 4    |      |     |        |      |         |                       |                                                                             |
+|     (grp_apply_selected_attention_fu_226)                             | 13   | 21   |     |      |      |     |        |      |         |                       |                                                                             |
+|     cached_keys_V_1_U                                                 | 1    |      |     | 1    |      |     |        |      |         |                       |                                                                             |
+|       bind_storage ram_2p                                             |      |      |     |      |      |     | yes    | bram | 1       | cached_keys_V_1       | src/sada_kernel.cpp:196                                                     |
+|     cached_keys_V_2_U                                                 | 2    |      |     | 1    |      |     |        |      |         |                       |                                                                             |
+|       bind_storage ram_2p                                             |      |      |     |      |      |     | yes    | bram | 1       | cached_keys_V_2       | src/sada_kernel.cpp:196                                                     |
+|     cached_keys_V_3_U                                                 | 10   |      |     | 1    |      |     |        |      |         |                       |                                                                             |
+|       bind_storage ram_2p                                             |      |      |     |      |      |     | yes    | bram | 1       | cached_keys_V_3       | src/sada_kernel.cpp:196                                                     |
+|     cached_keys_V_U                                                   | 2    |      |     | 1    |      |     |        |      |         |                       |                                                                             |
+|       bind_storage ram_2p                                             |      |      |     |      |      |     | yes    | bram | 1       | cached_keys_V         | src/sada_kernel.cpp:196                                                     |
+|     grp_apply_selected_attention_Pipeline_VITIS_LOOP_199_2_fu_110     | 44   | 22   |     |      |      |     |        |      |         |                       |                                                                             |
+|       (grp_apply_selected_attention_Pipeline_VITIS_LOOP_199_2_fu_110) | 20   | 20   |     |      |      |     |        |      |         |                       |                                                                             |
+|     grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121     | 214  | 143  | 4   |      |      |     |        |      |         |                       |                                                                             |
+|       (grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121) | 87   | 141  |     |      |      |     |        |      |         |                       |                                                                             |
+|       mul_33s_32s_64_1_1_U34                                          | 99   |      | 4   |      |      |     |        |      |         |                       |                                                                             |
+|         bind_op mul                                                   |      |      |     |      |      |     |        | auto | 0       | r_V                   | V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:1273 |
+|   grp_compute_raw_density_fu_216                                      | 985  | 237  | 1   | 2    |      |     |        |      |         |                       |                                                                             |
+|     (grp_compute_raw_density_fu_216)                                  | 798  | 234  |     |      |      |     |        |      |         |                       |                                                                             |
+|     RECIPROCAL_TABLE_V_U                                              | 52   | 3    |     | 2    |      |     |        |      |         |                       |                                                                             |
+|       bind_storage rom_1p                                             |      |      |     |      |      |     | pragma | bram | 1       | RECIPROCAL_TABLE_V    | src/sada_kernel.cpp:22                                                      |
+|     mul_26ns_16ns_42_1_1_U1                                           | 140  |      | 1   |      |      |     |        |      |         |                       |                                                                             |
+|       bind_op mul                                                     |      |      |     |      |      |     |        | auto | 0       | ret_V_5               | V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_int_base.h:1494   |
+|   grp_select_density_neighbors_fu_252                                 | 613  | 612  |     |      |      |     |        |      |         |                       |                                                                             |
+|     (grp_select_density_neighbors_fu_252)                             | 85   | 157  |     |      |      |     |        |      |         |                       |                                                                             |
+|     grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254      | 528  | 455  |     |      |      |     |        |      |         |                       |                                                                             |
+|       (grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254)  | 513  | 453  |     |      |      |     |        |      |         |                       |                                                                             |
+|       flow_control_loop_pipe_sequential_init_U                        | 15   | 2    |     |      |      |     |        |      |         |                       |                                                                             |
+|   raw_density_V_U                                                     | 1    |      |     | 2    |      |     |        |      |         |                       |                                                                             |
+|     bind_storage ram_1p                                               |      |      |     |      |      |     |        | auto | 1       | raw_density_V         | src/sada_kernel.cpp:120                                                     |
+|   reference_indices_V_1_U                                             |      |      |     | 1    |      |     |        |      |         |                       |                                                                             |
+|     bind_storage ram_1p                                               |      |      |     |      |      |     |        | auto | 1       | reference_indices_V_1 | src/sada_kernel.cpp:236                                                     |
+|   reference_indices_V_2_U                                             |      |      |     | 1    |      |     |        |      |         |                       |                                                                             |
+|     bind_storage ram_1p                                               |      |      |     |      |      |     |        | auto | 1       | reference_indices_V_2 | src/sada_kernel.cpp:236                                                     |
+|   reference_indices_V_3_U                                             |      |      |     | 1    |      |     |        |      |         |                       |                                                                             |
+|     bind_storage ram_1p                                               |      |      |     |      |      |     |        | auto | 1       | reference_indices_V_3 | src/sada_kernel.cpp:236                                                     |
+|   reference_indices_V_4_U                                             |      |      |     | 1    |      |     |        |      |         |                       |                                                                             |
+|     bind_storage ram_1p                                               |      |      |     |      |      |     |        | auto | 1       | reference_indices_V_4 | src/sada_kernel.cpp:236                                                     |
+|   reference_indices_V_5_U                                             |      |      |     | 1    |      |     |        |      |         |                       |                                                                             |
+|     bind_storage ram_1p                                               |      |      |     |      |      |     |        | auto | 1       | reference_indices_V_5 | src/sada_kernel.cpp:236                                                     |
+|   reference_indices_V_6_U                                             |      |      |     | 1    |      |     |        |      |         |                       |                                                                             |
+|     bind_storage ram_1p                                               |      |      |     |      |      |     |        | auto | 1       | reference_indices_V_6 | src/sada_kernel.cpp:236                                                     |
+|   reference_indices_V_7_U                                             | 4    |      |     | 1    |      |     |        |      |         |                       |                                                                             |
+|     bind_storage ram_1p                                               |      |      |     |      |      |     |        | auto | 1       | reference_indices_V_7 | src/sada_kernel.cpp:236                                                     |
+|   reference_indices_V_U                                               |      |      |     | 1    |      |     |        |      |         |                       |                                                                             |
+|     bind_storage ram_1p                                               |      |      |     |      |      |     |        | auto | 1       | reference_indices_V   | src/sada_kernel.cpp:236                                                     |
++-----------------------------------------------------------------------+------+------+-----+------+------+-----+--------+------+---------+-----------------------+-----------------------------------------------------------------------------+
+
+
+================================================================
+== Place & Route Fail Fast
+================================================================
++-----------------------------------------------------------+-----------+--------+--------+
+| Criteria                                                  | Guideline | Actual | Status |
++-----------------------------------------------------------+-----------+--------+--------+
+| LUT                                                       | 70%       | 10.97% | OK     |
+| FD                                                        | 50%       | 3.25%  | OK     |
+| LUTRAM+SRL                                                | 25%       | 0.03%  | OK     |
+| MUXF7                                                     | 15%       | 0.00%  | OK     |
+| DSP                                                       | 80%       | 6.25%  | OK     |
+| RAMB/FIFO                                                 | 80%       | 13.33% | OK     |
+| DSP+RAMB+URAM (Avg)                                       | 70%       | 9.79%  | OK     |
+| BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
+| DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
+| MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
+| Control Sets                                              | 330       | 43     | OK     |
+| Average Fanout for modules > 100k cells                   | 4         | 0      | OK     |
+| Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+| TIMING-6 (No common primary clock between related clocks) | 0         | 0      | OK     |
+| TIMING-7 (No common node between related clocks)          | 0         | 0      | OK     |
+| TIMING-8 (No common period between related clocks)        | 0         | 0      | OK     |
+| TIMING-14 (LUT on the clock tree)                         | 0         | 0      | OK     |
+| TIMING-35 (No common node in paths with the same clock)   | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+| Number of paths above max LUT budgeting (0.575ns)         | 0         | 0      | OK     |
+| Number of paths above max Net budgeting (0.403ns)         | 0         | 0      | OK     |
++-----------------------------------------------------------+-----------+--------+--------+
+
+
+================================================================
+== Place & Route Timing Paths
+================================================================
+* Timing was met
++-------+-------+--------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path  | SLACK | STARTPOINT PIN                                                                                                                       | ENDPOINT PIN                                                                                                                         | LOGIC LEVELS | MAX FANOUT | DATAPATH DELAY | DATAPATH LOGIC | DATAPATH NET |
+|       |       |                                                                                                                                      |                                                                                                                                      |              |            |                |          DELAY |        DELAY |
++-------+-------+--------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+| Path1 | 7.522 | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout__1/CLK | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_zeros_reg_1122_reg[0]/D |           18 |          2 |         12.425 |          9.255 |        3.170 |
+| Path2 | 7.542 | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_1_fu_70_reg[8]/C      | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363_reg[41]/D |           13 |        176 |         12.307 |          2.956 |        9.351 |
+| Path3 | 7.560 | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout__1/CLK | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_ones_reg_1115_reg[0]/D  |           18 |          2 |         12.385 |          9.255 |        3.130 |
+| Path4 | 7.771 | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_1_fu_70_reg[8]/C      | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363_reg[19]/D |           13 |        176 |         12.115 |          2.956 |        9.159 |
+| Path5 | 7.808 | raw_density_V_U/ram_reg_0/CLKARDCLK                                                                                                  | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[1]/S     |           16 |         48 |         11.679 |          5.846 |        5.833 |
++-------+-------+--------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+--------------+------------+----------------+----------------+--------------+
+
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path1 Cells                                                                                                                                              | Primitive Type       |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout__1                         | MULT.dsp.DSP48E1     |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout__2                         | MULT.dsp.DSP48E1     |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry_i_3__0               | LUT.others.LUT2      |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry                      | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry__0                   | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry__1                   | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/ret_V_24_fu_704_p2_carry__1_i_3 | LUT.others.LUT2      |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__1                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__2                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__3                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__4                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__5                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__6                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__7                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__8                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__9                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__10                           | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_zeros_reg_1122[0]_i_2                       | LUT.others.LUT6      |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_zeros_reg_1122[0]_i_1                       | LUT.others.LUT6      |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_zeros_reg_1122_reg[0]                       | FLOP_LATCH.flop.FDRE |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path2 Cells                                                                                                                              | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_1_fu_70_reg[8]            | FLOP_LATCH.flop.FDRE |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82[47]_i_72          | LUT.others.LUT6      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_57      | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_43      | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_29      | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_19      | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82[47]_i_7           | LUT.others.LUT5      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82[28]_i_1           | LUT.others.LUT3      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355[3]_i_24    | LUT.others.LUT6      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355[3]_i_11    | LUT.others.LUT5      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355_reg[3]_i_3 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355_reg[3]_i_2 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363[47]_i_2       | LUT.others.LUT3      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363[41]_i_1       | LUT.others.LUT5      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363_reg[41]       | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path3 Cells                                                                                                                                              | Primitive Type       |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout__1                         | MULT.dsp.DSP48E1     |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout__2                         | MULT.dsp.DSP48E1     |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry_i_3__0               | LUT.others.LUT2      |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry                      | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry__0                   | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/dout_carry__1                   | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/mul_33s_32s_64_1_1_U34/ret_V_24_fu_704_p2_carry__1_i_3 | LUT.others.LUT2      |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__1                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__2                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__3                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__4                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__5                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__6                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__7                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__8                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__9                            | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/ret_V_24_fu_704_p2_carry__10                           | CARRY.others.CARRY4  |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_ones_reg_1115[0]_i_2                        | LUT.others.LUT6      |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_ones_reg_1115[0]_i_1                        | LUT.others.LUT6      |
+    | grp_apply_selected_attention_fu_226/grp_apply_selected_attention_Pipeline_VITIS_LOOP_207_4_fu_121/Range1_all_ones_reg_1115_reg[0]                        | FLOP_LATCH.flop.FDRE |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +------------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path4 Cells                                                                                                                              | Primitive Type       |
+    +------------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_1_fu_70_reg[8]            | FLOP_LATCH.flop.FDRE |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82[47]_i_72          | LUT.others.LUT6      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_57      | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_43      | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_29      | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82_reg[47]_i_19      | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82[47]_i_7           | LUT.others.LUT5      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_2_fu_82[28]_i_1           | LUT.others.LUT3      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355[3]_i_24    | LUT.others.LUT6      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355[3]_i_11    | LUT.others.LUT5      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355_reg[3]_i_3 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_position_V_19_reg_1355_reg[3]_i_2 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363[47]_i_2       | LUT.others.LUT3      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363[19]_i_1       | LUT.others.LUT5      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_19_reg_1363_reg[19]       | FLOP_LATCH.flop.FDRE |
+    +------------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+
+    +-------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | Path5 Cells                                                                                                                         | Primitive Type       |
+    +-------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+    | raw_density_V_U/ram_reg_0                                                                                                           | BMEM.bram.RAMB18E1   |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339[0]_i_5      | LUT.others.LUT2      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[0]_i_1  | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[7]_i_2  | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339[8]_i_5      | LUT.others.LUT1      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[8]_i_2  | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[12]_i_2 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[16]_i_2 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[20]_i_2 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[24]_i_2 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[28]_i_2 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[32]_i_2 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[36]_i_2 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[40]_i_2 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[44]_i_2 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[47]_i_5 | CARRY.others.CARRY4  |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339[47]_i_1     | LUT.others.LUT3      |
+    | grp_select_density_neighbors_fu_252/grp_select_density_neighbors_Pipeline_VITIS_LOOP_78_3_fu_254/carry_score_V_reg_1339_reg[1]      | FLOP_LATCH.flop.FDSE |
+    +-------------------------------------------------------------------------------------------------------------------------------------+----------------------+
+
+
+================================================================
+== Place & Route Vivado Reports
+================================================================
++--------------------------+-------------------------------------------------------------------------------+
+| Report Type              | Report Location                                                               |
++--------------------------+-------------------------------------------------------------------------------+
+| design_analysis          | impl/verilog/report/sada_attention_kernel_design_analysis_routed.rpt          |
+| failfast                 | impl/verilog/report/sada_attention_kernel_failfast_routed.rpt                 |
+| status                   | impl/verilog/report/sada_attention_kernel_status_routed.rpt                   |
+| timing                   | impl/verilog/report/sada_attention_kernel_timing_routed.rpt                   |
+| timing_paths             | impl/verilog/report/sada_attention_kernel_timing_paths_routed.rpt             |
+| utilization              | impl/verilog/report/sada_attention_kernel_utilization_routed.rpt              |
+| utilization_hierarchical | impl/verilog/report/sada_attention_kernel_utilization_hierarchical_routed.rpt |
++--------------------------+-------------------------------------------------------------------------------+
+
+

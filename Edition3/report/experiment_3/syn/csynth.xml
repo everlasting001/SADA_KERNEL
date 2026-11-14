@@ -630,7 +630,7 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_53_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln53_fu_87_p2" SOURCE="../sada_kernel.cpp:53" URAM="0" VARIABLE="add_ln53"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_53_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln53_fu_87_p2" SOURCE="src/sada_kernel.cpp:53" URAM="0" VARIABLE="add_ln53"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_53_1" OPTYPE="add" PRAGMA="" RTLNAME="ret_V_fu_122_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:1347" URAM="0" VARIABLE="ret_V"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_53_1" OPTYPE="add" PRAGMA="" RTLNAME="sum_V_fu_128_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:813" URAM="0" VARIABLE="sum_V"/>
             </BindNodes>
@@ -690,7 +690,7 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_66_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln66_fu_107_p2" SOURCE="../sada_kernel.cpp:66" URAM="0" VARIABLE="add_ln66"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_66_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln66_fu_107_p2" SOURCE="src/sada_kernel.cpp:66" URAM="0" VARIABLE="add_ln66"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_66_1" OPTYPE="sub" PRAGMA="" RTLNAME="ret_V_fu_131_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:813" URAM="0" VARIABLE="ret_V"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="4" ID="" IMPL="auto" LATENCY="0" LOOP="VITIS_LOOP_66_1" OPTYPE="mul" PRAGMA="" RTLNAME="mul_49s_49s_97_1_1_U3" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:1273" URAM="0" VARIABLE="r_V"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_66_1" OPTYPE="add" PRAGMA="" RTLNAME="ret_V_1_fu_178_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:1347" URAM="0" VARIABLE="ret_V_1"/>
@@ -753,7 +753,7 @@
             </AreaEstimates>
             <BindNodes>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_8_1" OPTYPE="sub" PRAGMA="" RTLNAME="remainder_V_2_fu_192_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_int_base.h:841" URAM="0" VARIABLE="remainder_V_2"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_8_1" OPTYPE="add" PRAGMA="" RTLNAME="pair_3_fu_222_p2" SOURCE="../sada_kernel.cpp:8" URAM="0" VARIABLE="pair_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_8_1" OPTYPE="add" PRAGMA="" RTLNAME="pair_3_fu_222_p2" SOURCE="src/sada_kernel.cpp:8" URAM="0" VARIABLE="pair_3"/>
             </BindNodes>
         </Module>
         <Module>
@@ -811,10 +811,10 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_129_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln131_fu_318_p2" SOURCE="../sada_kernel.cpp:131" URAM="0" VARIABLE="add_ln131"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_129_3" OPTYPE="add" PRAGMA="" RTLNAME="add_ln131_fu_318_p2" SOURCE="src/sada_kernel.cpp:131" URAM="0" VARIABLE="add_ln131"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_129_3" OPTYPE="sub" PRAGMA="" RTLNAME="ret_V_fu_353_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:813" URAM="0" VARIABLE="ret_V"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_129_3" OPTYPE="sub" PRAGMA="" RTLNAME="r_V_fu_366_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:1408" URAM="0" VARIABLE="r_V"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_129_3" OPTYPE="add" PRAGMA="" RTLNAME="neighbor_2_fu_333_p2" SOURCE="../sada_kernel.cpp:129" URAM="0" VARIABLE="neighbor_2"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_129_3" OPTYPE="add" PRAGMA="" RTLNAME="neighbor_2_fu_333_p2" SOURCE="src/sada_kernel.cpp:129" URAM="0" VARIABLE="neighbor_2"/>
             </BindNodes>
         </Module>
         <Module>
@@ -884,8 +884,8 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_126_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln126_fu_324_p2" SOURCE="../sada_kernel.cpp:126" URAM="0" VARIABLE="add_ln126"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_161_5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln161_fu_428_p2" SOURCE="../sada_kernel.cpp:161" URAM="0" VARIABLE="add_ln161"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_126_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln126_fu_324_p2" SOURCE="src/sada_kernel.cpp:126" URAM="0" VARIABLE="add_ln126"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_161_5" OPTYPE="add" PRAGMA="" RTLNAME="add_ln161_fu_428_p2" SOURCE="src/sada_kernel.cpp:161" URAM="0" VARIABLE="add_ln161"/>
             </BindNodes>
         </Module>
         <Module>
@@ -982,18 +982,18 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="raw_density_V_U" SOURCE="../sada_kernel.cpp:171" URAM="0" VARIABLE="raw_density_V"/>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="clipped_density_V_U" SOURCE="../sada_kernel.cpp:172" URAM="0" VARIABLE="clipped_density_V"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_44_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln44_fu_437_p2" SOURCE="../sada_kernel.cpp:44" URAM="0" VARIABLE="add_ln44"/>
+                <BindNode BINDTYPE="storage" BRAM="2" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="raw_density_V_U" SOURCE="src/sada_kernel.cpp:171" URAM="0" VARIABLE="raw_density_V"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="clipped_density_V_U" SOURCE="src/sada_kernel.cpp:172" URAM="0" VARIABLE="clipped_density_V"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_44_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln44_fu_437_p2" SOURCE="src/sada_kernel.cpp:44" URAM="0" VARIABLE="add_ln44"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_28_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln813_fu_452_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:813" URAM="0" VARIABLE="add_ln813"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_28_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln28_fu_468_p2" SOURCE="../sada_kernel.cpp:28" URAM="0" VARIABLE="add_ln28"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_28_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln28_fu_468_p2" SOURCE="src/sada_kernel.cpp:28" URAM="0" VARIABLE="add_ln28"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_28_1" OPTYPE="add" PRAGMA="" RTLNAME="ret_V_fu_528_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:1347" URAM="0" VARIABLE="ret_V"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_28_1" OPTYPE="add" PRAGMA="" RTLNAME="sum_V_fu_534_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:813" URAM="0" VARIABLE="sum_V"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_44_1" OPTYPE="add" PRAGMA="" RTLNAME="denominator_V_fu_496_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:813" URAM="0" VARIABLE="denominator_V"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op mul" DSP="20" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="mul" PRAGMA="" RTLNAME="mul_105ns_107ns_211_2_1_U33" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:1303" URAM="0" VARIABLE="mul_ln1303"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_88_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln88_fu_653_p2" SOURCE="../sada_kernel.cpp:88" URAM="0" VARIABLE="add_ln88"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_88_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln88_fu_653_p2" SOURCE="src/sada_kernel.cpp:88" URAM="0" VARIABLE="add_ln88"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op sub" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_88_1" OPTYPE="sub" PRAGMA="" RTLNAME="ret_V_3_fu_677_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_fixed_base.h:813" URAM="0" VARIABLE="ret_V_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_179_1" OPTYPE="add" PRAGMA="" RTLNAME="point_8_fu_924_p2" SOURCE="../sada_kernel.cpp:179" URAM="0" VARIABLE="point_8"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_179_1" OPTYPE="add" PRAGMA="" RTLNAME="point_8_fu_924_p2" SOURCE="src/sada_kernel.cpp:179" URAM="0" VARIABLE="point_8"/>
             </BindNodes>
         </Module>
         <Module>
@@ -1051,8 +1051,8 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_256_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln256_fu_161_p2" SOURCE="../sada_kernel.cpp:256" URAM="0" VARIABLE="add_ln256"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_256_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln261_fu_171_p2" SOURCE="../sada_kernel.cpp:261" URAM="0" VARIABLE="add_ln261"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_256_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln256_fu_161_p2" SOURCE="src/sada_kernel.cpp:256" URAM="0" VARIABLE="add_ln256"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_256_2" OPTYPE="add" PRAGMA="" RTLNAME="add_ln261_fu_171_p2" SOURCE="src/sada_kernel.cpp:261" URAM="0" VARIABLE="add_ln261"/>
             </BindNodes>
         </Module>
         <Module>
@@ -1110,8 +1110,8 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_264_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln264_fu_435_p2" SOURCE="../sada_kernel.cpp:264" URAM="0" VARIABLE="add_ln264"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_264_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln272_fu_461_p2" SOURCE="../sada_kernel.cpp:272" URAM="0" VARIABLE="add_ln272"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_264_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln264_fu_435_p2" SOURCE="src/sada_kernel.cpp:264" URAM="0" VARIABLE="add_ln264"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_264_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln272_fu_461_p2" SOURCE="src/sada_kernel.cpp:272" URAM="0" VARIABLE="add_ln272"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_264_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln840_fu_592_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_int_base.h:840" URAM="0" VARIABLE="add_ln840"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_264_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln840_1_fu_602_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_int_base.h:840" URAM="0" VARIABLE="add_ln840_1"/>
                 <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_264_4" OPTYPE="add" PRAGMA="" RTLNAME="add_ln840_2_fu_612_p2" SOURCE="V:/Xilinx/Vitis_HLS/2022.2/common/technology/autopilot\ap_int_base.h:840" URAM="0" VARIABLE="add_ln840_2"/>
@@ -1183,11 +1183,11 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_2p" PRAGMA="yes" RTLNAME="cached_keys_V_U" SOURCE="../sada_kernel.cpp:253" URAM="0" VARIABLE="cached_keys_V"/>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_2p" PRAGMA="yes" RTLNAME="cached_keys_V_1_U" SOURCE="../sada_kernel.cpp:253" URAM="0" VARIABLE="cached_keys_V_1"/>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_2p" PRAGMA="yes" RTLNAME="cached_keys_V_2_U" SOURCE="../sada_kernel.cpp:253" URAM="0" VARIABLE="cached_keys_V_2"/>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_2p" PRAGMA="yes" RTLNAME="cached_keys_V_3_U" SOURCE="../sada_kernel.cpp:253" URAM="0" VARIABLE="cached_keys_V_3"/>
-                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_250_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln250_fu_172_p2" SOURCE="../sada_kernel.cpp:250" URAM="0" VARIABLE="add_ln250"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_2p" PRAGMA="yes" RTLNAME="cached_keys_V_U" SOURCE="src/sada_kernel.cpp:253" URAM="0" VARIABLE="cached_keys_V"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_2p" PRAGMA="yes" RTLNAME="cached_keys_V_1_U" SOURCE="src/sada_kernel.cpp:253" URAM="0" VARIABLE="cached_keys_V_1"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_2p" PRAGMA="yes" RTLNAME="cached_keys_V_2_U" SOURCE="src/sada_kernel.cpp:253" URAM="0" VARIABLE="cached_keys_V_2"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_2p" DSP="0" ID="" IMPL="bram" LATENCY="1" LOOP="" OPTYPE="ram_2p" PRAGMA="yes" RTLNAME="cached_keys_V_3_U" SOURCE="src/sada_kernel.cpp:253" URAM="0" VARIABLE="cached_keys_V_3"/>
+                <BindNode BINDTYPE="op" BRAM="0" BUNDLEDNAME="" DISPNAME="bind_op add" DSP="0" ID="" IMPL="fabric" LATENCY="0" LOOP="VITIS_LOOP_250_1" OPTYPE="add" PRAGMA="" RTLNAME="add_ln250_fu_172_p2" SOURCE="src/sada_kernel.cpp:250" URAM="0" VARIABLE="add_ln250"/>
             </BindNodes>
         </Module>
         <Module>
@@ -1229,14 +1229,14 @@
                 </Resources>
             </AreaEstimates>
             <BindNodes>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_U" SOURCE="../sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V"/>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_1_U" SOURCE="../sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_1"/>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_2_U" SOURCE="../sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_2"/>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_3_U" SOURCE="../sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_3"/>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_4_U" SOURCE="../sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_4"/>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_5_U" SOURCE="../sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_5"/>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_6_U" SOURCE="../sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_6"/>
-                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_7_U" SOURCE="../sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_7"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_U" SOURCE="src/sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_1_U" SOURCE="src/sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_1"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_2_U" SOURCE="src/sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_2"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_3_U" SOURCE="src/sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_3"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_4_U" SOURCE="src/sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_4"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_5_U" SOURCE="src/sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_5"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_6_U" SOURCE="src/sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_6"/>
+                <BindNode BINDTYPE="storage" BRAM="1" BUNDLEDNAME="" DISPNAME="bind_storage ram_1p" DSP="0" ID="" IMPL="auto" LATENCY="1" LOOP="" OPTYPE="ram_1p" PRAGMA="" RTLNAME="reference_indices_V_7_U" SOURCE="src/sada_kernel.cpp:293" URAM="0" VARIABLE="reference_indices_V_7"/>
             </BindNodes>
         </Module>
     </ModuleInformation>
@@ -1673,24 +1673,24 @@
         </section>
     </ReportSWInterface>
     <PragmaReport>
-        <Pragma type="pipeline" location="../sada_kernel.cpp:45" status="valid" parentFunction="compute_raw_density" variable="" isDirective="0" options="off"/>
-        <Pragma type="pipeline" location="../sada_kernel.cpp:89" status="valid" parentFunction="normalize_clip_density" variable="" isDirective="0" options="off"/>
-        <Pragma type="array_partition" location="../sada_kernel.cpp:115" status="valid" parentFunction="select_density_neighbors" variable="top_positions" isDirective="0" options="variable=top_positions complete dim=1"/>
-        <Pragma type="array_partition" location="../sada_kernel.cpp:116" status="valid" parentFunction="select_density_neighbors" variable="top_scores" isDirective="0" options="variable=top_scores complete dim=1"/>
-        <Pragma type="array_partition" location="../sada_kernel.cpp:117" status="valid" parentFunction="select_density_neighbors" variable="top_ids" isDirective="0" options="variable=top_ids complete dim=1"/>
-        <Pragma type="array_partition" location="../sada_kernel.cpp:118" status="valid" parentFunction="select_density_neighbors" variable="valid" isDirective="0" options="variable=valid complete dim=1"/>
-        <Pragma type="unroll" location="../sada_kernel.cpp:120" status="valid" parentFunction="select_density_neighbors" variable="" isDirective="0" options=""/>
-        <Pragma type="pipeline" location="../sada_kernel.cpp:130" status="valid" parentFunction="select_density_neighbors" variable="" isDirective="0" options="II=1"/>
-        <Pragma type="unroll" location="../sada_kernel.cpp:142" status="valid" parentFunction="select_density_neighbors" variable="" isDirective="0" options=""/>
-        <Pragma type="pipeline" location="../sada_kernel.cpp:180" status="valid" parentFunction="select_density_references" variable="" isDirective="0" options="off"/>
-        <Pragma type="array_partition" location="../sada_kernel.cpp:249" status="valid" parentFunction="apply_selected_attention" variable="reference_indices" isDirective="0" options="variable=reference_indices complete dim=2"/>
-        <Pragma type="pipeline" location="../sada_kernel.cpp:251" status="valid" parentFunction="apply_selected_attention" variable="" isDirective="0" options="off"/>
-        <Pragma type="array_partition" location="../sada_kernel.cpp:254" status="valid" parentFunction="apply_selected_attention" variable="cached_keys" isDirective="0" options="variable=cached_keys complete dim=1"/>
-        <Pragma type="bind_storage" location="../sada_kernel.cpp:255" status="valid" parentFunction="apply_selected_attention" variable="cached_keys" isDirective="0" options="variable=cached_keys type=ram_2p impl=bram"/>
-        <Pragma type="pipeline" location="../sada_kernel.cpp:257" status="valid" parentFunction="apply_selected_attention" variable="" isDirective="0" options="II=1"/>
-        <Pragma type="unroll" location="../sada_kernel.cpp:260" status="valid" parentFunction="apply_selected_attention" variable="" isDirective="0" options=""/>
-        <Pragma type="pipeline" location="../sada_kernel.cpp:265" status="valid" parentFunction="apply_selected_attention" variable="" isDirective="0" options="II=1"/>
-        <Pragma type="array_partition" location="../sada_kernel.cpp:294" status="valid" parentFunction="sada_attention_kernel" variable="reference_indices" isDirective="0" options="variable=reference_indices complete dim=2"/>
+        <Pragma type="pipeline" location="src/sada_kernel.cpp:45" status="valid" parentFunction="compute_raw_density" variable="" isDirective="0" options="off"/>
+        <Pragma type="pipeline" location="src/sada_kernel.cpp:89" status="valid" parentFunction="normalize_clip_density" variable="" isDirective="0" options="off"/>
+        <Pragma type="array_partition" location="src/sada_kernel.cpp:115" status="valid" parentFunction="select_density_neighbors" variable="top_positions" isDirective="0" options="variable=top_positions complete dim=1"/>
+        <Pragma type="array_partition" location="src/sada_kernel.cpp:116" status="valid" parentFunction="select_density_neighbors" variable="top_scores" isDirective="0" options="variable=top_scores complete dim=1"/>
+        <Pragma type="array_partition" location="src/sada_kernel.cpp:117" status="valid" parentFunction="select_density_neighbors" variable="top_ids" isDirective="0" options="variable=top_ids complete dim=1"/>
+        <Pragma type="array_partition" location="src/sada_kernel.cpp:118" status="valid" parentFunction="select_density_neighbors" variable="valid" isDirective="0" options="variable=valid complete dim=1"/>
+        <Pragma type="unroll" location="src/sada_kernel.cpp:120" status="valid" parentFunction="select_density_neighbors" variable="" isDirective="0" options=""/>
+        <Pragma type="pipeline" location="src/sada_kernel.cpp:130" status="valid" parentFunction="select_density_neighbors" variable="" isDirective="0" options="II=1"/>
+        <Pragma type="unroll" location="src/sada_kernel.cpp:142" status="valid" parentFunction="select_density_neighbors" variable="" isDirective="0" options=""/>
+        <Pragma type="pipeline" location="src/sada_kernel.cpp:180" status="valid" parentFunction="select_density_references" variable="" isDirective="0" options="off"/>
+        <Pragma type="array_partition" location="src/sada_kernel.cpp:249" status="valid" parentFunction="apply_selected_attention" variable="reference_indices" isDirective="0" options="variable=reference_indices complete dim=2"/>
+        <Pragma type="pipeline" location="src/sada_kernel.cpp:251" status="valid" parentFunction="apply_selected_attention" variable="" isDirective="0" options="off"/>
+        <Pragma type="array_partition" location="src/sada_kernel.cpp:254" status="valid" parentFunction="apply_selected_attention" variable="cached_keys" isDirective="0" options="variable=cached_keys complete dim=1"/>
+        <Pragma type="bind_storage" location="src/sada_kernel.cpp:255" status="valid" parentFunction="apply_selected_attention" variable="cached_keys" isDirective="0" options="variable=cached_keys type=ram_2p impl=bram"/>
+        <Pragma type="pipeline" location="src/sada_kernel.cpp:257" status="valid" parentFunction="apply_selected_attention" variable="" isDirective="0" options="II=1"/>
+        <Pragma type="unroll" location="src/sada_kernel.cpp:260" status="valid" parentFunction="apply_selected_attention" variable="" isDirective="0" options=""/>
+        <Pragma type="pipeline" location="src/sada_kernel.cpp:265" status="valid" parentFunction="apply_selected_attention" variable="" isDirective="0" options="II=1"/>
+        <Pragma type="array_partition" location="src/sada_kernel.cpp:294" status="valid" parentFunction="sada_attention_kernel" variable="reference_indices" isDirective="0" options="variable=reference_indices complete dim=2"/>
     </PragmaReport>
 </profile>
 

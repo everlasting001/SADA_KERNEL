@@ -1,0 +1,23 @@
+{
+  "profile": "24_lut_exact_control",
+  "options": {
+    "snapshot": "lut_exact_control_snapshot"
+  },
+  "experiment": 3,
+  "stage": "impl",
+  "part": "xc7z010clg400-1",
+  "clock_ns": 20,
+  "work_directory": "C:/fpga/sada_edition3_runs/24_lut_exact_control_exp3",
+  "source_sha256": "f730f2fbf618a5e396c9e660cf2b7cb00e041a1ea1a19d2cac0c2fdd1b10f92b",
+  "header_sha256": "6d615d1c0f50ee21ccbe37d36ddf1d6446a57e3d378ad59063f7c2beeb82b96a",
+  "test_sha256": "4aa905ff729bf9265addec418b6533344f1a3d1c3786ec06734dfedf6efbd382",
+  "files_sha256": {
+    "src/reciprocal_config.h": "9996bb85408ae44df7963eda29a01a73ae3785a97e72a3074625fc09fb5c944e",
+    "src/sada_kernel.cpp": "f730f2fbf618a5e396c9e660cf2b7cb00e041a1ea1a19d2cac0c2fdd1b10f92b",
+    "src/sada_kernel.h": "6d615d1c0f50ee21ccbe37d36ddf1d6446a57e3d378ad59063f7c2beeb82b96a",
+    "test/real_sample.h": "d30c0c8eead4232e5ecec10e06d59f5d69e81bf8470abce57286b0814f299dc2",
+    "test/real_sample_test.h": "7ce14d1f09659b2cf9e27c42959a674cfe0a414a4b6fb63d1555f8576ab03192",
+    "test/tb_raw_top4.cpp": "2a569e20083b2ff8810ed3500e70fd16bcd27c8c484659c6d341933144f6bfb9",
+    "test/tb_sada_experiments.cpp": "4aa905ff729bf9265addec418b6533344f1a3d1c3786ec06734dfedf6efbd382"
+  }
+}
